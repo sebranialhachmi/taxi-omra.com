@@ -1,8 +1,6 @@
 // MySQL/MariaDB access for the whole app. Table and column names are validated
 // against db/tables.mjs, so only whitelisted identifiers ever reach a query.
 import mysql from "mysql2/promise";
-import { join } from "node:path";
-import { pathToFileURL } from "node:url";
 import { TABLES, type ColType } from "../../db/tables.mjs";
 import { setupDatabase } from "../../db/setup.mjs";
 
@@ -36,11 +34,24 @@ function createPool(): mysql.Pool {
 // First use of the database after every start: create missing tables, seed empty
 // ones, and create the admin from ADMIN_EMAIL / ADMIN_PASSWORD if it does not exist.
 // Failures are logged, not thrown, so a hiccup here cannot take the site down.
+// The starter content is bundled into the server build, so it does not depend on
+// the folder the process happens to be started from.
+const SEEDS: Record<string, () => Promise<{ default: unknown }>> = {
+  pages: () => import("../../content/seed/pages.json"),
+  posts: () => import("../../content/seed/posts.json"),
+  blog_categories: () => import("../../content/seed/blog_categories.json"),
+  faqs: () => import("../../content/seed/faqs.json"),
+  hero_slides: () => import("../../content/seed/hero_slides.json"),
+  homepage_sections: () => import("../../content/seed/homepage_sections.json"),
+  fleet: () => import("../../content/seed/fleet.json"),
+  prices: () => import("../../content/seed/prices.json"),
+};
+
 let ready: Promise<void> | undefined;
 async function getPool(): Promise<mysql.Pool> {
   const p = createPool();
   ready ??= setupDatabase(p, {
-    seedDir: pathToFileURL(join(process.cwd(), "content", "seed") + "/"),
+    loadSeed: (name) => SEEDS[name]().then((m) => m.default as any[]),
     adminEmail: process.env.ADMIN_EMAIL,
     adminPassword: process.env.ADMIN_PASSWORD,
     resetAdmin: process.env.ADMIN_FORCE_RESET === "1",
