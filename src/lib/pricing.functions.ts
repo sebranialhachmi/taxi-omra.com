@@ -87,19 +87,43 @@ export const PRICING_DATA: PricingRoute[] = [
   { id: "dmm-to-makkah", from_ar: "الدمام", from_en: "Dammam", to_ar: "مكة المكرمة", to_en: "Makkah", economyPrice: "اطلب السعر", category: "dammam" },
 ];
 
+// The table above is only the fallback. The live prices come from the `prices`
+// table (editable in /admin/prices); the root route loads them on every
+// request and hands them to applyPricing() before any page renders.
+let current: PricingRoute[] = PRICING_DATA;
+
+export const applyPricing = (rows: PricingRoute[] | null | undefined) => {
+  if (rows && rows.length) current = rows;
+};
+
 export const getPricingData = createServerFn({ method: "GET" }).handler(async () => {
-  return PRICING_DATA;
+  try {
+    const { select } = await import("@/server/db.server");
+    const rows = await select("prices", { orderBy: [["sort_order", "asc"]] });
+    if (!rows.length) return PRICING_DATA;
+    return rows.map((r): PricingRoute => ({
+      id: r.code,
+      from_ar: r.from_ar, from_en: r.from_en, to_ar: r.to_ar, to_en: r.to_en,
+      economyPrice: r.economy_price ?? undefined,
+      suvPrice: r.suv_price ?? undefined,
+      vipPrice: r.vip_price ?? undefined,
+      category: r.category,
+    }));
+  } catch (e) {
+    console.error("getPricingData failed, using built-in prices", e);
+    return PRICING_DATA;
+  }
 });
 
 export const getPriceForRoute = (routeId: string, vehicleType: 'economyPrice' | 'suvPrice' | 'vipPrice' = 'economyPrice', locale: 'ar' | 'en' = 'ar') => {
-  const route = PRICING_DATA.find(r => r.id === routeId);
+  const route = current.find(r => r.id === routeId);
   if (!route) return null;
   const price = route[vehicleType];
   if (!price) return null;
-  
+
   if (price === "اطلب السعر") {
     return locale === 'ar' ? "اطلب السعر" : "Contact us for a quote";
   }
-  
+
   return price;
 };

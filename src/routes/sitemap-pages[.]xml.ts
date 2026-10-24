@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createClient } from "@supabase/supabase-js";
+import { select } from "@/server/db.server";
 import { SITE } from "@/lib/site-info";
 import { isConsolidatedDuplicate } from "@/lib/canonical-redirects";
 import { isIndexedCms } from "@/lib/index-policy";
@@ -11,8 +11,7 @@ export const Route = createFileRoute("/sitemap-pages.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const sb = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!);
-        const { data: pages } = await sb.from("cms_pages").select("slug,page_type,updated_at,seo_released").eq("published", true);
+        const pages = await select("pages", { where: { published: true }, columns: ["slug", "page_type", "updated_at", "seo_released"] });
         
         const typeToPrefix: Record<string, string> = {
           service: "/services",

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createClient } from "@supabase/supabase-js";
+import { select } from "@/server/db.server";
 import { SITE } from "@/lib/site-info";
 
 const BASE_URL = SITE.url;
@@ -9,8 +9,7 @@ export const Route = createFileRoute("/sitemap-categories.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const sb = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!);
-        const { data: cats } = await sb.from("vehicle_categories").select("code,created_at").eq("is_active", true);
+        const cats = await select("fleet", { where: { is_active: true }, columns: ["code"] });
 
         const urls: string[] = [];
         for (const c of cats ?? []) {

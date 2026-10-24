@@ -29,7 +29,8 @@ function getPool(): mysql.Pool {
   return pool;
 }
 
-export type Row = Record<string, any>;
+// Rows are loosely typed on purpose: the routes were written against Supabase "any" rows.
+export type Row = any;
 type Where = Record<string, string | number | boolean | null>;
 
 function def(table: string) {

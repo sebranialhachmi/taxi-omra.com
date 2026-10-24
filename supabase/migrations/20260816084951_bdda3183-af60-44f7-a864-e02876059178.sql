@@ -1,1 +1,0 @@
-UPDATE public.blog_posts SET published = true, status = 'published' WHERE slug = 'rich-editor-smoke-test';

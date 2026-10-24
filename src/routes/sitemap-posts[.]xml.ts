@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { isIndexedBlog } from "@/lib/index-policy";
-import { createClient } from "@supabase/supabase-js";
+import { select } from "@/server/db.server";
 import { SITE } from "@/lib/site-info";
 import { isIndexable } from "@/lib/content-quality";
 
@@ -11,8 +11,7 @@ export const Route = createFileRoute("/sitemap-posts.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const sb = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!);
-        const { data: posts } = await sb.from("blog_posts").select("slug,updated_at,content_ar,content_en,seo_released").eq("published", true);
+        const posts = await select("posts", { where: { published: true }, columns: ["slug", "updated_at", "content_ar", "content_en", "seo_released"] });
 
         const urls: string[] = [];
         for (const p of posts ?? []) {

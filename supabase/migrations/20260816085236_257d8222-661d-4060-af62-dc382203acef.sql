@@ -1,1 +1,0 @@
-DELETE FROM public.blog_posts WHERE slug = 'rich-editor-smoke-test';

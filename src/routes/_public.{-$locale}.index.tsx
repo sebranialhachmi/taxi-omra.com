@@ -24,7 +24,7 @@ const homeOpts = () => queryOptions({
     airports: await listCmsPages({ data: { type: "airport" } }),
     cities: await listCmsPages({ data: { type: "city" } }),
     testimonials: await listTestimonials(),
-    faqs: await listFaqs(),
+    faqs: await listFaqs({ data: { limit: 12 } }),
     fleet: await listVehicleCategories(),
   }),
 });
