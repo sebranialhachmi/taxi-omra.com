@@ -1,6 +1,6 @@
 # Omra Taxi — Final Launch Verification
 
-Date: 2026-07-14 · Domain: `https://taxiomra.lovable.app`
+Date: 2026-07-14 · Domain: `https://taxi-omra.com`
 Locales: `ar` (default), `en` · Total routes verified: **1,038**
 
 ---
@@ -116,7 +116,7 @@ None are code bugs. All are content / operational.
 | 1 | Real-photo replacements for 2 blog posts (currently placeholder Unsplash URLs) | Content | ⚠ Manual |
 | 2 | Google Search Console verification meta / Bing Webmaster verification | Marketing | ⚠ Manual (paste into Settings → SEO → Head injections) |
 | 3 | Google Analytics 4 / Meta Pixel install | Marketing | ⚠ Manual (Head injections) |
-| 4 | Custom domain wiring for `omrataxi-sa.online` | DevOps | ⚠ Manual |
+| 4 | Custom domain wiring for `taxi-omra.com` | DevOps | ⚠ Manual |
 | 5 | pg_cron schedule for `/api/public/hooks/process-queues` in production | DevOps | ⚠ Manual |
 
 ---

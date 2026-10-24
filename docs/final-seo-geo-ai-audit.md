@@ -1,6 +1,6 @@
 # Final SEO / GEO / AI Search Audit — Omra Taxi (تاكسي العمرة)
 
-Domain audited: `https://taxiomra.lovable.app` (SITE.url) — Arabic primary, English secondary.
+Domain audited: `https://taxi-omra.com` (SITE.url) — Arabic primary, English secondary.
 Date: 2026-07-14. Scope: full public site + admin-driven CMS surfaces.
 
 ---
@@ -9,7 +9,7 @@ Date: 2026-07-14. Scope: full public site + admin-driven CMS surfaces.
 
 | File | Change |
 |---|---|
-| `public/robots.txt` | Now uses live domain `taxiomra.lovable.app`; explicit allow-list for GPTBot, OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot, Google-Extended, Applebot-Extended, CCBot. Both sitemap URLs advertised. |
+| `public/robots.txt` | Now uses live domain `taxi-omra.com`; explicit allow-list for GPTBot, OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot, Google-Extended, Applebot-Extended, CCBot. Both sitemap URLs advertised. |
 | `public/llms.txt` | Rewritten as a rich bilingual AI-crawler summary: canonical H1, bilingual blockquote summary, primary services block, full core-page link list, booking, optional sitemap section. Matches llmstxt.org spec. |
 | `src/routes/_public.{-$locale}.about.tsx` | Locale-aware `head()`, Arabic + English titles/descriptions, BreadcrumbList JSON-LD. |
 | `src/routes/_public.{-$locale}.services.tsx` | Locale-aware `head()`, bilingual metadata, Service + BreadcrumbList JSON-LD. |
@@ -37,7 +37,7 @@ Existing (already-correct) infrastructure verified — **not** touched:
 - **Airport-transfers `keywords` targeted "Riyadh airport"** — wrong city, wrong service (site is Jeddah→Makkah). **Fixed:** localized keyword set covering "تاكسي مطار جدة", "توصيل من مطار جدة إلى مكة", "تاكسي العمرة", "Jeddah airport taxi", "Umrah taxi", "KAIA".
 - **BreadcrumbList URLs were relative** (`/`, `/services`) — many parsers reject relative `ListItem.item`. **Fixed:** now absolute (`${SITE.url}/${locale}/...`).
 - **`llms.txt` too thin** and pointed to the wrong domain — AI crawlers received an outdated map. **Rewritten** with rich bilingual summary and full public link inventory.
-- **`robots.txt` pointed to `omrataxi-sa.online`** while canonical/hreflang/sitemap all use `taxiomra.lovable.app`. Sitemap-domain mismatch is a known Google indexing bug. **Fixed** + explicit opt-in for AI crawlers.
+- **`robots.txt` pointed to `taxi-omra.com`** while canonical/hreflang/sitemap all use `taxi-omra.com`. Sitemap-domain mismatch is a known Google indexing bug. **Fixed** + explicit opt-in for AI crawlers.
 - **`Disallow: /admin`** only blocked exact match, not `/admin/foo`. **Fixed** with `Disallow: /admin/`.
 
 Not changed (already correct):
@@ -121,7 +121,7 @@ Recommendation: enforce a minimum body length (e.g. ≥ 350 Arabic words / ≥ 2
 5. **JSON-LD `Review` + `AggregateRating`** — pull from `testimonials` table once ≥ 5 real reviews are approved; do NOT synthesize.
 6. **INP** — audit heavy admin bundles are already excluded via route splitting; verify `admin.*` chunks are not preloaded on public routes (they shouldn't be, TanStack code-splits per route).
 7. **Content depth audit** — About page still 60 lines; consider expanding to ≥ 400 Arabic words with founder story, service area map, and fleet stats to strengthen E-E-A-T.
-8. **Backlinks / off-page** — Semrush `Authority Score` on a fresh `.lovable.app` subdomain will be near-zero. Point a real custom domain (e.g. omrataxi-sa.online → this project) before Search Console verification so link equity accumulates on the brand domain.
+8. **Backlinks / off-page** — Semrush `Authority Score` on a fresh `.lovable.app` subdomain will be near-zero. Point a real custom domain (e.g. taxi-omra.com → this project) before Search Console verification so link equity accumulates on the brand domain.
 
 ---
 
@@ -148,7 +148,7 @@ Scoring reflects post-implementation state of this project, weighted by what eac
 
 ## 10. Launch checklist (for the user)
 
-1. Point the branded domain (e.g. `omrataxi-sa.online`) at this project, then set `VITE_SITE_URL` to the branded URL and redeploy — every canonical, hreflang, sitemap and JSON-LD URL follows automatically.
+1. Point the branded domain (e.g. `taxi-omra.com`) at this project, then set `VITE_SITE_URL` to the branded URL and redeploy — every canonical, hreflang, sitemap and JSON-LD URL follows automatically.
 2. Verify property in Google Search Console + Bing Webmaster Tools; submit `/sitemap.xml`.
 3. Add a real `og:image` at 1200×630 for each service/city/airport CMS page (admin has the field).
 4. Publish at least 5 approved testimonials, then enable AggregateRating schema.

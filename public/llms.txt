@@ -12,19 +12,19 @@
 - Hourly chauffeur & city rides in Jeddah, Makkah, Taif, Madinah
 
 ## Core pages
-- [الرئيسية (Arabic home)](https://taxiomra.lovable.app/ar): Overview, routes, live WhatsApp booking.
-- [English home](https://taxiomra.lovable.app/en): Overview, routes, live WhatsApp booking.
-- [Services / الخدمات](https://taxiomra.lovable.app/ar/services): Full list of transfer and Umrah services.
-- [Airport transfers / نقل المطار](https://taxiomra.lovable.app/ar/airport-transfers): Meet-and-greet with flight tracking.
-- [Fleet / الأسطول](https://taxiomra.lovable.app/ar/fleet): Sedan, GMC, Hiace, family van, luxury SUV.
-- [Pricing / الأسعار](https://taxiomra.lovable.app/ar/pricing): Fixed fares and per-km rates.
-- [Cities / المدن](https://taxiomra.lovable.app/ar/cities): Jeddah, Makkah, Madinah, Taif.
-- [Airports / المطارات](https://taxiomra.lovable.app/ar/airports): Jeddah (JED), Madinah (MED), Taif (TIF).
-- [Routes / المسارات](https://taxiomra.lovable.app/ar/routes): Fixed-price intercity routes.
-- [Blog / المدونة](https://taxiomra.lovable.app/ar/blog): Umrah travel guides and airport tips.
-- [FAQ / الأسئلة الشائعة](https://taxiomra.lovable.app/ar/faq)
-- [Contact / تواصل معنا](https://taxiomra.lovable.app/ar/contact)
-- [About / من نحن](https://taxiomra.lovable.app/ar/about)
+- [الرئيسية (Arabic home)](https://taxi-omra.com/ar): Overview, routes, live WhatsApp booking.
+- [English home](https://taxi-omra.com/en): Overview, routes, live WhatsApp booking.
+- [Services / الخدمات](https://taxi-omra.com/ar/services): Full list of transfer and Umrah services.
+- [Airport transfers / نقل المطار](https://taxi-omra.com/ar/airport-transfers): Meet-and-greet with flight tracking.
+- [Fleet / الأسطول](https://taxi-omra.com/ar/fleet): Sedan, GMC, Hiace, family van, luxury SUV.
+- [Pricing / الأسعار](https://taxi-omra.com/ar/pricing): Fixed fares and per-km rates.
+- [Cities / المدن](https://taxi-omra.com/ar/cities): Jeddah, Makkah, Madinah, Taif.
+- [Airports / المطارات](https://taxi-omra.com/ar/airports): Jeddah (JED), Madinah (MED), Taif (TIF).
+- [Routes / المسارات](https://taxi-omra.com/ar/routes): Fixed-price intercity routes.
+- [Blog / المدونة](https://taxi-omra.com/ar/blog): Umrah travel guides and airport tips.
+- [FAQ / الأسئلة الشائعة](https://taxi-omra.com/ar/faq)
+- [Contact / تواصل معنا](https://taxi-omra.com/ar/contact)
+- [About / من نحن](https://taxi-omra.com/ar/about)
 
 ## Booking
 - WhatsApp: https://wa.me/966551796487
@@ -32,6 +32,6 @@
 - Available 24/7, English & Arabic support
 
 ## Optional
-- [Sitemap XML](https://taxiomra.lovable.app/sitemap.xml)
-- [Robots](https://taxiomra.lovable.app/robots.txt)
-- [Site map (human)](https://taxiomra.lovable.app/ar/sitemap)
+- [Sitemap XML](https://taxi-omra.com/sitemap.xml)
+- [Robots](https://taxi-omra.com/robots.txt)
+- [Site map (human)](https://taxi-omra.com/ar/sitemap)
