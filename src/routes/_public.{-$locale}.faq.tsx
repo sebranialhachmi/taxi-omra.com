@@ -1,3 +1,4 @@
+import { breadcrumbJsonLd } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
 import { listFaqs } from "@/lib/public.functions";
@@ -27,7 +28,9 @@ export const Route = createFileRoute("/_public/{-$locale}/faq")({
         { name: "twitter:description", content: description },
       ],
       links: [],
-      scripts: loaderData ? [{
+      scripts: loaderData ? [
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbJsonLd([{ name: ar ? "الرئيسية" : "Home", url: `/${params.locale ?? "ar"}` }, { name: ar ? "الأسئلة الشائعة" : "FAQ", url: `/${params.locale ?? "ar"}/faq` }])) },
+      {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org", "@type": "FAQPage",

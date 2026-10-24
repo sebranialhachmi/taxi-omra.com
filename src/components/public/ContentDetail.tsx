@@ -1,5 +1,6 @@
 // Shared UI for public content detail pages (city, airport, route, service).
 // Renders hero, body, breadcrumbs, CTAs, and a related-content grid.
+import { absoluteUrl, usableImage } from "@/lib/images";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, ChevronRight } from "lucide-react";
@@ -49,7 +50,7 @@ export function ContentDetail(props: {
   const p = props.page;
   const title = ar ? p.title_ar : p.title_en;
   const subtitle = ar ? p.subtitle_ar : p.subtitle_en;
-  const heroImg = p.hero_image_url || p.og_image_url;
+  const heroImg = usableImage(p.hero_image_url) || usableImage(p.og_image_url);
   const sections = buildPageSections(p as any, locale);
   const body = (ar ? p.body_ar : p.body_en)?.trim() || null;
 
@@ -253,10 +254,10 @@ function RelatedCard({
       to={path}
       className="group block rounded-xl border bg-card overflow-hidden transition hover:shadow-md hover:-translate-y-0.5"
     >
-      {row.hero_image_url && (
+      {usableImage(row.hero_image_url) && (
         <div
           className="aspect-[16/9] bg-cover bg-center"
-          style={{ backgroundImage: `url(${row.hero_image_url})` }}
+          style={{ backgroundImage: `url(${usableImage(row.hero_image_url)})` }}
           aria-hidden="true"
         />
       )}

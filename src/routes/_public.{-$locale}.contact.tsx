@@ -1,3 +1,4 @@
+import { breadcrumbJsonLd } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,7 +40,8 @@ export const Route = createFileRoute("/_public/{-$locale}/contact")({
           openingHours: "Mo-Su 00:00-23:59",
           contactPoint: [{ "@type": "ContactPoint", telephone: SITE.phone, contactType: "reservations", availableLanguage: ["ar","en"] }],
         }),
-      }],
+      },
+      { type: "application/ld+json", children: JSON.stringify(breadcrumbJsonLd([{ name: isAr ? "الرئيسية" : "Home", url: `/${params?.locale ?? "ar"}` }, { name: isAr ? "تواصل معنا" : "Contact", url: `/${params?.locale ?? "ar"}/contact` }])) }],
     };
   },
   component: Contact,

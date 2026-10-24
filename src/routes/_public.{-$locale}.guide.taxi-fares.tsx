@@ -40,7 +40,7 @@ export const Route = createFileRoute("/_public/{-$locale}/guide/taxi-fares")({
   head: ({ params }) => {
     const locale = params.locale ?? "ar";
     const ar = locale === "ar";
-    const title = ar ? "أسعار التاكسي والتوصيل في السعودية | تاكسي العمرة" : "Taxi & Transfer Fares in Saudi Arabia | Omra Taxi";
+    const title = ar ? "أسعار التاكسي والتوصيل في السعودية | تاكسي العمرة" : "Taxi & Transfer Fares in Saudi Arabia | Umrah Taxi";
     const description = ar 
       ? "دليل شامل لأسعار التاكسي والتوصيل بين المدن والمطارات في السعودية. جدة، مكة، المدينة، الرياض، والدمام." 
       : "Comprehensive guide to taxi and transfer fares between cities and airports in Saudi Arabia. Jeddah, Makkah, Madinah, Riyadh, and Dammam.";
@@ -53,7 +53,8 @@ export const Route = createFileRoute("/_public/{-$locale}/guide/taxi-fares")({
         { name: "keywords", content: ar ? "أسعار تاكسي مكة، سعر توصيل مطار جدة، تاكسي المدينة المنورة، مواصلات الرياض، أسعار النقل في السعودية" : "Makkah taxi fares, Jeddah airport transfer price, Madinah taxi, Riyadh transport, Saudi Arabia transfer prices" }
       ],
       scripts: [
-        { type: "application/ld+json", children: JSON.stringify(faqPageJsonLd(FAQ.map(f => ({ q: ar ? f.q_ar : f.q_en, a: ar ? f.a_ar : f.a_en })))) }
+        { type: "application/ld+json", children: JSON.stringify(faqPageJsonLd(FAQ.map(f => ({ q: ar ? f.q_ar : f.q_en, a: ar ? f.a_ar : f.a_en })))) },
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbJsonLd([{ name: ar ? "الرئيسية" : "Home", url: `/${locale}` }, { name: ar ? "أسعار التاكسي" : "Fares", url: `/${locale}/guide/taxi-fares` }])) }
       ]
     };
   },

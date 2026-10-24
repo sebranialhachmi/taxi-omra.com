@@ -49,7 +49,7 @@ export const Route = createFileRoute("/_public/{-$locale}/")({
     const isEn = locale === "en";
     const titleAr = `تاكسي مطار جدة إلى مكة | تاكسي العمرة - توصيل 24 ساعة`;
     const titleEn = `Umrah Taxi | Jeddah, Makkah & Madinah Taxi`;
-    const descAr = "احجز خدمة التوصيل من مطار جدة إلى مكة مع تاكسي العمرة. نوفر سيارات حديثة، سائقين محترفين، استقبال من مطار الملك عبدالعزيز، أسعار ثابتة، وخدمة متوفرة 24 ساعة لجميع رحلات العمرة والزيارة.";
+    const descAr = "احجز التوصيل من مطار جدة إلى مكة مع تاكسي العمرة: سيارات حديثة وسائقون محترفون واستقبال من المطار وأسعار ثابتة وخدمة على مدار 24 ساعة.";
     const descEn = "Private Umrah Taxi in Saudi Arabia – Jeddah Airport to Makkah, Makkah to Madinah & Madinah to Jeddah. Book your private taxi online or via WhatsApp.";
     const ogTitleAr = `التوصيل من مطار جدة إلى مكة | تاكسي العمرة`;
     const ogTitleEn = `Jeddah Airport to Makkah Transfer | Omra Taxi`;

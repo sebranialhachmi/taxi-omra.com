@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { adminGet, adminSave, EDITABLE_TABLES, type EditableTable } from "@/lib/admin.functions";
 import { TABLE_CONFIG } from "@/lib/admin-fields";
 import { FieldInput, fromForm, toForm, type FormState } from "@/components/admin/FieldInput";
+import { SeoPanel } from "@/components/admin/SeoPanel";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/admin/c/$table/$id")({
@@ -63,6 +64,7 @@ function EditPage() {
       <div className="space-y-5 rounded-xl border bg-background p-4 md:p-6">
         {basic.map((f) => <FieldInput key={f.key} field={f} value={form[f.key]} onChange={set(f.key)} />)}
       </div>
+      {(table === "posts" || table === "pages") && <SeoPanel table={table} form={form} />}
       {advanced.length > 0 && (
         <details className="rounded-xl border bg-background p-4 md:p-6">
           <summary className="cursor-pointer font-medium">إعدادات متقدمة وSEO</summary>

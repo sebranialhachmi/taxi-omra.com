@@ -1,6 +1,7 @@
 // Central SEO helpers: JSON-LD builders + breadcrumb helpers used across public routes.
 import { SITE } from "./site-info";
 import { isIndexedCms } from "./index-policy";
+import { absoluteUrl, usableImage } from "./images";
 
 type Loc = { en: string; ar?: string; url: string };
 
@@ -140,7 +141,7 @@ export function breadcrumbJsonLd(trail: { name: string; url: string }[]) {
       "@type": "ListItem",
       position: i + 1,
       name: t.name,
-      item: t.url,
+      item: absoluteUrl(t.url),
     })),
   };
 }
@@ -236,7 +237,8 @@ export function buildCmsHead(p: {
     { name: "twitter:description", content: p.og_description || desc },
   ];
   if (p.keywords?.length) meta.push({ name: "keywords", content: p.keywords.join(", ") });
-  if (p.og_image_url) meta.push({ property: "og:image", content: p.og_image_url }, { name: "twitter:image", content: p.og_image_url });
+  const ogImage = usableImage(p.og_image_url) ?? usableImage((p as any).featured_image_url);
+  if (ogImage) meta.push({ property: "og:image", content: absoluteUrl(ogImage) }, { name: "twitter:image", content: absoluteUrl(ogImage) });
   const scripts: any[] = [];
   if (p.schema_type) {
     scripts.push({
