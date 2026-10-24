@@ -42,8 +42,8 @@ export const Route = createFileRoute("/_public/{-$locale}/guide/taxi-fares")({
     const ar = locale === "ar";
     const title = ar ? "أسعار التاكسي والتوصيل في السعودية | تاكسي العمرة" : "Taxi & Transfer Fares in Saudi Arabia | Umrah Taxi";
     const description = ar 
-      ? "دليل شامل لأسعار التاكسي والتوصيل بين المدن والمطارات في السعودية. جدة، مكة، المدينة، والدمام." 
-      : "Comprehensive guide to taxi and transfer fares between cities and airports in Saudi Arabia. Jeddah, Makkah, Madinah, and Dammam.";
+      ? "دليل شامل لأسعار التاكسي والتوصيل بين المدن والمطارات في السعودية. جدة، مكة، المدينة، والطائف." 
+      : "Comprehensive guide to taxi and transfer fares between cities and airports in Saudi Arabia. Jeddah, Makkah, Madinah, and Taif.";
     return {
       meta: [
         { title }, 
@@ -75,7 +75,6 @@ function PricingPage() {
     { id: "makkah", label: ar ? "مكة" : "Makkah" },
     { id: "madinah", label: ar ? "المدينة" : "Madinah" },
     { id: "taif", label: ar ? "الطائف" : "Taif" },
-    { id: "dammam", label: ar ? "الدمام" : "Dammam" },
   ];
 
   const filtered = useMemo(() => {

@@ -8,6 +8,9 @@
   Which fields each form shows is described in `src/lib/admin-fields.ts`.
 - Prices come from the `prices` table; `PRICING_DATA` in `src/lib/pricing.functions.ts` is only a fallback.
 - A page or post is indexable only when its `seo_released` flag is on; sitemaps and robots meta use the same rule.
+  The scheduler in `src/server/release.server.ts` flips the flag gradually (see docs/seo-checklist.md).
+- Cleanup of content that must not return (cities the business does not serve) lives in `db/riyadh.mjs`, `db/unserved.mjs` and
+  `db/migrations.mjs`; add new one-off data fixes as migrations, never as ad-hoc SQL.
 - Build for Hostinger with `npm run build:node` and run with `npm start` (see docs/hostinger-deploy.md).
 - The router uses the SSR query integration so server-loaded page data is reused in the browser; a failed client
   refetch must never replace rendered content (Google flagged that as Soft 404).

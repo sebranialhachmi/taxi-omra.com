@@ -23,7 +23,6 @@ export const CANONICAL_REDIRECTS: Record<string, string> = {
   "/cities/madinah": "/taxi-madinah",
   "/cities/city-taif": "/taxi-taif",
   "/cities/taif": "/taxi-taif",
-  "/cities/city-dammam": "/taxi-dammam",
 
   // ---- Airports: one page per airport ----
   "/airports/king-abdulaziz-jed": "/jeddah-airport-taxi",

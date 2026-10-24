@@ -92,11 +92,19 @@ export const adminSave = createServerFn({ method: "POST" })
     const { insert, update } = await import("@/server/db.server");
     await requireAdmin();
     try {
-      if (data.id) {
-        await update(data.table, data.id, data.values);
-        return { id: data.id };
+      let id = data.id;
+      if (id) await update(data.table, id, data.values);
+      else id = await insert(data.table, data.values);
+      // A published, released page or article that was just saved: tell Bing/Yandex (IndexNow).
+      if (data.table === "pages" || data.table === "posts") {
+        const { one } = await import("@/server/db.server");
+        const row = await one(data.table, { id: id! });
+        if (row?.published && row?.seo_released) {
+          const rel = await import("@/server/release.server");
+          void rel.pingIndexNow(rel.urlsForRow(data.table, row as any));
+        }
       }
-      return { id: await insert(data.table, data.values) };
+      return { id: id! };
     } catch (e: any) {
       if (e?.code === "ER_DUP_ENTRY") throw new Error("This address/code is already used by another item");
       throw e;
@@ -149,3 +157,49 @@ export const adminMessageAction = createServerFn({ method: "POST" })
     else await update("messages", data.id, { is_read: data.action === "read" });
     return { ok: true };
   });
+
+// ---- automatic release ----
+export const adminReleaseStatus = createServerFn({ method: "GET" }).handler(async () => {
+  const { requireAdmin } = await import("@/server/auth.server");
+  const rel = await import("@/server/release.server");
+  const { select } = await import("@/server/db.server");
+  await requireAdmin();
+  const settings = await rel.releaseSettings();
+  const queue = await rel.buildQueue();
+  const recent = await Promise.all(
+    (["pages", "posts"] as const).map((t) =>
+      select(t, { where: { seo_released: true }, columns: ["id", "slug", "title_ar", "released_at"], orderBy: [["released_at", "desc"]], limit: 8 }).then((rows) => rows.map((r) => ({ ...r, table: t }))),
+    ),
+  );
+  const nextAt = settings.lastAt ? new Date(new Date(settings.lastAt).getTime() + settings.everyDays * 86_400_000).toISOString() : null;
+  return {
+    settings: { ...settings, nextAt },
+    queue: queue.map(({ urls: _u, ...q }) => q),
+    recent: recent.flat().sort((a, b) => String(b.released_at ?? "").localeCompare(String(a.released_at ?? ""))).slice(0, 10),
+    releasedCount: { pages: await (await import("@/server/db.server")).count("pages", { seo_released: true }), posts: await (await import("@/server/db.server")).count("posts", { seo_released: true }) },
+  };
+});
+
+export const adminReleaseSaveSettings = createServerFn({ method: "POST" })
+  .inputValidator((i: unknown) => z.object({ enabled: z.boolean(), everyDays: z.number().int().min(1).max(30), batch: z.number().int().min(1).max(10) }).parse(i))
+  .handler(async ({ data }) => {
+    const { requireAdmin } = await import("@/server/auth.server");
+    const { setSetting } = await import("@/server/db.server");
+    await requireAdmin();
+    await setSetting("auto_release_enabled", data.enabled ? "1" : "0");
+    await setSetting("auto_release_every_days", String(data.everyDays));
+    await setSetting("auto_release_batch", String(data.batch));
+    return { ok: true };
+  });
+
+export const adminReleaseRunNow = createServerFn({ method: "POST" }).handler(async () => {
+  const { requireAdmin } = await import("@/server/auth.server");
+  const rel = await import("@/server/release.server");
+  await requireAdmin();
+  const r = await rel.runAutoRelease({ force: true });
+  return {
+    released: r.released.map((i) => ({ slug: i.slug, title: i.title, urls: i.urls })),
+    skipped: r.skipped.slice(0, 10).map((i) => ({ slug: i.slug, title: i.title, problems: i.problems })),
+    reason: r.reason,
+  };
+});
