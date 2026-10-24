@@ -34,7 +34,7 @@ export function hashPassword(password) {
 
 /**
  * @param conn  a mysql2/promise connection or pool
- * @param opts  { seedDir: URL|string dir with the json files, adminEmail, adminPassword, resetAdmin, log }
+ * @param opts  { loadSeed(name) -> rows, or seedDir: URL dir with the json files, adminEmail, adminPassword, resetAdmin, log }
  */
 export async function setupDatabase(conn, opts = {}) {
   const log = opts.log ?? (() => {});
@@ -46,10 +46,15 @@ export async function setupDatabase(conn, opts = {}) {
     if (n > 0) continue;
     let rows;
     try {
-      const path = new URL(`${file}.json`, opts.seedDir);
-      rows = JSON.parse(await readFile(path, "utf8"));
-    } catch {
-      log(`${table}: no seed file, skipped`);
+      rows = opts.loadSeed
+        ? await opts.loadSeed(file)
+        : JSON.parse(await readFile(new URL(`${file}.json`, opts.seedDir), "utf8"));
+    } catch (e) {
+      log(`${table}: could not load seed (${e?.message ?? e}), skipped`);
+      continue;
+    }
+    if (!Array.isArray(rows)) {
+      log(`${table}: seed is not a list, skipped`);
       continue;
     }
     const cols = Object.keys(TABLES[table].cols);
