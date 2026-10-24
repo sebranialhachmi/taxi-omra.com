@@ -12,6 +12,7 @@ export type EditableTable = (typeof EDITABLE_TABLES)[number];
 export const SETTING_KEYS = [
   "contact_phone", "whatsapp_number", "whatsapp_default_message",
   "google_site_verification", "bing_site_verification", "head_meta_custom", "head_scripts_custom",
+  "commercial_registration", "transport_license",
 ] as const;
 
 // Big tables list only the columns needed for the overview.

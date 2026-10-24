@@ -6,7 +6,7 @@ import { useContactInfo } from "@/lib/contact-info";
 
 export function PublicFooter() {
   const { locale } = useI18n();
-  const { phone, whatsapp, telHref, waHref } = useContactInfo();
+  const { phone, whatsapp, telHref, waHref, commercialRegistration, transportLicense } = useContactInfo();
   const ar = locale === "ar";
   const l = (p: string) => `/${locale}${p}`;
   return (
@@ -90,7 +90,7 @@ export function PublicFooter() {
 
       <div className="border-t border-primary-foreground/10">
         <div className="container-tight py-6 flex flex-wrap items-center justify-between gap-3 text-xs text-primary-foreground/50">
-          <span>© {new Date().getFullYear()} {SITE.brand[locale]}. {ar ? "جميع الحقوق محفوظة." : "All rights reserved."} {ar ? "الرقم الضريبي:" : "VAT No."} {SITE.vatNumber}</span>
+          <span>© {new Date().getFullYear()} {SITE.brand[locale]}. {ar ? "جميع الحقوق محفوظة." : "All rights reserved."} {ar ? "الرقم الضريبي:" : "VAT No."} {SITE.vatNumber}{commercialRegistration ? ` · ${ar ? "السجل التجاري:" : "CR:"} ${commercialRegistration}` : ""}{transportLicense ? ` · ${ar ? "ترخيص النقل:" : "Transport license:"} ${transportLicense}` : ""}</span>
           <div className="flex items-center gap-4 flex-wrap">
             <Link to={l("/privacy")} className="hover:text-gold transition">{ar ? "الخصوصية" : "Privacy"}</Link>
             <Link to={l("/terms")} className="hover:text-gold transition">{ar ? "الشروط" : "Terms"}</Link>
