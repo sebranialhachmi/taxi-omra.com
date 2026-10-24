@@ -32,6 +32,18 @@ async function cleanTable(conn, table, log, { mentions, cleanRow, overridesFor =
 const faqOverride = (r) =>
   Object.entries(unserved.FAQ_OVERRIDES).find(([k]) => (r.question_ar ?? "").startsWith(k))?.[1] ?? {};
 
+async function removeUnservedCities(conn, log) {
+  const m = { mentions: unserved.mentionsUnserved, cleanRow: (row, ov) => unserved.cleanRow(row, ov) };
+  await cleanTable(conn, "pages", log, { ...m, overridesFor: (r) => unserved.OVERRIDES[r.slug] ?? {}, deleteIf: (r) => unserved.isUnservedSlug(r.slug) });
+  await cleanTable(conn, "posts", log, { ...m, overridesFor: (r) => unserved.OVERRIDES[r.slug] ?? {} });
+  await cleanTable(conn, "faqs", log, {
+    ...m,
+    overridesFor: faqOverride,
+    deleteIf: (r) => unserved.mentionsUnserved(r.question_ar) || unserved.mentionsUnserved(r.question_en),
+  });
+  await conn.query("DELETE FROM `prices` WHERE `category` = 'dammam' OR `code` LIKE '%dmm%'");
+}
+
 const MIGRATIONS = [
   {
     name: "2026-10-24-remove-riyadh",
@@ -46,17 +58,12 @@ const MIGRATIONS = [
   {
     // The business does not serve the Eastern Province, Qassim, Hail, the south or the north-west.
     name: "2026-10-24-remove-unserved-cities",
-    async run(conn, log) {
-      const m = { mentions: unserved.mentionsUnserved, cleanRow: (row, ov) => unserved.cleanRow(row, ov) };
-      await cleanTable(conn, "pages", log, { ...m, overridesFor: (r) => unserved.OVERRIDES[r.slug] ?? {}, deleteIf: (r) => unserved.isUnservedSlug(r.slug) });
-      await cleanTable(conn, "posts", log, { ...m, overridesFor: (r) => unserved.OVERRIDES[r.slug] ?? {} });
-      await cleanTable(conn, "faqs", log, {
-        ...m,
-        overridesFor: faqOverride,
-        deleteIf: (r) => unserved.mentionsUnserved(r.question_ar) || unserved.mentionsUnserved(r.question_en),
-      });
-      await conn.query("DELETE FROM `prices` WHERE `category` = 'dammam' OR `code` LIKE '%dmm%'");
-    },
+    run: removeUnservedCities,
+  },
+  {
+    // ...nor Yanbu or King Abdullah Economic City (the cleaner now knows these terms too).
+    name: "2026-10-25-remove-yanbu-kaec",
+    run: removeUnservedCities,
   },
   {
     // Start the gradual release: everything is hidden from Google again, items get a release

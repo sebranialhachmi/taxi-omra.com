@@ -5,29 +5,32 @@ const AR_TERMS = [
   "الدمام", "الخبر", "الجبيل", "الهفوف", "الأحساء", "الاحساء", "القصيم", "بريدة", "عنيزة", "الرس", "حائل",
   "أبها", "ابها", "خميس مشيط", "جازان", "جيزان", "نجران", "العلا", "تبوك", "الظهران", "المنطقة الشرقية",
   "عسير", "نيوم", "مطار الملك فهد", "الملك فهد الدولي",
+  // added later: also not served
+  "ينبع", "مدينة الملك عبدالله الاقتصادية", "الملك عبدالله الاقتصادية", "المدينة الاقتصادية",
 ];
 const EN_TERMS = [
   "Dammam", "Khobar", "Jubail", "Hofuf", "Al[- ]?Ahsa", "Ahsa", "Qassim", "Buraidah", "Unaizah", "Ar Rass",
   "Hail", "Abha", "Khamis Mushait", "Jazan", "Jizan", "Najran", "Al[- ]?Ula", "Tabuk", "Dhahran",
   "Eastern Province", "Aseer", "Asir", "NEOM", "King Fahd (?:International )?Airport", "King Fahd International", "DMM",
+  "Yanbu", "KAEC", "King Abdullah Economic City",
 ];
 const NEWS = "(?!\\s+(?:الجيد|السار|السعيد|المفرح|السيئ|المهم|الأهم|الأخير|الصحيح|اليقين))";
 const AR_ALT = AR_TERMS.map((t) => (t === "الخبر" ? `الخبر${NEWS}` : t)).join("|");
 // Left boundary: not inside another word (e.g. "احتسابها" must not match "ابها"); one prefix letter is allowed ("بالدمام", "ببريدة").
-const AR = `(?<![\\u0600-\\u06FF])[وبلفك]?(?:${AR_ALT})(?![\\u0600-\\u06FF])`;
-const AR_NOPREFIX = `(?:${AR_ALT})(?![\\u0600-\\u06FF])`;
+const AR = `(?<![\\u0621-\\u064A])[وبلفك]?(?:${AR_ALT})(?![\\u0621-\\u064A])`;
+const AR_NOPREFIX = `(?:${AR_ALT})(?![\\u0621-\\u064A])`;
 const EN = `\\b(?:${EN_TERMS.join("|")})\\b`;
 const WORD = new RegExp(`${AR}|${EN}`, "i");
 
 export const mentionsUnserved = (s) => typeof s === "string" && WORD.test(s);
 
-const SLUG = /dammam|khobar|jubail|hofuf|ahsa|qassim|buraidah|hail|abha|jazan|najran|alula|tabuk|khamis|king-fahd|neom|unaizah|aseer/;
+const SLUG = /dammam|khobar|jubail|hofuf|ahsa|qassim|buraidah|hail|abha|jazan|najran|alula|tabuk|khamis|king-fahd|neom|unaizah|aseer|yanbu|kaec/;
 /** True for pages that are entirely about a removed city. */
 export const isUnservedSlug = (slug) => SLUG.test(slug ?? "");
 
 // After the removed item only punctuation, the end, or another list item may follow;
 // anything else (e.g. "والدمام نحو 400 كم") means the item carries its own clause.
-const AFTER_AR = "(?=\\s*[،,.؛:)<]|\\s*$|\\s+(?:و|أو)[\\u0600-\\u06FF]|\\s+أو\\s)";
+const AFTER_AR = "(?=\\s*[،,.؛:)<]|\\s*$|\\s+(?:و|أو)[\\u0621-\\u064A]|\\s+أو\\s)";
 const AFTER_EN = "(?=\\s*[,.;:)<]|\\s*$|\\s+(?:and|or)\\s)";
 const LIST_RULES = [
   [new RegExp(`\\s*[،,]\\s*(?:و|أو)?\\s*${AR}${AFTER_AR}`, "g"), ""],
@@ -91,6 +94,10 @@ export const PHRASES = [
   ["مسارات مثل الطائف إلى جدة، إلى الدمام، أو الدمام إلى مكة لا نضع", "مسارات مثل الطائف إلى جدة لا نضع"],
   ["، والدمام نحو 400 كم.", "."],
   ["أما الطائف إلى جدة، إلى الدمام، أو الدمام إلى مكة فتُسعَّر", "أما الطائف إلى جدة فتُسعَّر"],
+  ["وكذلك مطار ينبع أو غيرها من المدن الرئيسية حسب الطلب", "وغيرها من المدن الرئيسية حسب الطلب"],
+  ["as well as Yanbu Airport or other major cities upon request", "as well as other major cities upon request"],
+  ["، مدينة الملك عبدالله الاقتصادية (على بعد)", ""],
+  [", King Abdullah Economic City (further afield)", ""],
 ];
 
 export function cleanHtml(html, report) {
