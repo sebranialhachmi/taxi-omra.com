@@ -1,11 +1,14 @@
 // MySQL/MariaDB access for the whole app. Table and column names are validated
 // against db/tables.mjs, so only whitelisted identifiers ever reach a query.
 import mysql from "mysql2/promise";
+import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 import { TABLES, type ColType } from "../../db/tables.mjs";
+import { setupDatabase } from "../../db/setup.mjs";
 
 let pool: mysql.Pool | undefined;
 
-function getPool(): mysql.Pool {
+function createPool(): mysql.Pool {
   if (pool) return pool;
   const url = process.env.DATABASE_URL;
   const base = {
@@ -30,6 +33,23 @@ function getPool(): mysql.Pool {
 }
 
 // Rows are loosely typed on purpose: the routes were written against Supabase "any" rows.
+// First use of the database after every start: create missing tables, seed empty
+// ones, and create the admin from ADMIN_EMAIL / ADMIN_PASSWORD if it does not exist.
+// Failures are logged, not thrown, so a hiccup here cannot take the site down.
+let ready: Promise<void> | undefined;
+async function getPool(): Promise<mysql.Pool> {
+  const p = createPool();
+  ready ??= setupDatabase(p, {
+    seedDir: pathToFileURL(join(process.cwd(), "content", "seed") + "/"),
+    adminEmail: process.env.ADMIN_EMAIL,
+    adminPassword: process.env.ADMIN_PASSWORD,
+    resetAdmin: process.env.ADMIN_FORCE_RESET === "1",
+    log: (m) => console.log(`[db] ${m}`),
+  }).catch((e) => console.error("[db] setup failed:", e));
+  await ready;
+  return p;
+}
+
 export type Row = any;
 type Where = Record<string, string | number | boolean | null>;
 
@@ -98,7 +118,7 @@ export async function select(table: string, opts: SelectOpts = {}): Promise<Row[
   if (order.length) sql += ` ORDER BY ${order.join(",")}`;
   if (opts.limit) sql += ` LIMIT ${Math.floor(opts.limit)}${opts.offset ? ` OFFSET ${Math.floor(opts.offset)}` : ""}`;
   void d;
-  const [rows] = await getPool().query(sql, params);
+  const [rows] = await (await getPool()).query(sql, params);
   return (rows as Row[]).map((r) => decode(table, r));
 }
 
@@ -122,26 +142,26 @@ function writable(table: string, data: Row): [string[], unknown[]] {
 export async function insert(table: string, data: Row): Promise<number> {
   const [cols, vals] = writable(table, data);
   const sql = `INSERT INTO \`${table}\` (${cols.map((c) => `\`${c}\``).join(",")}) VALUES (${cols.map(() => "?").join(",")})`;
-  const [res] = await getPool().query(sql, vals);
+  const [res] = await (await getPool()).query(sql, vals);
   return (res as mysql.ResultSetHeader).insertId;
 }
 
 export async function update(table: string, id: number, data: Row): Promise<void> {
   const [cols, vals] = writable(table, data);
   if (!cols.length) return;
-  await getPool().query(`UPDATE \`${table}\` SET ${cols.map((c) => `\`${c}\` = ?`).join(",")} WHERE id = ?`, [...vals, id]);
+  await (await getPool()).query(`UPDATE \`${table}\` SET ${cols.map((c) => `\`${c}\` = ?`).join(",")} WHERE id = ?`, [...vals, id]);
 }
 
 export async function remove(table: string, id: number): Promise<void> {
   def(table);
-  await getPool().query(`DELETE FROM \`${table}\` WHERE id = ?`, [id]);
+  await (await getPool()).query(`DELETE FROM \`${table}\` WHERE id = ?`, [id]);
 }
 
 export async function count(table: string, where: Where = {}): Promise<number> {
   def(table);
   const params: unknown[] = [];
   const conds = Object.entries(where).map(([c, v]) => { colType(table, c); params.push(encode(table, c, v)); return `\`${c}\` = ?`; });
-  const [rows] = await getPool().query(`SELECT COUNT(*) AS n FROM \`${table}\`${conds.length ? ` WHERE ${conds.join(" AND ")}` : ""}`, params);
+  const [rows] = await (await getPool()).query(`SELECT COUNT(*) AS n FROM \`${table}\`${conds.length ? ` WHERE ${conds.join(" AND ")}` : ""}`, params);
   return Number((rows as Row[])[0].n);
 }
 
@@ -157,12 +177,12 @@ export async function getSettings(keys?: string[]): Promise<Record<string, any>>
 }
 
 export async function setSetting(key: string, value: unknown): Promise<void> {
-  await getPool().query(
+  await (await getPool()).query(
     "INSERT INTO `settings` (`k`,`v`) VALUES (?,?) ON DUPLICATE KEY UPDATE `v` = VALUES(`v`)",
     [key, JSON.stringify(value)],
   );
 }
 
 export async function exec(sql: string, params: unknown[] = []): Promise<void> {
-  await getPool().query(sql, params);
+  await (await getPool()).query(sql, params);
 }
