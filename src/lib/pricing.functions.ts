@@ -9,7 +9,7 @@ export interface PricingRoute {
   economyPrice?: string; // "Starts from" or "Request price"
   suvPrice?: string;
   vipPrice?: string;
-  category: "jeddah" | "makkah" | "madinah" | "taif" | "riyadh" | "dammam" | "airport" | "intercity";
+  category: "jeddah" | "makkah" | "madinah" | "taif" | "dammam" | "airport" | "intercity";
 }
 
 export const PRICING_DATA: PricingRoute[] = [
@@ -67,15 +67,6 @@ export const PRICING_DATA: PricingRoute[] = [
   { id: "taif-to-jed", from_ar: "الطائف", from_en: "Taif", to_ar: "جدة", to_en: "Jeddah", economyPrice: "اطلب السعر", suvPrice: "اطلب السعر", vipPrice: "اطلب السعر", category: "taif" },
   { id: "taif-to-hotels", from_ar: "الطائف", from_en: "Taif", to_ar: "فنادق الطائف", to_en: "Taif Hotels", economyPrice: "اطلب السعر", category: "taif" },
   { id: "taif-to-ziyarat", from_ar: "الطائف", from_en: "Taif", to_ar: "المعالم السياحية", to_en: "Sightseeing Tours", economyPrice: "اطلب السعر", category: "taif" },
-
-  // ==========================================
-  // RIYADH
-  // ==========================================
-  { id: "apt-ruh-to-city", from_ar: "مطار الرياض (RUH)", from_en: "Riyadh Airport (RUH)", to_ar: "داخل الرياض", to_en: "Within Riyadh", economyPrice: "اطلب السعر", suvPrice: "اطلب السعر", vipPrice: "اطلب السعر", category: "airport" },
-  { id: "city-to-apt-ruh", from_ar: "داخل الرياض", from_en: "Within Riyadh", to_ar: "مطار الرياض (RUH)", to_en: "Riyadh Airport (RUH)", economyPrice: "اطلب السعر", category: "riyadh" },
-  { id: "riyadh-to-hotels", from_ar: "الرياض", from_en: "Riyadh", to_ar: "فنادق الرياض", to_en: "Riyadh Hotels", economyPrice: "اطلب السعر", category: "riyadh" },
-  { id: "riyadh-to-business", from_ar: "الرياض", from_en: "Riyadh", to_ar: "وجهات الأعمال", to_en: "Business Districts", economyPrice: "اطلب السعر", category: "riyadh" },
-  { id: "riyadh-to-makkah", from_ar: "الرياض", from_en: "Riyadh", to_ar: "مكة المكرمة", to_en: "Makkah", economyPrice: "اطلب السعر", category: "riyadh" },
 
   // ==========================================
   // DAMMAM

@@ -5,6 +5,7 @@
 import { readFile } from "node:fs/promises";
 import { randomBytes, scryptSync } from "node:crypto";
 import { TABLES, createSql } from "./tables.mjs";
+import { runDataMigrations } from "./migrations.mjs";
 
 const SEEDS = ["pages", "posts", "blog_categories", "faqs", "hero_slides", "homepage_sections", "fleet", "prices"];
 const SEED_TABLE = { fleet: "fleet" };
@@ -76,6 +77,8 @@ export async function setupDatabase(conn, opts = {}) {
   for (const [k, v] of Object.entries(DEFAULT_SETTINGS)) {
     await conn.query("INSERT IGNORE INTO `settings` (`k`,`v`) VALUES (?,?)", [k, JSON.stringify(v)]);
   }
+
+  await runDataMigrations(conn, log);
 
   const { adminEmail, adminPassword } = opts;
   if (adminEmail && adminPassword) {

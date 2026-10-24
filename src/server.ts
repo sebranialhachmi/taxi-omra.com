@@ -95,7 +95,6 @@ const EDGE_LEGACY_REDIRECTS: Record<string, string> = {
   "/city/jeddah": "/taxi-jeddah",
   "/city/madinah": "/taxi-madinah",
   "/city/taif": "/taxi-taif",
-  "/city/riyadh": "/taxi-riyadh",
   "/city/dammam": "/taxi-dammam",
 };
 

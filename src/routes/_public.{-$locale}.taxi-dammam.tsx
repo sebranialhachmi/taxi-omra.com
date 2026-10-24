@@ -18,7 +18,7 @@ const FAQ_EN = [
   { q: "Do you provide airport transfers at King Fahd International Airport (DMM)?", a: "Yes, we offer professional meet-and-greet and private transfer services at DMM airport, covering Dammam, Khobar, Dhahran, and Jubail." },
   { q: "Which areas in the Eastern Province do your chauffeur services cover?", a: "Our team serves the entire city of Dammam as well as neighboring hubs like Khobar and Dhahran. We also provide long-distance transfers across the Eastern Province." },
   { q: "How can I book a private taxi in Dammam or Khobar?", a: "You can book your ride instantly via WhatsApp or a direct phone call. We offer 24/7 support to ensure your transportation is secured when you need it." },
-  { q: "Do you offer intercity transfers from Dammam to other regions?", a: "Yes, we provide comfortable private transfers from Dammam to other major Saudi cities, including Riyadh and the Holy Cities of Makkah and Madinah." },
+  { q: "Do you offer intercity transfers from Dammam to other regions?", a: "Yes, we provide comfortable private transfers from Dammam to the Holy Cities of Makkah and Madinah and other major Saudi cities." },
 ];
 
 export const Route = createFileRoute("/_public/{-$locale}/taxi-dammam")({
@@ -97,7 +97,7 @@ function DammamTaxiPage() {
           { icon: Clock, t_ar: "متاح 24/7", t_en: "24/7 Availability", d_en: "Reliable transportation any time of the day or night." },
           { icon: Shield, t_ar: "أمان وموثوقية", t_en: "Safe & Reliable", d_en: "Vetted chauffeurs and well-maintained modern vehicles." },
           { icon: Star, t_ar: "خدمة متميزة", t_en: "Premium Service", d_en: "A professional travel experience for business and leisure." },
-          { icon: MapPin, t_ar: "رحلات بين المدن", t_en: "Intercity Transfers", d_en: "Private transfers from the East to Riyadh and beyond." },
+          { icon: MapPin, t_ar: "رحلات بين المدن", t_en: "Intercity Transfers", d_en: "Private transfers from the East to the Holy Cities and beyond." },
         ].map((s, i) => (
           <div key={i} className="p-6 border rounded-2xl bg-card hover:shadow-md transition-shadow">
             <div className="flex flex-col h-full">

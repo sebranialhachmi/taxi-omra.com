@@ -21,11 +21,11 @@ export const Route = createFileRoute("/_public/{-$locale}/cities/")({
     const path = `/${locale}/cities`;
     const url = absoluteUrl(path);
     const title = isAr
-      ? `المدن التي نخدمها — تاكسي جدة ومكة والمدينة والطائف والرياض | ${SITE.brand.ar}`
-      : brandTitle("Cities we serve — Jeddah, Makkah, Madinah, Taif, Riyadh", "en");
+      ? `المدن التي نخدمها — تاكسي جدة ومكة والمدينة والطائف | ${SITE.brand.ar}`
+      : brandTitle("Cities we serve — Jeddah, Makkah, Madinah, Taif", "en");
     const description = isAr
-      ? "تغطية تاكسي وسائق خاص في جدة ومكة المكرمة والمدينة المنورة والطائف والرياض — توصيل مطار على مدار الساعة ورحلات بين المدن."
-      : "Explore taxi and chauffeur coverage across Jeddah, Makkah, Madinah, Taif and Riyadh — 24/7 airport transfers and intercity rides.";
+      ? "تغطية تاكسي وسائق خاص في جدة ومكة المكرمة والمدينة المنورة والطائف — توصيل مطار على مدار الساعة ورحلات بين المدن."
+      : "Explore taxi and chauffeur coverage across Jeddah, Makkah, Madinah and Taif — 24/7 airport transfers and intercity rides.";
     return {
       meta: [
         { title },
@@ -117,8 +117,8 @@ function CitiesIndex() {
             <p>أكثر الرحلات طلبًا هي من مطار الملك عبدالعزيز في جدة إلى فنادق الحرم بمكة، ومن مكة إلى المدينة المنورة عبر طريق الهجرة السريع. تستغرق رحلة جدة إلى مكة نحو ساعة، ورحلة مكة إلى المدينة نحو أربع ساعات ونصف، ويتوقف السائق عند الحاجة للصلاة أو الاستراحة، مع سيارات واسعة تتسع للعائلات والأمتعة.</p>
             <h3 className="font-display text-xl text-foreground">جدة والطائف والمدن الساحلية</h3>
             <p>في جدة نخدم المطار والكورنيش والفنادق والأحياء التجارية، ونوفّر رحلات إلى الطائف عبر طريق الهدا الجبلي، وإلى ينبع ورابغ على الساحل الغربي. هذه الرحلات مناسبة للعائلات والسياحة الصيفية ورحلات العمل.</p>
-            <h3 className="font-display text-xl text-foreground">الرياض والمنطقة الشرقية والجنوب</h3>
-            <p>نغطي أيضًا الرياض والدمام والخبر والقصيم وأبها وخميس مشيط وجازان ونجران والعلا وتبوك، بما في ذلك التوصيل من المطارات وبين المدن. اختر مدينتك من القائمة أعلاه لمعرفة المسارات المتاحة والأسعار التقريبية ومدة الرحلة، ثم احجز عبر النموذج أو واتساب.</p>
+            <h3 className="font-display text-xl text-foreground">المنطقة الشرقية والجنوب</h3>
+            <p>نغطي أيضًا الدمام والخبر والقصيم وأبها وخميس مشيط وجازان ونجران والعلا وتبوك، بما في ذلك التوصيل من المطارات وبين المدن. اختر مدينتك من القائمة أعلاه لمعرفة المسارات المتاحة والأسعار التقريبية ومدة الرحلة، ثم احجز عبر النموذج أو واتساب.</p>
           </>
         ) : (
           <>
@@ -128,8 +128,8 @@ function CitiesIndex() {
             <p>The most requested trips are from King Abdulaziz International Airport in Jeddah to hotels near the Haram in Makkah, and from Makkah to Madinah on the Hijrah highway. Jeddah to Makkah takes about an hour; Makkah to Madinah takes around four and a half hours. Drivers stop for prayer or rest on request, and spacious vehicles fit families and luggage.</p>
             <h3 className="font-display text-xl text-foreground">Jeddah, Taif and the Red Sea coast</h3>
             <p>In Jeddah we cover the airport, the Corniche, hotels and business districts, with trips up the Al Hada mountain road to Taif and along the coast to Yanbu and Rabigh — ideal for families, summer trips and business travel.</p>
-            <h3 className="font-display text-xl text-foreground">Riyadh, the Eastern Province and the south</h3>
-            <p>We also serve Riyadh, Dammam, Khobar, Qassim, Abha, Khamis Mushait, Jazan, Najran, AlUla and Tabuk, including airport pickups and intercity rides. Pick your city above to see available routes, typical fares and journey times, then book online or on WhatsApp.</p>
+            <h3 className="font-display text-xl text-foreground">The Eastern Province and the south</h3>
+            <p>We also serve Dammam, Khobar, Qassim, Abha, Khamis Mushait, Jazan, Najran, AlUla and Tabuk, including airport pickups and intercity rides. Pick your city above to see available routes, typical fares and journey times, then book online or on WhatsApp.</p>
           </>
         )}
       </div>

@@ -21,11 +21,11 @@ export const Route = createFileRoute("/_public/{-$locale}/airports/")({
     const path = `/${locale}/airports`;
     const url = absoluteUrl(path);
     const title = isAr
-      ? `توصيل المطارات — مطار جدة والمدينة والطائف والرياض | ${'تاكسي العمرة'}`
-      : brandTitle("Airport transfers — Jeddah, Madinah, Taif, Riyadh", "en");
+      ? `توصيل المطارات — مطار جدة والمدينة والطائف | ${'تاكسي العمرة'}`
+      : brandTitle("Airport transfers — Jeddah, Madinah, Taif", "en");
     const description = isAr
-      ? "خدمة توصيل من مطار الملك عبدالعزيز بجدة ومطار الأمير محمد بن عبدالعزيز بالمدينة ومطاري الطائف والرياض مع استقبال في الصالة وأسعار ثابتة."
-      : "Meet-and-greet chauffeur transfers from King Abdulaziz (Jeddah), Prince Mohammad Bin Abdulaziz (Madinah), Taif and Riyadh airports.";
+      ? "خدمة توصيل من مطار الملك عبدالعزيز بجدة ومطار الأمير محمد بن عبدالعزيز بالمدينة ومطار الطائف مع استقبال في الصالة وأسعار ثابتة."
+      : "Meet-and-greet chauffeur transfers from King Abdulaziz (Jeddah), Prince Mohammad Bin Abdulaziz (Madinah), and Taif airports.";
     return {
       meta: [
         { title },

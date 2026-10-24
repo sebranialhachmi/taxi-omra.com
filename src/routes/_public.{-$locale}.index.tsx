@@ -428,7 +428,6 @@ function Home() {
             { slug: "taxi-makkah", ar: "تاكسي مكة", en: "Taxi Makkah", sub_ar: "نقل الحرم والفنادق", sub_en: "Haram & hotel transfers" },
             { slug: "taxi-madinah", ar: "تاكسي المدينة المنورة", en: "Taxi Madinah", sub_ar: "زيارات الحرم والمدينة", sub_en: "Prophet's Mosque transfers" },
             { slug: "taxi-taif", ar: "تاكسي الطائف", en: "Taxi Taif", sub_ar: "توصيل المطار والمنتزهات", sub_en: "Airport & resort transfers" },
-            { slug: "taxi-riyadh", ar: "تاكسي الرياض", en: "Taxi Riyadh", sub_ar: "توصيل العاصمة والمطار", sub_en: "Capital & airport rides" },
             { slug: "taxi-dammam", ar: "تاكسي الدمام", en: "Taxi Dammam", sub_ar: "نقل المنطقة الشرقية", sub_en: "Eastern Province transfers" },
           ].map((c) => (
             <a key={c.slug} href={`/${locale}/${c.slug}`} className="group rounded-2xl border border-border bg-card p-6 hover:border-gold transition-colors">
