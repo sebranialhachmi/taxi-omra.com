@@ -13,7 +13,6 @@ export const CANONICAL_REDIRECTS: Record<string, string> = {
   // ---- Generic /p/ copies of typed CMS pages ----
   "/p/khalid-al-mutairi": "/about", // misfiled testimonial, thin page
   "/p/luxury-transfer": "/services/luxury-transfer",
-  "/p/king-khalid-ruh": "/airports/airport-king-khalid-international",
 
   // ---- Cities: one page per city, the /taxi-<city> landing page wins ----
   "/cities/city-jeddah": "/taxi-jeddah",
@@ -24,14 +23,11 @@ export const CANONICAL_REDIRECTS: Record<string, string> = {
   "/cities/madinah": "/taxi-madinah",
   "/cities/city-taif": "/taxi-taif",
   "/cities/taif": "/taxi-taif",
-  "/cities/city-riyadh": "/taxi-riyadh",
-  "/cities/riyadh": "/taxi-riyadh",
   "/cities/city-dammam": "/taxi-dammam",
 
   // ---- Airports: one page per airport ----
   "/airports/king-abdulaziz-jed": "/jeddah-airport-taxi",
   "/airports/airport-king-abdulaziz-international": "/jeddah-airport-taxi",
-  "/airports/king-khalid-ruh": "/airports/airport-king-khalid-international",
   "/airports/prince-mohammad-med": "/airports/airport-prince-mohammad-bin-abdulaziz",
   "/airports/airport-taif-tif": "/airports/airport-taif-international",
   "/airports/airport-transfer": "/airport-transfers",
@@ -44,7 +40,6 @@ export const CANONICAL_REDIRECTS: Record<string, string> = {
   "/routes/madinah-to-makkah": "/madinah-to-makkah-taxi",
   "/routes/makkah-to-taif": "/makkah-to-taif-taxi",
   "/routes/taif-to-makkah": "/taif-to-makkah-taxi",
-  "/routes/route-riyadh-airport": "/routes/riyadh-to-king-khalid-international",
 
   // ---- Services: one page per service intent ----
   "/services/airport-transfer-service": "/airport-transfers",

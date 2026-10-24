@@ -118,7 +118,7 @@ export const TABLE_CONFIG: Record<EditableTable, TableConfig> = {
     defaults: { category: "jeddah", sort_order: 100 },
     fields: [
       { key: "code", label: "رمز المسار (فريد)", help: "مثل jed-to-makkah — لا تغيّره للأسعار الموجودة لأن الصفحات تعتمد عليه" },
-      { key: "category", label: "القسم", type: "select", options: ["jeddah", "makkah", "madinah", "taif", "riyadh", "dammam", "airport", "intercity"] },
+      { key: "category", label: "القسم", type: "select", options: ["jeddah", "makkah", "madinah", "taif", "dammam", "airport", "intercity"] },
       { key: "from_ar", label: "من (عربي)", rtl: true },
       { key: "from_en", label: "من (إنجليزي)" },
       { key: "to_ar", label: "إلى (عربي)", rtl: true },

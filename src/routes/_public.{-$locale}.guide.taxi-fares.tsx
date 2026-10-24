@@ -42,15 +42,15 @@ export const Route = createFileRoute("/_public/{-$locale}/guide/taxi-fares")({
     const ar = locale === "ar";
     const title = ar ? "أسعار التاكسي والتوصيل في السعودية | تاكسي العمرة" : "Taxi & Transfer Fares in Saudi Arabia | Umrah Taxi";
     const description = ar 
-      ? "دليل شامل لأسعار التاكسي والتوصيل بين المدن والمطارات في السعودية. جدة، مكة، المدينة، الرياض، والدمام." 
-      : "Comprehensive guide to taxi and transfer fares between cities and airports in Saudi Arabia. Jeddah, Makkah, Madinah, Riyadh, and Dammam.";
+      ? "دليل شامل لأسعار التاكسي والتوصيل بين المدن والمطارات في السعودية. جدة، مكة، المدينة، والدمام." 
+      : "Comprehensive guide to taxi and transfer fares between cities and airports in Saudi Arabia. Jeddah, Makkah, Madinah, and Dammam.";
     return {
       meta: [
         { title }, 
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
-        { name: "keywords", content: ar ? "أسعار تاكسي مكة، سعر توصيل مطار جدة، تاكسي المدينة المنورة، مواصلات الرياض، أسعار النقل في السعودية" : "Makkah taxi fares, Jeddah airport transfer price, Madinah taxi, Riyadh transport, Saudi Arabia transfer prices" }
+        { name: "keywords", content: ar ? "أسعار تاكسي مكة، سعر توصيل مطار جدة، تاكسي المدينة المنورة، أسعار النقل في السعودية" : "Makkah taxi fares, Jeddah airport transfer price, Madinah taxi, Saudi Arabia transfer prices" }
       ],
       scripts: [
         { type: "application/ld+json", children: JSON.stringify(faqPageJsonLd(FAQ.map(f => ({ q: ar ? f.q_ar : f.q_en, a: ar ? f.a_ar : f.a_en })))) },
@@ -75,7 +75,6 @@ function PricingPage() {
     { id: "makkah", label: ar ? "مكة" : "Makkah" },
     { id: "madinah", label: ar ? "المدينة" : "Madinah" },
     { id: "taif", label: ar ? "الطائف" : "Taif" },
-    { id: "riyadh", label: ar ? "الرياض" : "Riyadh" },
     { id: "dammam", label: ar ? "الدمام" : "Dammam" },
   ];
 
