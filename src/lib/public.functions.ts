@@ -12,6 +12,14 @@ function serverPublic() {
   );
 }
 
+// Surface Supabase failures instead of treating them as "no row". A swallowed
+// error became `null`, the route threw notFound() and Google cached a 404 for a
+// page that exists; throwing yields a 5xx that crawlers retry later.
+function ok<T extends { error: { message: string } | null }>(result: T): T {
+  if (result.error) throw new Error(result.error.message);
+  return result;
+}
+
 export const listCmsPages = createServerFn({ method: "GET" })
   .inputValidator((input: { type?: string } | undefined) => input ?? {})
   .handler(async ({ data }) => {
@@ -27,7 +35,7 @@ export const getCmsPage = createServerFn({ method: "GET" })
   .inputValidator((input: { slug: string }) => input)
   .handler(async ({ data }) => {
     const sb = serverPublic();
-    const { data: row } = await sb.from("cms_pages").select("*").eq("slug", data.slug).eq("published", true).maybeSingle();
+    const { data: row } = ok(await sb.from("cms_pages").select("*").eq("slug", data.slug).eq("published", true).maybeSingle());
     return row;
   });
 
@@ -35,13 +43,13 @@ export const getCmsPageByType = createServerFn({ method: "GET" })
   .inputValidator((input: { slug: string; type: string }) => input)
   .handler(async ({ data }) => {
     const sb = serverPublic();
-    const { data: row } = await sb
+    const { data: row } = ok(await sb
       .from("cms_pages")
       .select("*")
       .eq("slug", data.slug)
       .eq("page_type", data.type as any)
       .eq("published", true)
-      .maybeSingle();
+      .maybeSingle());
     return row;
   });
 
@@ -57,7 +65,7 @@ export const listRelatedCmsPages = createServerFn({ method: "GET" })
       .order("sort_order")
       .limit(data.limit ?? 6);
     if (data.excludeSlug) q = q.neq("slug", data.excludeSlug);
-    const { data: rows } = await q;
+    const { data: rows } = ok(await q);
     return rows ?? [];
   });
 
@@ -65,22 +73,22 @@ export const getVehicleCategoryByCode = createServerFn({ method: "GET" })
   .inputValidator((input: { code: string }) => input)
   .handler(async ({ data }) => {
     const sb = serverPublic();
-    const { data: row } = await sb
+    const { data: row } = ok(await sb
       .from("vehicle_categories")
       .select("*, vehicle_category_translations(*)")
       .eq("code", data.code)
       .eq("is_active", true)
-      .maybeSingle();
+      .maybeSingle());
     return row;
   });
 
 export const listBlogPosts = createServerFn({ method: "GET" }).handler(async () => {
   const sb = serverPublic();
-  const { data } = await sb
+  const { data } = ok(await sb
     .from("blog_posts")
     .select("id,slug,title_ar,title_en,excerpt_ar,excerpt_en,cover_url,tags,published_at,reading_time_min,featured,category_id")
     .eq("published", true)
-    .order("published_at", { ascending: false });
+    .order("published_at", { ascending: false }));
   return data ?? [];
 });
 
@@ -88,54 +96,54 @@ export const getBlogPost = createServerFn({ method: "GET" })
   .inputValidator((input: { slug: string }) => input)
   .handler(async ({ data }) => {
     const sb = serverPublic();
-    const { data: row } = await sb.from("blog_posts").select("*").eq("slug", data.slug).eq("published", true).maybeSingle();
+    const { data: row } = ok(await sb.from("blog_posts").select("*").eq("slug", data.slug).eq("published", true).maybeSingle());
     return row;
   });
 
 export const listFaqs = createServerFn({ method: "GET" }).handler(async () => {
   const sb = serverPublic();
-  const { data } = await sb.from("faqs").select("*").eq("published", true).order("sort_order");
+  const { data } = ok(await sb.from("faqs").select("*").eq("published", true).order("sort_order"));
   return data ?? [];
 });
 
 export const listTestimonials = createServerFn({ method: "GET" }).handler(async () => {
   const sb = serverPublic();
-  const { data } = await sb.from("testimonials").select("*").eq("published", true).order("sort_order");
+  const { data } = ok(await sb.from("testimonials").select("*").eq("published", true).order("sort_order"));
   return data ?? [];
 });
 
 export const listVehicleCategories = createServerFn({ method: "GET" }).handler(async () => {
   const sb = serverPublic();
-  const { data } = await sb
+  const { data } = ok(await sb
     .from("vehicle_categories")
     .select("*, vehicle_category_translations(*)")
     .eq("is_active", true)
-    .order("sort_order");
+    .order("sort_order"));
   return data ?? [];
 });
 
 export const listHeroSlides = createServerFn({ method: "GET" }).handler(async () => {
   const sb = serverPublic();
-  const { data } = await sb.from("hero_slides").select("*").eq("active", true).order("sort_order");
+  const { data } = ok(await sb.from("hero_slides").select("*").eq("active", true).order("sort_order"));
   return data ?? [];
 });
 
 export const listHomepageSections = createServerFn({ method: "GET" }).handler(async () => {
   const sb = serverPublic();
-  const { data } = await sb.from("homepage_sections").select("*").eq("enabled", true).order("sort_order");
+  const { data } = ok(await sb.from("homepage_sections").select("*").eq("enabled", true).order("sort_order"));
   return data ?? [];
 });
 
 export const listPromotions = createServerFn({ method: "GET" }).handler(async () => {
   const sb = serverPublic();
-  const { data } = await sb
-    .from("promotions").select("*").eq("active", true).order("sort_order");
+  const { data } = ok(await sb
+    .from("promotions").select("*").eq("active", true).order("sort_order"));
   return data ?? [];
 });
 
 export const listPartners = createServerFn({ method: "GET" }).handler(async () => {
   const sb = serverPublic();
-  const { data } = await sb.from("partners").select("*").eq("active", true).order("sort_order");
+  const { data } = ok(await sb.from("partners").select("*").eq("active", true).order("sort_order"));
   return data ?? [];
 });
 
@@ -143,13 +151,13 @@ export const listPartners = createServerFn({ method: "GET" }).handler(async () =
 // Public row-level policy already restricts to active + within date window.
 export const listAnnouncements = createServerFn({ method: "GET" }).handler(async () => {
   const sb = serverPublic();
-  const { data } = await sb
+  const { data } = ok(await sb
     .from("coupons")
     .select("id,code,title_ar,title_en,description_ar,description_en,cta_text_ar,cta_text_en,cta_url,bg_color,text_color,icon,priority,target_pages,show_once,dismissible,valid_until")
     .eq("is_announcement", true)
     .eq("is_active", true)
     .order("priority", { ascending: false })
-    .limit(5);
+    .limit(5));
   return data ?? [];
 });
 
