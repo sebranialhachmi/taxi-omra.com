@@ -9,6 +9,7 @@ import { isIndexedBlog } from "@/lib/index-policy";
 import { blogCoverImage } from "@/lib/blog-images";
 import { absoluteUrl, usableImage } from "@/lib/images";
 import { breadcrumbJsonLd } from "@/lib/seo";
+import { RelatedLinks } from "@/components/public/RelatedLinks";
 
 const opts = (slug: string) => queryOptions({
   queryKey: ["public", "blog", slug],
@@ -114,6 +115,7 @@ function BlogPost() {
         dir={ar ? "rtl" : "ltr"}
         dangerouslySetInnerHTML={{ __html: html }}
       />
+      <RelatedLinks slug={p.slug} locale={locale} />
     </article>
   );
 }

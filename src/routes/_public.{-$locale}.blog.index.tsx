@@ -13,11 +13,11 @@ export const Route = createFileRoute("/_public/{-$locale}/blog/")({
   head: ({ params }) => {
     const isAr = (params?.locale ?? "ar") === "ar";
     const title = isAr
-      ? `المدونة — نصائح السفر ودليل المطار وقصص السائق | ${SITE.brand.ar}`
-      : `Journal — Travel Tips, Airport Guides & Chauffeur Stories | ${SITE.brand.en}`;
+      ? `المدونة — أسعار التوصيل ومشاوير مكة والمدينة وجدة | ${SITE.brand.ar}`
+      : `Blog — Transfer Fares & Makkah, Madinah, Jeddah Trips | ${SITE.brand.en}`;
     const description = isAr
-      ? "دليل السفر والعمرة وتوصيل مطار جدة، ونصائح من فريق السائقين على مدار الساعة."
-      : "Travel notes, Umrah tips, Jeddah airport guides, and industry insights from our chauffeur team.";
+      ? "أسعار التاكسي بين جدة ومكة والمدينة والطائف، وأدلة الاستقبال من المطار وحجز السائق الخاص، من فريق تاكسي العمرة."
+      : "Taxi fares between Jeddah, Makkah, Madinah and Taif, airport pickup guides and private driver booking, from the Umrah Taxi team.";
     return {
       meta: [
         { title },

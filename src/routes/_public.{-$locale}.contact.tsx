@@ -160,6 +160,21 @@ function Contact() {
           </form>
         </div>
       </section>
+      <section className="container-tight pb-16 md:pb-24">
+        <div className="max-w-3xl space-y-4">
+          <h2 className="font-display text-3xl">{ar ? "كيف تحجز تاكسي العمرة؟" : "How to book Umrah Taxi"}</h2>
+          <ol className="list-decimal space-y-2 ps-6 text-muted-foreground">
+            <li>{ar ? "أرسل لنا عبر واتساب مكان الانطلاق والوجهة (مثل مطار جدة إلى فندقك في مكة)." : "Send us the pickup and drop-off on WhatsApp (for example Jeddah Airport to your Makkah hotel)."}</li>
+            <li>{ar ? "اذكر موعد الرحلة وعدد الركاب وعدد الحقائب، ورقم الرحلة إن كان الاستقبال من المطار." : "Tell us the date and time, number of passengers and bags, and your flight number for airport pickups."}</li>
+            <li>{ar ? "نؤكد لك نوع السيارة والأجرة الثابتة قبل الرحلة، ويكون الدفع عند الوصول." : "We confirm the car and the fixed fare before you travel, and you pay on arrival."}</li>
+          </ol>
+          <p className="text-muted-foreground">
+            {ar
+              ? "نخدم جدة ومكة المكرمة والمدينة المنورة والطائف، ومطارات جدة والمدينة والطائف، ونستقبل الحجوزات على مدار الساعة. يمكنك الاطلاع على الأسعار قبل التواصل من صفحة أسعار التاكسي."
+              : "We serve Jeddah, Makkah, Madinah and Taif and the Jeddah, Madinah and Taif airports, taking bookings around the clock. See the fares page for prices before you get in touch."}
+          </p>
+        </div>
+      </section>
     </>
   );
 }

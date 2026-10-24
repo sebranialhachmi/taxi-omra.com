@@ -1,3 +1,4 @@
+import { localBusinessJsonLd } from "@/lib/seo";
 import { createFileRoute, notFound, Outlet, redirect } from "@tanstack/react-router";
 import { PublicHeader } from "@/components/PublicHeader";
 import { PublicFooter } from "@/components/PublicFooter";
@@ -144,22 +145,7 @@ export const Route = createFileRoute("/_public/{-$locale}")({
       scripts: [
         {
           type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "TaxiService",
-            name: SITE.brand[locale],
-            telephone: SITE.phone,
-            email: SITE.email,
-            inLanguage: locale,
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: SITE.city,
-              addressCountry: SITE.country,
-            },
-            geo: { "@type": "GeoCoordinates", latitude: SITE.latitude, longitude: SITE.longitude },
-            areaServed: SITE.city,
-            openingHours: "Mo-Su 00:00-23:59",
-          }),
+          children: JSON.stringify(localBusinessJsonLd(locale as "ar" | "en")),
         },
       ],
     };

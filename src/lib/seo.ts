@@ -5,13 +5,15 @@ import { absoluteUrl, usableImage } from "./images";
 
 type Loc = { en: string; ar?: string; url: string };
 
-export function localBusinessJsonLd() {
+export function localBusinessJsonLd(locale?: "ar" | "en") {
   return {
     "@context": "https://schema.org",
-    "@type": "TaxiService",
+    // TaxiService alone is a Service type (no address/geo); pairing it with LocalBusiness is valid.
+    "@type": ["LocalBusiness", "TaxiService"],
     "@id": `${SITE.url}/#taxi`,
-    name: SITE.brand.en,
-    alternateName: SITE.brand.ar,
+    name: locale === "ar" ? SITE.brand.ar : SITE.brand.en,
+    alternateName: locale === "ar" ? SITE.brand.en : SITE.brand.ar,
+    ...(locale ? { inLanguage: locale } : {}),
     telephone: SITE.phone,
     email: SITE.email,
     url: SITE.url,
