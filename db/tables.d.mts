@@ -8,3 +8,4 @@ export interface TableDef {
 }
 export const TABLES: Record<string, TableDef>;
 export function createSql(): string[];
+export function columnSql(type: ColType): string;

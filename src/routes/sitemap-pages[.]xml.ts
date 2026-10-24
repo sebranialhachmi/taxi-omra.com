@@ -26,7 +26,6 @@ export const Route = createFileRoute("/sitemap-pages.xml")({
           "/taxi-makkah",
           "/taxi-madinah",
           "/taxi-taif",
-          "/taxi-dammam",
           "/jeddah-to-makkah-taxi",
           "/makkah-to-madinah-taxi",
           "/guide/taxi-fares",

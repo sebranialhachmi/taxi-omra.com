@@ -47,7 +47,7 @@ export const Route = createFileRoute("/_public/{-$locale}/")({
   head: ({ params, loaderData }: any) => {
     const locale = (params?.locale === "en" ? "en" : "ar") as "ar" | "en";
     const isEn = locale === "en";
-    const titleAr = `تاكسي مطار جدة إلى مكة | تاكسي العمرة - توصيل 24 ساعة`;
+    const titleAr = `تاكسي العمرة | تاكسي من مطار جدة إلى مكة والمدينة 24 ساعة`;
     const titleEn = `Umrah Taxi | Jeddah, Makkah & Madinah Taxi`;
     const descAr = "احجز التوصيل من مطار جدة إلى مكة مع تاكسي العمرة: سيارات حديثة وسائقون محترفون واستقبال من المطار وأسعار ثابتة وخدمة على مدار 24 ساعة.";
     const descEn = "Private Umrah Taxi in Saudi Arabia – Jeddah Airport to Makkah, Makkah to Madinah & Madinah to Jeddah. Book your private taxi online or via WhatsApp.";
@@ -428,7 +428,6 @@ function Home() {
             { slug: "taxi-makkah", ar: "تاكسي مكة", en: "Taxi Makkah", sub_ar: "نقل الحرم والفنادق", sub_en: "Haram & hotel transfers" },
             { slug: "taxi-madinah", ar: "تاكسي المدينة المنورة", en: "Taxi Madinah", sub_ar: "زيارات الحرم والمدينة", sub_en: "Prophet's Mosque transfers" },
             { slug: "taxi-taif", ar: "تاكسي الطائف", en: "Taxi Taif", sub_ar: "توصيل المطار والمنتزهات", sub_en: "Airport & resort transfers" },
-            { slug: "taxi-dammam", ar: "تاكسي الدمام", en: "Taxi Dammam", sub_ar: "نقل المنطقة الشرقية", sub_en: "Eastern Province transfers" },
           ].map((c) => (
             <a key={c.slug} href={`/${locale}/${c.slug}`} className="group rounded-2xl border border-border bg-card p-6 hover:border-gold transition-colors">
               <MapPin className="h-5 w-5 text-gold mb-3" />
@@ -481,6 +480,51 @@ function Home() {
         </section>
       )}
 
+      {/* ============ SELECTED FARES (live from the prices table) ============ */}
+      <section className="container-tight py-16 md:py-20 max-w-4xl">
+        <h2 className="font-display text-3xl md:text-4xl leading-tight mb-3">{ar ? "أسعار ثابتة لأشهر المشاوير" : "Fixed fares on popular trips"}</h2>
+        <p className="text-muted-foreground mb-6">
+          {ar
+            ? "الأسعار بالريال السعودي للسيارة كاملة وليس للفرد. نؤكد لك السعر على واتساب قبل الرحلة ويكون الدفع عند الوصول، دون عداد ودون رسوم مفاجئة."
+            : "Prices are in Saudi riyals per car, not per person. We confirm the fare on WhatsApp before the trip and you pay on arrival, with no meter and no surprise fees."}
+        </p>
+        <div className="overflow-x-auto rounded-2xl border border-border bg-card">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/50 text-start">
+              <tr>
+                <th className="p-4 text-start">{ar ? "المسار" : "Route"}</th>
+                <th className="p-4 text-start">{ar ? "سيدان اقتصادي" : "Economy sedan"}</th>
+                <th className="p-4 text-start">{ar ? "دفع رباعي GMC" : "GMC SUV"}</th>
+                <th className="p-4 text-start">VIP</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { id: "apt-jed-to-makkah", ar: "مطار جدة ← مكة المكرمة", en: "Jeddah Airport → Makkah" },
+                { id: "apt-jed-to-med", ar: "مطار جدة ← المدينة المنورة", en: "Jeddah Airport → Madinah" },
+                { id: "apt-jed-to-hotels", ar: "مطار جدة ← فنادق جدة", en: "Jeddah Airport → Jeddah hotels" },
+                { id: "jed-to-makkah", ar: "جدة ← مكة المكرمة", en: "Jeddah → Makkah" },
+                { id: "makkah-to-med", ar: "مكة المكرمة ← المدينة المنورة", en: "Makkah → Madinah" },
+              ].map((r) => (
+                <tr key={r.id} className="border-t border-border">
+                  <td className="p-4 font-medium">{ar ? r.ar : r.en}</td>
+                  <td className="p-4">{getPriceForRoute(r.id, "economyPrice", locale) ?? "—"}</td>
+                  <td className="p-4">{getPriceForRoute(r.id, "suvPrice", locale) ?? "—"}</td>
+                  <td className="p-4">{getPriceForRoute(r.id, "vipPrice", locale) ?? "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-sm text-muted-foreground">
+          <a className="text-primary underline-offset-4 hover:underline" href={`/${locale}/guide/taxi-fares`}>{ar ? "شاهد كل الأسعار" : "See all fares"}</a>
+          {" · "}
+          <a className="text-primary underline-offset-4 hover:underline" href={`/${locale}/jeddah-airport-taxi`}>{ar ? "تاكسي مطار جدة" : "Jeddah Airport taxi"}</a>
+          {" · "}
+          <a className="text-primary underline-offset-4 hover:underline" href={`/${locale}/taxi-jeddah`}>{ar ? "تاكسي جدة" : "Jeddah taxi"}</a>
+        </p>
+      </section>
+
       {/* ============ FAQ ============ */}
       {data.faqs.length > 0 && (
         <section className="container-tight py-20 md:py-28 max-w-4xl">
@@ -490,7 +534,7 @@ function Home() {
           </div>
           <Accordion type="single" collapsible className="rounded-2xl border border-border bg-card divide-y divide-border">
             {data.faqs.slice(0, 5).map((f) => (
-              <AccordionItem key={f.id} value={f.id} className="border-b-0 px-6">
+              <AccordionItem key={f.id} value={String(f.id)} className="border-b-0 px-6">
                 <AccordionTrigger className="text-start font-medium text-base py-5">{ar ? f.question_ar : f.question_en}</AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-5">{ar ? f.answer_ar : f.answer_en}</AccordionContent>
               </AccordionItem>

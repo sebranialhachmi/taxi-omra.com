@@ -27,7 +27,7 @@ export const Route = createFileRoute("/_public/{-$locale}/taxi-jeddah")({
     const url = `${SITE.url}/${locale}/taxi-jeddah`;
     const title = ar
       ? "تاكسي جدة | حجز توصيل داخل جدة بسيارات حديثة - تاكسي العمرة"
-      : "Jeddah Taxi | Private City & Hotel Transfers - Umrah Taxi Saudi";
+      : "Jeddah Taxi | Private City & Hotel Transfers - Umrah Taxi";
     const description = ar
       ? "احجز تاكسي جدة الآن. نوفر سيارات حديثة مع سائقين محترفين للتوصيل داخل أحياء جدة، الرحلات العائلية، والشركات. خدمة موثوقة على مدار الساعة لخدمة سكان وزوار جدة."
       : "Private taxi in Jeddah for hotel pickups, city travel and intercity transfers. Book your private Jeddah taxi online or via WhatsApp for reliable 24/7 service.";

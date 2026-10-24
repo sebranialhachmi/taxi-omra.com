@@ -4,7 +4,7 @@
 // so deploying only needs the environment variables.
 import { readFile } from "node:fs/promises";
 import { randomBytes, scryptSync } from "node:crypto";
-import { TABLES, createSql } from "./tables.mjs";
+import { TABLES, createSql, columnSql } from "./tables.mjs";
 import { runDataMigrations } from "./migrations.mjs";
 
 const SEEDS = ["pages", "posts", "blog_categories", "faqs", "hero_slides", "homepage_sections", "fleet", "prices"];
@@ -18,6 +18,14 @@ const DEFAULT_SETTINGS = {
   bing_site_verification: "",
   head_meta_custom: "",
   head_scripts_custom: "",
+  commercial_registration: "",
+  transport_license: "",
+  auto_release_enabled: "1",
+  auto_release_every_days: "3",
+  auto_release_batch: "2",
+  auto_release_last_at: "",
+  auto_release_first_batch: "",
+  indexnow_key: randomBytes(16).toString("hex"),
 };
 
 function encode(type, v) {
@@ -40,6 +48,20 @@ export function hashPassword(password) {
 export async function setupDatabase(conn, opts = {}) {
   const log = opts.log ?? (() => {});
   for (const sql of createSql()) await conn.query(sql);
+
+  // Tables created by an older version miss newer columns: add them (works on MySQL and MariaDB).
+  for (const [table, def] of Object.entries(TABLES)) {
+    const [have] = await conn.query(
+      "SELECT COLUMN_NAME AS c FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ?",
+      [table],
+    );
+    const names = new Set(have.map((r) => r.c));
+    for (const [col, type] of Object.entries(def.cols)) {
+      if (names.has(col)) continue;
+      await conn.query(`ALTER TABLE \`${table}\` ADD COLUMN \`${col}\` ${columnSql(type)}`);
+      log(`${table}: added column ${col}`);
+    }
+  }
 
   for (const file of SEEDS) {
     const table = SEED_TABLE[file] ?? file;

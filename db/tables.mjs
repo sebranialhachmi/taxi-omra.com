@@ -15,7 +15,7 @@ export const TABLES = {
       twitter_image_url: "u", meta_title: "u", meta_description: "t", published: "b", sort_order: "i",
       canonical_url: "u", keywords: "j", og_title: "u", og_description: "t", twitter_card: "s",
       twitter_title: "u", twitter_description: "t", robots: "s", schema_type: "s", custom_schema: "j",
-      gallery: "j", status: "s", seo_released: "b",
+      gallery: "j", status: "s", seo_released: "b", release_priority: "i", released_at: "d",
     },
   },
   posts: {
@@ -27,7 +27,7 @@ export const TABLES = {
       published_at: "d", category: "s", reading_time_min: "i", featured: "b", status: "s", og_image_url: "u",
       canonical_url: "u", keywords: "j", meta_title_ar: "u", meta_description_ar: "t",
       primary_keyword_en: "s", primary_keyword_ar: "s", cover_alt_en: "u", cover_alt_ar: "u",
-      cover_caption: "u", content_format: "s", seo_released: "b", scheduled_at: "d",
+      cover_caption: "u", content_format: "s", seo_released: "b", scheduled_at: "d", release_priority: "i", released_at: "d",
     },
   },
   blog_categories: {
@@ -86,6 +86,11 @@ export const TABLES = {
 };
 
 const SQL = { s: "VARCHAR(255)", u: "VARCHAR(700)", t: "TEXT", m: "MEDIUMTEXT", i: "INT", f: "DOUBLE", b: "TINYINT(1)", j: "MEDIUMTEXT", d: "DATETIME" };
+
+/** SQL for one column (used when an existing table is missing a newer column). */
+export function columnSql(type) {
+  return SQL[type] + (type === "b" ? " NOT NULL DEFAULT 0" : "");
+}
 
 export function createSql() {
   const out = [];

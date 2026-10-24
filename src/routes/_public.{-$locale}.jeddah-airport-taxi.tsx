@@ -27,11 +27,11 @@ export const Route = createFileRoute("/_public/{-$locale}/jeddah-airport-taxi")(
     const ar = locale === "ar";
     const url = `${SITE.url}/${locale}/jeddah-airport-taxi`;
     const title = ar
-      ? "تاكسي مطار جدة | استقبال وتوصيل مطار الملك عبدالعزيز - تاكسي العمرة"
-      : "Jeddah Airport Taxi | Private JED Airport Transfers - Umrah Taxi Saudi";
+      ? "تاكسي مطار جدة | استقبال وتوصيل بسعر ثابت - تاكسي العمرة"
+      : "Jeddah Airport Taxi | Fixed-Price JED Transfers - Umrah Taxi";
     const description = ar
-      ? "أفضل خدمة تاكسي مطار جدة (JED). استقبال من صالة الوصول، متابعة الرحلات، وأسعار ثابتة إلى مكة وجدة. احجز رحلتك الموثوقة من مطار الملك عبدالعزيز فور وصولك."
-      : "Private Jeddah Airport Taxi for arrivals at King Abdulaziz International Airport (JED). Professional meet and greet, luggage assistance, and fixed-rate transfers to Makkah, Jeddah and Madinah.";
+      ? "تاكسي مطار جدة (JED): استقبال من صالة الوصول ومتابعة رحلتك وأسعار ثابتة إلى مكة والمدينة وجدة. احجز عبر واتساب على مدار الساعة."
+      : "Private taxi from Jeddah Airport (JED): meet and greet, flight tracking and fixed fares to Makkah, Madinah and Jeddah. Book on WhatsApp, 24/7.";
     
     return {
       meta: [

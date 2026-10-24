@@ -27,7 +27,7 @@ export function blogCoverImage(post: BlogImagePost) {
   if (/airport|مطار/.test(subject)) return airportTransferImage;
   if (/vip|luxury|business|chauffeur|سائق-خاص|فاخر/.test(subject)) return businessTravelImage;
   if (/family|group|van|minibus|عائل|مجموعة/.test(subject)) return vanImage;
-  if (/suv|جبل|taif|abha|طائف|أبها/.test(subject)) return suvImage;
+  if (/suv|جبل|taif|طائف/.test(subject)) return suvImage;
 
   return fallbackImages[stableIndex(post.slug ?? "article")];
 }

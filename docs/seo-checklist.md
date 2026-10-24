@@ -38,3 +38,16 @@ Re-run the checks after every content batch; the admin editor also shows a live 
 - Redirect the old domain to this one with 301s, then watch the Pages report for "Soft 404" and "Crawled - not indexed".
 - Expand the highest-intent articles (fares, airport pickup, Jeddah-Makkah, Makkah-Madinah) toward 1,500 words with real,
   first-hand detail (prices, timings, routes, drivers' experience).
+
+## Automatic release (gradual indexing)
+- Pages and articles stay hidden from Google (`seo_released` off) until the scheduler releases them. Static pages (home,
+  Jeddah taxi, Jeddah airport taxi, Makkah/Madinah/Taif taxi, fares, about, fleet, contact, FAQ) are indexable from day one.
+- `src/server/release.server.ts` checks hourly; every N days (default 3) it releases the next M ready items (default 2) in
+  `release_priority` order. The first run releases the six most important items. Priority 900+ means manual only.
+- An item is "ready" only if titles are 25-70 characters, descriptions 100-170, enough words in both languages, no H1 inside the
+  body and every image has alt text (`db/release-rules.mjs`). Items that fail are skipped and the reasons are shown in
+  /admin/release.
+- A release puts the URL in the sitemaps and pings IndexNow (Bing/Yandex). Google has no API for "Request indexing" of normal
+  pages (the Indexing API is for job postings and live streams only), so it discovers released URLs through the sitemap; the
+  admin lists the released URLs so they can be pasted into Search Console's URL Inspection to speed it up.
+- Settings: /admin/release (on/off, every N days, M per release, release now).

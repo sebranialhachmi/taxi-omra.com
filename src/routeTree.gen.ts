@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as IndexnowKeyDottxtRouteImport } from './routes/indexnow-key[.]txt'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapCategoriesDotxmlRouteImport } from './routes/sitemap-categories[.]xml'
 import { Route as SitemapImagesDotxmlRouteImport } from './routes/sitemap-images[.]xml'
@@ -21,6 +22,7 @@ import { Route as PublicChar123LocaleChar125RouteImport } from './routes/_public
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminMessagesRouteImport } from './routes/admin.messages'
+import { Route as AdminReleaseRouteImport } from './routes/admin.release'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as PublicChar123LocaleChar125IndexRouteImport } from './routes/_public.{-$locale}.index'
 import { Route as PublicChar123LocaleChar125AboutRouteImport } from './routes/_public.{-$locale}.about'
@@ -43,7 +45,6 @@ import { Route as PublicChar123LocaleChar125RefundPolicyRouteImport } from './ro
 import { Route as PublicChar123LocaleChar125SearchRouteImport } from './routes/_public.{-$locale}.search'
 import { Route as PublicChar123LocaleChar125SitemapRouteImport } from './routes/_public.{-$locale}.sitemap'
 import { Route as PublicChar123LocaleChar125TaifToMakkahTaxiRouteImport } from './routes/_public.{-$locale}.taif-to-makkah-taxi'
-import { Route as PublicChar123LocaleChar125TaxiDammamRouteImport } from './routes/_public.{-$locale}.taxi-dammam'
 import { Route as PublicChar123LocaleChar125TaxiJeddahRouteImport } from './routes/_public.{-$locale}.taxi-jeddah'
 import { Route as PublicChar123LocaleChar125TaxiMadinahRouteImport } from './routes/_public.{-$locale}.taxi-madinah'
 import { Route as PublicChar123LocaleChar125TaxiMakkahRouteImport } from './routes/_public.{-$locale}.taxi-makkah'
@@ -72,6 +73,11 @@ import { Route as AdminCTableIdRouteImport } from './routes/admin.c.$table.$id'
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexnowKeyDottxtRoute = IndexnowKeyDottxtRouteImport.update({
+  id: '/indexnow-key.txt',
+  path: '/indexnow-key.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
@@ -128,6 +134,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
 const AdminMessagesRoute = AdminMessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminReleaseRoute = AdminReleaseRouteImport.update({
+  id: '/release',
+  path: '/release',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
@@ -259,12 +270,6 @@ const PublicChar123LocaleChar125TaifToMakkahTaxiRoute =
   PublicChar123LocaleChar125TaifToMakkahTaxiRouteImport.update({
     id: '/taif-to-makkah-taxi',
     path: '/taif-to-makkah-taxi',
-    getParentRoute: () => PublicChar123LocaleChar125Route,
-  } as any)
-const PublicChar123LocaleChar125TaxiDammamRoute =
-  PublicChar123LocaleChar125TaxiDammamRouteImport.update({
-    id: '/taxi-dammam',
-    path: '/taxi-dammam',
     getParentRoute: () => PublicChar123LocaleChar125Route,
   } as any)
 const PublicChar123LocaleChar125TaxiJeddahRoute =
@@ -412,6 +417,7 @@ const AdminCTableIdRoute = AdminCTableIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
+  '/indexnow-key.txt': typeof IndexnowKeyDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap-categories.xml': typeof SitemapCategoriesDotxmlRoute
   '/sitemap-images.xml': typeof SitemapImagesDotxmlRoute
@@ -422,6 +428,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}': typeof PublicChar123LocaleChar125RouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/release': typeof AdminReleaseRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/': typeof AdminIndexRoute
   '/{-$locale}/about': typeof PublicChar123LocaleChar125AboutRoute
@@ -444,7 +451,6 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/search': typeof PublicChar123LocaleChar125SearchRoute
   '/{-$locale}/sitemap': typeof PublicChar123LocaleChar125SitemapRoute
   '/{-$locale}/taif-to-makkah-taxi': typeof PublicChar123LocaleChar125TaifToMakkahTaxiRoute
-  '/{-$locale}/taxi-dammam': typeof PublicChar123LocaleChar125TaxiDammamRoute
   '/{-$locale}/taxi-jeddah': typeof PublicChar123LocaleChar125TaxiJeddahRoute
   '/{-$locale}/taxi-madinah': typeof PublicChar123LocaleChar125TaxiMadinahRoute
   '/{-$locale}/taxi-makkah': typeof PublicChar123LocaleChar125TaxiMakkahRoute
@@ -472,6 +478,7 @@ export interface FileRoutesByFullPath {
   '/admin/c/$table/': typeof AdminCTableIndexRoute
 }
 export interface FileRoutesByTo {
+  '/indexnow-key.txt': typeof IndexnowKeyDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap-categories.xml': typeof SitemapCategoriesDotxmlRoute
   '/sitemap-images.xml': typeof SitemapImagesDotxmlRoute
@@ -481,6 +488,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/release': typeof AdminReleaseRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin': typeof AdminIndexRoute
   '/{-$locale}/about': typeof PublicChar123LocaleChar125AboutRoute
@@ -503,7 +511,6 @@ export interface FileRoutesByTo {
   '/{-$locale}/search': typeof PublicChar123LocaleChar125SearchRoute
   '/{-$locale}/sitemap': typeof PublicChar123LocaleChar125SitemapRoute
   '/{-$locale}/taif-to-makkah-taxi': typeof PublicChar123LocaleChar125TaifToMakkahTaxiRoute
-  '/{-$locale}/taxi-dammam': typeof PublicChar123LocaleChar125TaxiDammamRoute
   '/{-$locale}/taxi-jeddah': typeof PublicChar123LocaleChar125TaxiJeddahRoute
   '/{-$locale}/taxi-madinah': typeof PublicChar123LocaleChar125TaxiMadinahRoute
   '/{-$locale}/taxi-makkah': typeof PublicChar123LocaleChar125TaxiMakkahRoute
@@ -533,6 +540,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/admin': typeof AdminRouteWithChildren
+  '/indexnow-key.txt': typeof IndexnowKeyDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap-categories.xml': typeof SitemapCategoriesDotxmlRoute
   '/sitemap-images.xml': typeof SitemapImagesDotxmlRoute
@@ -543,6 +551,7 @@ export interface FileRoutesById {
   '/_public/{-$locale}': typeof PublicChar123LocaleChar125RouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/release': typeof AdminReleaseRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/': typeof AdminIndexRoute
   '/_public/{-$locale}/about': typeof PublicChar123LocaleChar125AboutRoute
@@ -565,7 +574,6 @@ export interface FileRoutesById {
   '/_public/{-$locale}/search': typeof PublicChar123LocaleChar125SearchRoute
   '/_public/{-$locale}/sitemap': typeof PublicChar123LocaleChar125SitemapRoute
   '/_public/{-$locale}/taif-to-makkah-taxi': typeof PublicChar123LocaleChar125TaifToMakkahTaxiRoute
-  '/_public/{-$locale}/taxi-dammam': typeof PublicChar123LocaleChar125TaxiDammamRoute
   '/_public/{-$locale}/taxi-jeddah': typeof PublicChar123LocaleChar125TaxiJeddahRoute
   '/_public/{-$locale}/taxi-madinah': typeof PublicChar123LocaleChar125TaxiMadinahRoute
   '/_public/{-$locale}/taxi-makkah': typeof PublicChar123LocaleChar125TaxiMakkahRoute
@@ -596,6 +604,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/admin'
+    | '/indexnow-key.txt'
     | '/robots.txt'
     | '/sitemap-categories.xml'
     | '/sitemap-images.xml'
@@ -606,6 +615,7 @@ export interface FileRouteTypes {
     | '/{-$locale}'
     | '/admin/login'
     | '/admin/messages'
+    | '/admin/release'
     | '/admin/settings'
     | '/admin/'
     | '/{-$locale}/about'
@@ -628,7 +638,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/search'
     | '/{-$locale}/sitemap'
     | '/{-$locale}/taif-to-makkah-taxi'
-    | '/{-$locale}/taxi-dammam'
     | '/{-$locale}/taxi-jeddah'
     | '/{-$locale}/taxi-madinah'
     | '/{-$locale}/taxi-makkah'
@@ -656,6 +665,7 @@ export interface FileRouteTypes {
     | '/admin/c/$table/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/indexnow-key.txt'
     | '/robots.txt'
     | '/sitemap-categories.xml'
     | '/sitemap-images.xml'
@@ -665,6 +675,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/login'
     | '/admin/messages'
+    | '/admin/release'
     | '/admin/settings'
     | '/admin'
     | '/{-$locale}/about'
@@ -687,7 +698,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/search'
     | '/{-$locale}/sitemap'
     | '/{-$locale}/taif-to-makkah-taxi'
-    | '/{-$locale}/taxi-dammam'
     | '/{-$locale}/taxi-jeddah'
     | '/{-$locale}/taxi-madinah'
     | '/{-$locale}/taxi-makkah'
@@ -716,6 +726,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/admin'
+    | '/indexnow-key.txt'
     | '/robots.txt'
     | '/sitemap-categories.xml'
     | '/sitemap-images.xml'
@@ -726,6 +737,7 @@ export interface FileRouteTypes {
     | '/_public/{-$locale}'
     | '/admin/login'
     | '/admin/messages'
+    | '/admin/release'
     | '/admin/settings'
     | '/admin/'
     | '/_public/{-$locale}/about'
@@ -748,7 +760,6 @@ export interface FileRouteTypes {
     | '/_public/{-$locale}/search'
     | '/_public/{-$locale}/sitemap'
     | '/_public/{-$locale}/taif-to-makkah-taxi'
-    | '/_public/{-$locale}/taxi-dammam'
     | '/_public/{-$locale}/taxi-jeddah'
     | '/_public/{-$locale}/taxi-madinah'
     | '/_public/{-$locale}/taxi-makkah'
@@ -778,6 +789,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
+  IndexnowKeyDottxtRoute: typeof IndexnowKeyDottxtRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapCategoriesDotxmlRoute: typeof SitemapCategoriesDotxmlRoute
   SitemapImagesDotxmlRoute: typeof SitemapImagesDotxmlRoute
@@ -795,6 +807,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/indexnow-key.txt': {
+      id: '/indexnow-key.txt'
+      path: '/indexnow-key.txt'
+      fullPath: '/indexnow-key.txt'
+      preLoaderRoute: typeof IndexnowKeyDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/robots.txt': {
@@ -872,6 +891,13 @@ declare module '@tanstack/react-router' {
       path: '/messages'
       fullPath: '/admin/messages'
       preLoaderRoute: typeof AdminMessagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/release': {
+      id: '/admin/release'
+      path: '/release'
+      fullPath: '/admin/release'
+      preLoaderRoute: typeof AdminReleaseRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/settings': {
@@ -1026,13 +1052,6 @@ declare module '@tanstack/react-router' {
       path: '/taif-to-makkah-taxi'
       fullPath: '/{-$locale}/taif-to-makkah-taxi'
       preLoaderRoute: typeof PublicChar123LocaleChar125TaifToMakkahTaxiRouteImport
-      parentRoute: typeof PublicChar123LocaleChar125Route
-    }
-    '/_public/{-$locale}/taxi-dammam': {
-      id: '/_public/{-$locale}/taxi-dammam'
-      path: '/taxi-dammam'
-      fullPath: '/{-$locale}/taxi-dammam'
-      preLoaderRoute: typeof PublicChar123LocaleChar125TaxiDammamRouteImport
       parentRoute: typeof PublicChar123LocaleChar125Route
     }
     '/_public/{-$locale}/taxi-jeddah': {
@@ -1209,6 +1228,7 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminLoginRoute: typeof AdminLoginRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
+  AdminReleaseRoute: typeof AdminReleaseRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminCTableIdRoute: typeof AdminCTableIdRoute
@@ -1218,6 +1238,7 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminLoginRoute: AdminLoginRoute,
   AdminMessagesRoute: AdminMessagesRoute,
+  AdminReleaseRoute: AdminReleaseRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminCTableIdRoute: AdminCTableIdRoute,
@@ -1262,7 +1283,6 @@ interface PublicChar123LocaleChar125RouteChildren {
   PublicChar123LocaleChar125SearchRoute: typeof PublicChar123LocaleChar125SearchRoute
   PublicChar123LocaleChar125SitemapRoute: typeof PublicChar123LocaleChar125SitemapRoute
   PublicChar123LocaleChar125TaifToMakkahTaxiRoute: typeof PublicChar123LocaleChar125TaifToMakkahTaxiRoute
-  PublicChar123LocaleChar125TaxiDammamRoute: typeof PublicChar123LocaleChar125TaxiDammamRoute
   PublicChar123LocaleChar125TaxiJeddahRoute: typeof PublicChar123LocaleChar125TaxiJeddahRoute
   PublicChar123LocaleChar125TaxiMadinahRoute: typeof PublicChar123LocaleChar125TaxiMadinahRoute
   PublicChar123LocaleChar125TaxiMakkahRoute: typeof PublicChar123LocaleChar125TaxiMakkahRoute
@@ -1326,8 +1346,6 @@ const PublicChar123LocaleChar125RouteChildren: PublicChar123LocaleChar125RouteCh
       PublicChar123LocaleChar125SitemapRoute,
     PublicChar123LocaleChar125TaifToMakkahTaxiRoute:
       PublicChar123LocaleChar125TaifToMakkahTaxiRoute,
-    PublicChar123LocaleChar125TaxiDammamRoute:
-      PublicChar123LocaleChar125TaxiDammamRoute,
     PublicChar123LocaleChar125TaxiJeddahRoute:
       PublicChar123LocaleChar125TaxiJeddahRoute,
     PublicChar123LocaleChar125TaxiMadinahRoute:
@@ -1378,6 +1396,7 @@ const PublicChar123LocaleChar125RouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
+  IndexnowKeyDottxtRoute: IndexnowKeyDottxtRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapCategoriesDotxmlRoute: SitemapCategoriesDotxmlRoute,
   SitemapImagesDotxmlRoute: SitemapImagesDotxmlRoute,

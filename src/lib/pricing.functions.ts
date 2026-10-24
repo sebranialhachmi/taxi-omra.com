@@ -9,7 +9,7 @@ export interface PricingRoute {
   economyPrice?: string; // "Starts from" or "Request price"
   suvPrice?: string;
   vipPrice?: string;
-  category: "jeddah" | "makkah" | "madinah" | "taif" | "dammam" | "airport" | "intercity";
+  category: "jeddah" | "makkah" | "madinah" | "taif" | "airport" | "intercity";
 }
 
 export const PRICING_DATA: PricingRoute[] = [
@@ -68,14 +68,6 @@ export const PRICING_DATA: PricingRoute[] = [
   { id: "taif-to-hotels", from_ar: "الطائف", from_en: "Taif", to_ar: "فنادق الطائف", to_en: "Taif Hotels", economyPrice: "اطلب السعر", category: "taif" },
   { id: "taif-to-ziyarat", from_ar: "الطائف", from_en: "Taif", to_ar: "المعالم السياحية", to_en: "Sightseeing Tours", economyPrice: "اطلب السعر", category: "taif" },
 
-  // ==========================================
-  // DAMMAM
-  // ==========================================
-  { id: "apt-dmm-to-city", from_ar: "مطار الدمام (DMM)", from_en: "Dammam Airport (DMM)", to_ar: "داخل الدمام", to_en: "Within Dammam", economyPrice: "اطلب السعر", suvPrice: "اطلب السعر", vipPrice: "اطلب السعر", category: "airport" },
-  { id: "dmm-to-khobar", from_ar: "الدمام", from_en: "Dammam", to_ar: "الخبر", to_en: "Khobar", economyPrice: "اطلب السعر", category: "dammam" },
-  { id: "dmm-to-dhahran", from_ar: "الدمام", from_en: "Dammam", to_ar: "الظهران", to_en: "Dhahran", economyPrice: "اطلب السعر", category: "dammam" },
-  { id: "dmm-to-hotels", from_ar: "الدمام", from_en: "Dammam", to_ar: "فنادق المنطقة الشرقية", to_en: "Eastern Province Hotels", economyPrice: "اطلب السعر", category: "dammam" },
-  { id: "dmm-to-makkah", from_ar: "الدمام", from_en: "Dammam", to_ar: "مكة المكرمة", to_en: "Makkah", economyPrice: "اطلب السعر", category: "dammam" },
 ];
 
 // The table above is only the fallback. The live prices come from the `prices`

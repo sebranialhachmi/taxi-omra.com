@@ -48,6 +48,7 @@ const SEEDS: Record<string, () => Promise<{ default: unknown }>> = {
 };
 
 let ready: Promise<void> | undefined;
+let schedulerStarted = false;
 async function getPool(): Promise<mysql.Pool> {
   const p = createPool();
   ready ??= setupDatabase(p, {
@@ -58,6 +59,10 @@ async function getPool(): Promise<mysql.Pool> {
     log: (m) => console.log(`[db] ${m}`),
   }).catch((e) => console.error("[db] setup failed:", e));
   await ready;
+  if (!schedulerStarted) {
+    schedulerStarted = true;
+    void import("./release.server").then((m) => m.startScheduler());
+  }
   return p;
 }
 

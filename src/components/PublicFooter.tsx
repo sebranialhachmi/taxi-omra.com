@@ -70,7 +70,6 @@ export function PublicFooter() {
             <li><Link to={l("/taxi-makkah")} className="hover:text-gold transition">{ar ? "تاكسي مكة" : "Taxi Makkah"}</Link></li>
             <li><Link to={l("/taxi-madinah")} className="hover:text-gold transition">{ar ? "تاكسي المدينة" : "Taxi Madinah"}</Link></li>
             <li><Link to={l("/taxi-taif")} className="hover:text-gold transition">{ar ? "تاكسي الطائف" : "Taxi Taif"}</Link></li>
-            <li><Link to={l("/taxi-dammam")} className="hover:text-gold transition">{ar ? "تاكسي الدمام" : "Taxi Dammam"}</Link></li>
 
           </ul>
         </div>

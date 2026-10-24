@@ -27,6 +27,7 @@ const NAV: Array<{ to: string; label: string; params?: Record<string, string> }>
   { to: "/admin/c/$table", params: { table: "testimonials" }, label: TABLE_CONFIG.testimonials.label },
   { to: "/admin/c/$table", params: { table: "blog_categories" }, label: TABLE_CONFIG.blog_categories.label },
   { to: "/admin/c/$table", params: { table: "redirects" }, label: TABLE_CONFIG.redirects.label },
+  { to: "/admin/release", label: "جدول النشر" },
   { to: "/admin/messages", label: "الرسائل" },
   { to: "/admin/settings", label: "الإعدادات" },
 ];
