@@ -11,6 +11,8 @@ import { Label } from "@/components/ui/label";
 export const Route = createFileRoute("/admin/settings")({ component: Settings });
 
 const FIELDS: Array<[string, string, boolean?]> = [
+  ["commercial_registration", "رقم السجل التجاري (يظهر في الموقع إن أُدخل)"],
+  ["transport_license", "رقم ترخيص النقل (يظهر في الموقع إن أُدخل)"],
   ["contact_phone", "رقم الهاتف المعروض (مثل +966551796487)"],
   ["whatsapp_number", "رقم واتساب بدون + (مثل 966551796487)"],
   ["whatsapp_default_message", "رسالة واتساب الافتراضية"],

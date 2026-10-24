@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CityLongContent } from "@/components/public/CityLongContent";
 import { Card, CardContent } from "@/components/ui/card";
 import { useI18n } from "@/lib/i18n";
+import { useContactInfo } from "@/lib/contact-info";
 import { Shield, Award, Users, Clock } from "lucide-react";
 import { SITE } from "@/lib/site-info";
 import { breadcrumbJsonLd } from "@/lib/seo";
@@ -39,6 +40,7 @@ export const Route = createFileRoute("/_public/{-$locale}/about")({
 
 function About() {
   const { locale } = useI18n();
+  const { commercialRegistration, transportLicense } = useContactInfo();
   const ar = locale === "ar";
   const values = [
     { icon: Shield, ar_t: "السلامة أولاً", en_t: "Safety first", ar_d: "سائقون مدربون ومركبات مفحوصة دورياً.", en_d: "Trained drivers and regularly inspected vehicles." },
@@ -84,6 +86,8 @@ function About() {
         <Card><CardContent className="pt-6">
           <h2 className="text-xl font-bold mb-3">{ar ? "الرقم الضريبي" : "VAT Registration"}</h2>
           <p className="text-muted-foreground" dir="ltr">{SITE.vatNumber}</p>
+          {commercialRegistration ? <p className="mt-3 text-muted-foreground">{ar ? "السجل التجاري: " : "Commercial registration: "}<span dir="ltr">{commercialRegistration}</span></p> : null}
+          {transportLicense ? <p className="mt-1 text-muted-foreground">{ar ? "ترخيص النقل: " : "Transport license: "}<span dir="ltr">{transportLicense}</span></p> : null}
         </CardContent></Card>
       </div>
       <CityLongContent page="about" />

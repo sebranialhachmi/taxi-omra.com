@@ -170,6 +170,7 @@ export const getPublicSettings = createServerFn({ method: "GET" }).handler(async
   const s = await getSettings([
     "contact_phone", "whatsapp_number", "whatsapp_default_message",
     "google_site_verification", "bing_site_verification", "head_meta_custom", "head_scripts_custom",
+    "commercial_registration", "transport_license",
   ]);
   const text = (k: string) => (typeof s[k] === "string" ? (s[k] as string) : "");
   return {
@@ -180,6 +181,8 @@ export const getPublicSettings = createServerFn({ method: "GET" }).handler(async
     bing_site_verification: text("bing_site_verification"),
     head_meta_custom: text("head_meta_custom"),
     head_scripts_custom: text("head_scripts_custom"),
+    commercial_registration: text("commercial_registration"),
+    transport_license: text("transport_license"),
   };
 });
 

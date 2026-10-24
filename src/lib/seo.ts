@@ -11,6 +11,7 @@ export function localBusinessJsonLd(locale?: "ar" | "en") {
     // TaxiService alone is a Service type (no address/geo); pairing it with LocalBusiness is valid.
     "@type": ["LocalBusiness", "TaxiService"],
     "@id": `${SITE.url}/#taxi`,
+    vatID: SITE.vatNumber,
     name: locale === "ar" ? SITE.brand.ar : SITE.brand.en,
     alternateName: locale === "ar" ? SITE.brand.en : SITE.brand.ar,
     ...(locale ? { inLanguage: locale } : {}),
@@ -48,6 +49,7 @@ export function organizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${SITE.url}/#organization`,
+    vatID: SITE.vatNumber,
     name: SITE.brand.en,
     alternateName: SITE.brand.ar,
     url: SITE.url,

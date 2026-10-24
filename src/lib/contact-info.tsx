@@ -17,11 +17,17 @@ type ContactInfo = {
   telHref: string;
   /** wa.me href with default message */
   waHref: (text?: string) => string;
+  /** Commercial registration number, shown only when the owner filled it in */
+  commercialRegistration: string;
+  /** Transport license number, shown only when the owner filled it in */
+  transportLicense: string;
 };
 
 const digits = (v: string) => v.replace(/[^\d]/g, "");
 
 const defaults: ContactInfo = {
+  commercialRegistration: "",
+  transportLicense: "",
   phone: SITE.phone,
   whatsapp: SITE.whatsapp,
   whatsappMessage: "",
@@ -44,6 +50,8 @@ export function ContactInfoProvider({ children }: { children: ReactNode }) {
       const wa = digits(data.whatsapp_number || SITE.whatsapp);
       const msg = data.whatsapp_default_message;
       setInfo({
+        commercialRegistration: data.commercial_registration,
+        transportLicense: data.transport_license,
         phone,
         whatsapp: wa,
         whatsappMessage: msg,
