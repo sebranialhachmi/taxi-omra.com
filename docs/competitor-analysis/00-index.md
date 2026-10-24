@@ -1,6 +1,6 @@
 # Competitor Analysis — Jeddah Travels (أسفار جدة)
 
-**Project:** Jeddah Travels · omrataxi-sa.online · +966 55 179 6487
+**Project:** Jeddah Travels · taxi-omra.com · +966 55 179 6487
 **Spec:** `COMPETITOR_ANALYSIS.md` v1.0
 **Status:** Frozen — v1.0
 **Prepared:** 2026-07-12

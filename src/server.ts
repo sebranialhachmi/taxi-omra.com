@@ -81,7 +81,7 @@ function isMalformedTemplateUrl(request: Request): boolean {
 
 // Canonical host: force apex + https so www/http duplicates collapse into one
 // indexable URL instead of competing versions in search results.
-const CANONICAL_HOST = "omrataxi-sa.online";
+const CANONICAL_HOST = "taxi-omra.com";
 
 const EDGE_LEGACY_REDIRECTS: Record<string, string> = {
   "/jeddah-airport-to-makkah-taxi": "/jeddah-to-makkah-taxi",
