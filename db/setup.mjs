@@ -65,6 +65,11 @@ export async function setupDatabase(conn, opts = {}) {
     log(`${table}: seeded ${rows.length}`);
   }
 
+  // Content imported from the old site pointed at /blog-images/*.webp, files that
+  // were never shipped (404). Clearing them lets pages use a bundled photo.
+  await conn.query("UPDATE `posts` SET `cover_url` = NULL WHERE `cover_url` LIKE '/blog-images/%'");
+  await conn.query("UPDATE `pages` SET `hero_image_url` = NULL WHERE `hero_image_url` LIKE '/blog-images/%'");
+
   for (const [k, v] of Object.entries(DEFAULT_SETTINGS)) {
     await conn.query("INSERT IGNORE INTO `settings` (`k`,`v`) VALUES (?,?)", [k, JSON.stringify(v)]);
   }

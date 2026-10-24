@@ -1,3 +1,4 @@
+import { breadcrumbJsonLd } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
 import { listVehicleCategories } from "@/lib/public.functions";
@@ -35,6 +36,9 @@ export const Route = createFileRoute("/_public/{-$locale}/fleet/")({
         { name: "twitter:description", content: description },
       ],
       links: [],
+      scripts: [
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbJsonLd([{ name: ar ? "الرئيسية" : "Home", url: `/${params.locale ?? "ar"}` }, { name: ar ? "الأسطول" : "Fleet", url: `/${params.locale ?? "ar"}/fleet` }])) },
+      ],
     };
   },
   component: Fleet,

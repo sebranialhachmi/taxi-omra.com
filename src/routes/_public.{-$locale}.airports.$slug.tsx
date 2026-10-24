@@ -1,3 +1,4 @@
+import { absoluteUrl, usableImage } from "@/lib/images";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
 import { getCmsPageByType, listRelatedCmsPages } from "@/lib/public.functions";
@@ -36,7 +37,7 @@ export const Route = createFileRoute("/_public/{-$locale}/airports/$slug")({
           "@type": "Airport",
           name: p.title_en,
           description: p.subtitle_en ?? undefined,
-          image: p.hero_image_url ?? undefined,
+          image: usableImage(p.hero_image_url) ? absoluteUrl(usableImage(p.hero_image_url)!) : undefined,
           url,
         }),
       },

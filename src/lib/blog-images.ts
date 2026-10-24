@@ -4,6 +4,8 @@ import luxuryCarImage from "@/assets/hero-luxury-car.webp";
 import suvImage from "@/assets/fleet-suv.jpg";
 import vanImage from "@/assets/fleet-van.jpg";
 
+import { usableImage } from "@/lib/images";
+
 type BlogImagePost = {
   slug?: string | null;
   cover_url?: string | null;
@@ -18,7 +20,7 @@ function stableIndex(value: string) {
 
 /** Every published article gets a stable, relevant cover even when the CMS has no uploaded image. */
 export function blogCoverImage(post: BlogImagePost) {
-  const uploadedCover = post.cover_url?.trim();
+  const uploadedCover = usableImage(post.cover_url);
   if (uploadedCover) return uploadedCover;
 
   const subject = `${post.slug ?? ""} ${(post.tags ?? []).join(" ")}`.toLowerCase();

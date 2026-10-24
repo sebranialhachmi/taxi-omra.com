@@ -7,6 +7,9 @@ import { renderableContent } from "@/lib/html";
 import { isIndexable } from "@/lib/content-quality";
 import { isIndexedBlog } from "@/lib/index-policy";
 import { blogCoverImage } from "@/lib/blog-images";
+import { absoluteUrl, usableImage } from "@/lib/images";
+import { breadcrumbJsonLd } from "@/lib/seo";
+import { RelatedLinks } from "@/components/public/RelatedLinks";
 
 const opts = (slug: string) => queryOptions({
   queryKey: ["public", "blog", slug],
@@ -26,7 +29,9 @@ export const Route = createFileRoute("/_public/{-$locale}/blog/$slug")({
     // Arabic and English metadata are fully independent — no cross-language fallback.
     const title = ar ? (p.meta_title_ar || p.title_ar) : (p.meta_title || p.title_en);
     const desc = ar ? (p.meta_description_ar || p.excerpt_ar || "") : (p.meta_description || p.excerpt_en || "");
-    const image = p.og_image_url || p.cover_url;
+    const image = absoluteUrl(usableImage(p.og_image_url) || blogCoverImage(p));
+    const locale = ar ? "ar" : "en";
+    const url = `${SITE.url}/${locale}/blog/${p.slug}`;
     // Thin drafts must not be submitted for indexing — Google flags them as
     // soft 404s and that damages crawling of the rest of the site.
     const thin = !isIndexable(ar ? p.content_ar : p.content_en) || !isIndexedBlog(p.slug, p.seo_released);
@@ -37,25 +42,46 @@ export const Route = createFileRoute("/_public/{-$locale}/blog/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+        { property: "og:locale", content: ar ? "ar_SA" : "en_US" },
+        { property: "article:published_time", content: p.published_at ?? "" },
         { name: "twitter:card", content: "summary_large_image" },
         ...(thin ? [{ name: "robots", content: "noindex, follow" }] : []),
         ...(image ? [{ property: "og:image", content: image }, { name: "twitter:image", content: image }] : []),
       ],
       links: [],
-      scripts: [{
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: title,
-          description: desc,
-          image: image || undefined,
-          datePublished: p.published_at,
-          dateModified: p.updated_at ?? p.published_at,
-          inLanguage: ar ? "ar" : "en",
-          author: { "@type": "Organization", name: SITE.brand.en },
-        }),
-      }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: title,
+            description: desc,
+            image: [image],
+            datePublished: p.published_at,
+            dateModified: p.updated_at ?? p.published_at,
+            inLanguage: locale,
+            mainEntityOfPage: { "@type": "WebPage", "@id": url },
+            author: { "@type": "Organization", name: SITE.brand[locale], url: SITE.url },
+            publisher: {
+              "@type": "Organization",
+              name: SITE.brand[locale],
+              logo: { "@type": "ImageObject", url: `${SITE.url}${SITE.logo}` },
+            },
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: ar ? "الرئيسية" : "Home", url: `/${locale}` },
+              { name: ar ? "المدونة" : "Blog", url: `/${locale}/blog` },
+              { name: title, url: `/${locale}/blog/${p.slug}` },
+            ]),
+          ),
+        },
+      ],
     };
   },
   component: BlogPost,
@@ -89,6 +115,7 @@ function BlogPost() {
         dir={ar ? "rtl" : "ltr"}
         dangerouslySetInnerHTML={{ __html: html }}
       />
+      <RelatedLinks slug={p.slug} locale={locale} />
     </article>
   );
 }
