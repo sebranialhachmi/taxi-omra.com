@@ -7,8 +7,7 @@ import { Table } from "@tiptap/extension-table";
 import { TableRow } from "@tiptap/extension-table-row";
 import { TableCell } from "@tiptap/extension-table-cell";
 import { TableHeader } from "@tiptap/extension-table-header";
-import { useEffect, useState } from "react";
-import { MediaPicker } from "./MediaPicker";
+import { useEffect } from "react";
 import { sanitizeHtml, renderableContent } from "@/lib/html";
 import {
   Bold, Italic, Underline as UnderlineIcon, List, ListOrdered, Quote, Link2, Table as TableIcon,
@@ -76,8 +75,6 @@ function Toolbar({ editor, onImage }: { editor: Editor; onImage: () => void }) {
 }
 
 export function RichTextEditor({ value, onChange, dir = "ltr", placeholder }: Props) {
-  const [pickerOpen, setPickerOpen] = useState(false);
-
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [
@@ -118,19 +115,13 @@ export function RichTextEditor({ value, onChange, dir = "ltr", placeholder }: Pr
 
   return (
     <div className="rounded-lg border border-border overflow-hidden bg-background">
-      <Toolbar editor={editor} onImage={() => setPickerOpen(true)} />
+      <Toolbar editor={editor} onImage={() => {
+        const src = window.prompt(dir === "rtl" ? "رابط الصورة (https://...)" : "Image URL (https://...)");
+        if (src && /^https?:\/\//.test(src)) editor.chain().focus().setImage({ src }).run();
+      }} />
       <div className="max-h-[60vh] overflow-y-auto">
         <EditorContent editor={editor} />
       </div>
-      <MediaPicker
-        open={pickerOpen}
-        onOpenChange={setPickerOpen}
-        onPick={(m) => {
-          const alt = dir === "rtl" ? (m.altAr || m.altEn) : (m.altEn || m.altAr);
-          editor.chain().focus().setImage({ src: m.url, alt, title: m.caption || undefined }).run();
-          if (m.caption) editor.chain().focus().createParagraphNear().insertContent(`<p><em>${m.caption}</em></p>`).run();
-        }}
-      />
       <div className="border-t border-border px-3 py-1.5 text-[11px] text-muted-foreground flex justify-between">
         <span>H1 is reserved for the post title — use H2/H3/H4 inside the content.</span>
         <span>{editor.storage.characterCount?.characters?.() ?? editor.getText().length} chars</span>

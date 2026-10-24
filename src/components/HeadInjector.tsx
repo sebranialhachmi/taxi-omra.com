@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { getPublicSettings } from "@/lib/public.functions";
 
 /**
  * Reads a set of head-related settings from the public.settings table
@@ -17,21 +17,9 @@ export function HeadInjector() {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const { data } = await supabase
-        .from("settings")
-        .select("key,value")
-        .in("key", [
-          "google_site_verification",
-          "bing_site_verification",
-          "head_meta_custom",
-          "head_scripts_custom",
-        ]);
+      const data = await getPublicSettings().catch(() => null);
       if (cancelled || !data) return;
-      const map = new Map<string, string>();
-      data.forEach((r: any) => {
-        const v = typeof r.value === "string" ? r.value : (r.value?.value ?? "");
-        if (v) map.set(r.key, String(v));
-      });
+      const map = new Map<string, string>(Object.entries(data).filter(([, v]) => v));
 
       const injected: HTMLElement[] = [];
 

@@ -1,7 +1,7 @@
 // Image sitemap — includes hero/OG/featured images from CMS pages, blog posts, vehicles.
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { createClient } from "@supabase/supabase-js";
+import { select } from "@/server/db.server";
 import { SITE } from "@/lib/site-info";
 import { isIndexedCms, isIndexedBlog } from "@/lib/index-policy";
 import { isConsolidatedDuplicate } from "@/lib/canonical-redirects";
@@ -10,20 +10,11 @@ export const Route = createFileRoute("/sitemap-images.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const sb = createClient(
-          process.env.SUPABASE_URL!,
-          process.env.SUPABASE_PUBLISHABLE_KEY!,
-          { auth: { persistSession: false, autoRefreshToken: false } },
-        );
         const entries: { loc: string; images: { url: string; caption?: string }[] }[] = [];
         try {
-          const [{ data: pages }, { data: posts }] = await Promise.all([
-            sb.from("cms_pages")
-              .select("slug,page_type,title_en,og_image_url,featured_image_url,gallery,seo_released")
-              .eq("published", true),
-            sb.from("blog_posts")
-              .select("slug,title_en,og_image_url,seo_released")
-              .eq("published", true),
+          const [pages, posts] = await Promise.all([
+            select("pages", { where: { published: true }, columns: ["slug", "page_type", "title_en", "og_image_url", "featured_image_url", "gallery", "seo_released"] }),
+            select("posts", { where: { published: true }, columns: ["slug", "title_en", "og_image_url", "seo_released"] }),
           ]);
           const prefixOf = (t: string) =>
             t === "service" ? "services" :

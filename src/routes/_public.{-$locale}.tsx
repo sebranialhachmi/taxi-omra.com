@@ -12,7 +12,7 @@ import {
   withLocale,
   type Locale,
 } from "@/lib/i18n";
-import { resolveRedirect } from "@/lib/seo-tools.functions";
+import { resolveRedirect } from "@/lib/public.functions";
 import { CANONICAL_REDIRECTS } from "@/lib/canonical-redirects";
 import { getCmsPage } from "@/lib/public.functions";
 

@@ -8,10 +8,10 @@ export const Route = createFileRoute("/sitemap-index.xml")({
     handlers: {
       GET: async () => {
         const sitemaps = [
-          "/sitemap.xml",
-          "/sitemap-posts.xml",
           "/sitemap-pages.xml",
+          "/sitemap-posts.xml",
           "/sitemap-categories.xml",
+          "/sitemap-images.xml",
         ];
 
         const xml = [

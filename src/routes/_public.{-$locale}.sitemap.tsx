@@ -1,7 +1,7 @@
 // HTML sitemap for humans — bilingual, lists all indexable pages.
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { getSitemapData } from "@/lib/public.functions";
 import { DEFAULT_LOCALE, type Locale, withLocale } from "@/lib/i18n";
 import { SITE } from "@/lib/site-info";
 
@@ -31,18 +31,7 @@ function HtmlSitemap() {
 
   const { data } = useQuery({
     queryKey: ["sitemap-html"],
-    queryFn: async () => {
-      const [pages, posts, cats] = await Promise.all([
-        supabase.from("cms_pages").select("slug,page_type,title_en,title_ar").eq("published", true).order("sort_order"),
-        supabase.from("blog_posts").select("slug,title_en,title_ar").eq("published", true).order("created_at", { ascending: false }),
-        supabase.from("vehicle_categories").select("code,name_en,name_ar").eq("is_active", true).order("sort_order"),
-      ]);
-      return {
-        pages: pages.data ?? [],
-        posts: posts.data ?? [],
-        cats: cats.data ?? [],
-      };
-    },
+    queryFn: () => getSitemapData(),
   });
 
   const t = isAr

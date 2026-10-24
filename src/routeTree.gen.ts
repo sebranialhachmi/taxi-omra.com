@@ -9,9 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapCategoriesDotxmlRouteImport } from './routes/sitemap-categories[.]xml'
 import { Route as SitemapImagesDotxmlRouteImport } from './routes/sitemap-images[.]xml'
@@ -20,57 +18,10 @@ import { Route as SitemapPagesDotxmlRouteImport } from './routes/sitemap-pages[.
 import { Route as SitemapPostsDotxmlRouteImport } from './routes/sitemap-posts[.]xml'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PublicChar123LocaleChar125RouteImport } from './routes/_public.{-$locale}'
-import { Route as AuthenticatedAdminAirportsRouteImport } from './routes/_authenticated/admin.airports'
-import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
-import { Route as AuthenticatedAdminAuditRouteImport } from './routes/_authenticated/admin.audit'
-import { Route as AuthenticatedAdminBackupRouteImport } from './routes/_authenticated/admin.backup'
-import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated/admin.blog'
-import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin.bookings'
-import { Route as AuthenticatedAdminCalendarRouteImport } from './routes/_authenticated/admin.calendar'
-import { Route as AuthenticatedAdminCitiesRouteImport } from './routes/_authenticated/admin.cities'
-import { Route as AuthenticatedAdminContactsRouteImport } from './routes/_authenticated/admin.contacts'
-import { Route as AuthenticatedAdminCorporateRouteImport } from './routes/_authenticated/admin.corporate'
-import { Route as AuthenticatedAdminCouponsRouteImport } from './routes/_authenticated/admin.coupons'
-import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin.dashboard'
-import { Route as AuthenticatedAdminDispatchRouteImport } from './routes/_authenticated/admin.dispatch'
-import { Route as AuthenticatedAdminDriversRouteImport } from './routes/_authenticated/admin.drivers'
-import { Route as AuthenticatedAdminErrorsRouteImport } from './routes/_authenticated/admin.errors'
-import { Route as AuthenticatedAdminExpensesRouteImport } from './routes/_authenticated/admin.expenses'
-import { Route as AuthenticatedAdminFaqsRouteImport } from './routes/_authenticated/admin.faqs'
-import { Route as AuthenticatedAdminFinanceRouteImport } from './routes/_authenticated/admin.finance'
-import { Route as AuthenticatedAdminFinanceSettingsRouteImport } from './routes/_authenticated/admin.finance-settings'
-import { Route as AuthenticatedAdminFleetRouteImport } from './routes/_authenticated/admin.fleet'
-import { Route as AuthenticatedAdminFleetDashboardRouteImport } from './routes/_authenticated/admin.fleet-dashboard'
-import { Route as AuthenticatedAdminHeroRouteImport } from './routes/_authenticated/admin.hero'
-import { Route as AuthenticatedAdminHomepageRouteImport } from './routes/_authenticated/admin.homepage'
-import { Route as AuthenticatedAdminInvoicesRouteImport } from './routes/_authenticated/admin.invoices'
-import { Route as AuthenticatedAdminMaintenanceRouteImport } from './routes/_authenticated/admin.maintenance'
-import { Route as AuthenticatedAdminMediaRouteImport } from './routes/_authenticated/admin.media'
-import { Route as AuthenticatedAdminMenusRouteImport } from './routes/_authenticated/admin.menus'
-import { Route as AuthenticatedAdminNotificationQueueRouteImport } from './routes/_authenticated/admin.notification-queue'
-import { Route as AuthenticatedAdminNotificationsRouteImport } from './routes/_authenticated/admin.notifications'
-import { Route as AuthenticatedAdminOperationsRouteImport } from './routes/_authenticated/admin.operations'
-import { Route as AuthenticatedAdminPagesRouteImport } from './routes/_authenticated/admin.pages'
-import { Route as AuthenticatedAdminPartnersRouteImport } from './routes/_authenticated/admin.partners'
-import { Route as AuthenticatedAdminPaymentsRouteImport } from './routes/_authenticated/admin.payments'
-import { Route as AuthenticatedAdminPayrollRouteImport } from './routes/_authenticated/admin.payroll'
-import { Route as AuthenticatedAdminPromotionsRouteImport } from './routes/_authenticated/admin.promotions'
-import { Route as AuthenticatedAdminRedirectsRouteImport } from './routes/_authenticated/admin.redirects'
-import { Route as AuthenticatedAdminRefundsRouteImport } from './routes/_authenticated/admin.refunds'
-import { Route as AuthenticatedAdminRemindersRouteImport } from './routes/_authenticated/admin.reminders'
-import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
-import { Route as AuthenticatedAdminRolesRouteImport } from './routes/_authenticated/admin.roles'
-import { Route as AuthenticatedAdminRoutePagesRouteImport } from './routes/_authenticated/admin.route-pages'
-import { Route as AuthenticatedAdminRoutesRouteImport } from './routes/_authenticated/admin.routes'
-import { Route as AuthenticatedAdminSeoRouteImport } from './routes/_authenticated/admin.seo'
-import { Route as AuthenticatedAdminSeoGeneratorRouteImport } from './routes/_authenticated/admin.seo-generator'
-import { Route as AuthenticatedAdminServicesRouteImport } from './routes/_authenticated/admin.services'
-import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin.settings'
-import { Route as AuthenticatedAdminTasksRouteImport } from './routes/_authenticated/admin.tasks'
-import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authenticated/admin.team'
-import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
-import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
-import { Route as AuthenticatedAdminWhatsappTemplatesRouteImport } from './routes/_authenticated/admin.whatsapp-templates'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminMessagesRouteImport } from './routes/admin.messages'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as PublicChar123LocaleChar125IndexRouteImport } from './routes/_public.{-$locale}.index'
 import { Route as PublicChar123LocaleChar125AboutRouteImport } from './routes/_public.{-$locale}.about'
 import { Route as PublicChar123LocaleChar125AirportTransfersRouteImport } from './routes/_public.{-$locale}.airport-transfers'
@@ -101,10 +52,6 @@ import { Route as PublicChar123LocaleChar125TaxiTaifRouteImport } from './routes
 import { Route as PublicChar123LocaleChar125TermsRouteImport } from './routes/_public.{-$locale}.terms'
 import { Route as PublicChar123LocaleChar125ThankYouRouteImport } from './routes/_public.{-$locale}.thank-you'
 import { Route as PublicChar123LocaleChar125VehiclesRouteImport } from './routes/_public.{-$locale}.vehicles'
-import { Route as AuthenticatedAdminCustomersIdRouteImport } from './routes/_authenticated/admin.customers.$id'
-import { Route as AuthenticatedAdminDriversIdRouteImport } from './routes/_authenticated/admin.drivers.$id'
-import { Route as AuthenticatedAdminFleetIdRouteImport } from './routes/_authenticated/admin.fleet.$id'
-import { Route as AuthenticatedAdminInvoicesIdRouteImport } from './routes/_authenticated/admin.invoices.$id'
 import { Route as PublicChar123LocaleChar125AirportsIndexRouteImport } from './routes/_public.{-$locale}.airports.index'
 import { Route as PublicChar123LocaleChar125AirportsSlugRouteImport } from './routes/_public.{-$locale}.airports.$slug'
 import { Route as PublicChar123LocaleChar125BlogIndexRouteImport } from './routes/_public.{-$locale}.blog.index'
@@ -120,22 +67,12 @@ import { Route as PublicChar123LocaleChar125RoutesSlugRouteImport } from './rout
 import { Route as PublicChar123LocaleChar125ServicesIndexRouteImport } from './routes/_public.{-$locale}.services.index'
 import { Route as PublicChar123LocaleChar125ServicesSlugRouteImport } from './routes/_public.{-$locale}.services.$slug'
 import { Route as PublicChar123LocaleChar125VehiclesSlugRouteImport } from './routes/_public.{-$locale}.vehicles.$slug'
-import { Route as ApiPublicHooksProcessQueuesRouteImport } from './routes/api/public/hooks/process-queues'
-import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media/$'
-import { Route as AuthenticatedAdminBookingsIdPrintRouteImport } from './routes/_authenticated/admin.bookings.$id.print'
+import { Route as AdminCTableIndexRouteImport } from './routes/admin.c.$table.index'
+import { Route as AdminCTableIdRouteImport } from './routes/admin.c.$table.$id'
 
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
@@ -179,299 +116,26 @@ const PublicChar123LocaleChar125Route =
     path: '/{-$locale}',
     getParentRoute: () => rootRouteImport,
   } as any)
-const AuthenticatedAdminAirportsRoute =
-  AuthenticatedAdminAirportsRouteImport.update({
-    id: '/admin/airports',
-    path: '/admin/airports',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminAnalyticsRoute =
-  AuthenticatedAdminAnalyticsRouteImport.update({
-    id: '/admin/analytics',
-    path: '/admin/analytics',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminAuditRoute = AuthenticatedAdminAuditRouteImport.update({
-  id: '/admin/audit',
-  path: '/admin/audit',
-  getParentRoute: () => AuthenticatedRouteRoute,
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
 } as any)
-const AuthenticatedAdminBackupRoute =
-  AuthenticatedAdminBackupRouteImport.update({
-    id: '/admin/backup',
-    path: '/admin/backup',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminBlogRoute = AuthenticatedAdminBlogRouteImport.update({
-  id: '/admin/blog',
-  path: '/admin/blog',
-  getParentRoute: () => AuthenticatedRouteRoute,
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
 } as any)
-const AuthenticatedAdminBookingsRoute =
-  AuthenticatedAdminBookingsRouteImport.update({
-    id: '/admin/bookings',
-    path: '/admin/bookings',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminCalendarRoute =
-  AuthenticatedAdminCalendarRouteImport.update({
-    id: '/admin/calendar',
-    path: '/admin/calendar',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminCitiesRoute =
-  AuthenticatedAdminCitiesRouteImport.update({
-    id: '/admin/cities',
-    path: '/admin/cities',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminContactsRoute =
-  AuthenticatedAdminContactsRouteImport.update({
-    id: '/admin/contacts',
-    path: '/admin/contacts',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminCorporateRoute =
-  AuthenticatedAdminCorporateRouteImport.update({
-    id: '/admin/corporate',
-    path: '/admin/corporate',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminCouponsRoute =
-  AuthenticatedAdminCouponsRouteImport.update({
-    id: '/admin/coupons',
-    path: '/admin/coupons',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminDashboardRoute =
-  AuthenticatedAdminDashboardRouteImport.update({
-    id: '/admin/dashboard',
-    path: '/admin/dashboard',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminDispatchRoute =
-  AuthenticatedAdminDispatchRouteImport.update({
-    id: '/admin/dispatch',
-    path: '/admin/dispatch',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminDriversRoute =
-  AuthenticatedAdminDriversRouteImport.update({
-    id: '/admin/drivers',
-    path: '/admin/drivers',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminErrorsRoute =
-  AuthenticatedAdminErrorsRouteImport.update({
-    id: '/admin/errors',
-    path: '/admin/errors',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminExpensesRoute =
-  AuthenticatedAdminExpensesRouteImport.update({
-    id: '/admin/expenses',
-    path: '/admin/expenses',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminFaqsRoute = AuthenticatedAdminFaqsRouteImport.update({
-  id: '/admin/faqs',
-  path: '/admin/faqs',
-  getParentRoute: () => AuthenticatedRouteRoute,
+const AdminMessagesRoute = AdminMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => AdminRoute,
 } as any)
-const AuthenticatedAdminFinanceRoute =
-  AuthenticatedAdminFinanceRouteImport.update({
-    id: '/admin/finance',
-    path: '/admin/finance',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminFinanceSettingsRoute =
-  AuthenticatedAdminFinanceSettingsRouteImport.update({
-    id: '/admin/finance-settings',
-    path: '/admin/finance-settings',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminFleetRoute = AuthenticatedAdminFleetRouteImport.update({
-  id: '/admin/fleet',
-  path: '/admin/fleet',
-  getParentRoute: () => AuthenticatedRouteRoute,
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
 } as any)
-const AuthenticatedAdminFleetDashboardRoute =
-  AuthenticatedAdminFleetDashboardRouteImport.update({
-    id: '/admin/fleet-dashboard',
-    path: '/admin/fleet-dashboard',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminHeroRoute = AuthenticatedAdminHeroRouteImport.update({
-  id: '/admin/hero',
-  path: '/admin/hero',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminHomepageRoute =
-  AuthenticatedAdminHomepageRouteImport.update({
-    id: '/admin/homepage',
-    path: '/admin/homepage',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminInvoicesRoute =
-  AuthenticatedAdminInvoicesRouteImport.update({
-    id: '/admin/invoices',
-    path: '/admin/invoices',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminMaintenanceRoute =
-  AuthenticatedAdminMaintenanceRouteImport.update({
-    id: '/admin/maintenance',
-    path: '/admin/maintenance',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminMediaRoute = AuthenticatedAdminMediaRouteImport.update({
-  id: '/admin/media',
-  path: '/admin/media',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminMenusRoute = AuthenticatedAdminMenusRouteImport.update({
-  id: '/admin/menus',
-  path: '/admin/menus',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminNotificationQueueRoute =
-  AuthenticatedAdminNotificationQueueRouteImport.update({
-    id: '/admin/notification-queue',
-    path: '/admin/notification-queue',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminNotificationsRoute =
-  AuthenticatedAdminNotificationsRouteImport.update({
-    id: '/admin/notifications',
-    path: '/admin/notifications',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminOperationsRoute =
-  AuthenticatedAdminOperationsRouteImport.update({
-    id: '/admin/operations',
-    path: '/admin/operations',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminPagesRoute = AuthenticatedAdminPagesRouteImport.update({
-  id: '/admin/pages',
-  path: '/admin/pages',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminPartnersRoute =
-  AuthenticatedAdminPartnersRouteImport.update({
-    id: '/admin/partners',
-    path: '/admin/partners',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminPaymentsRoute =
-  AuthenticatedAdminPaymentsRouteImport.update({
-    id: '/admin/payments',
-    path: '/admin/payments',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminPayrollRoute =
-  AuthenticatedAdminPayrollRouteImport.update({
-    id: '/admin/payroll',
-    path: '/admin/payroll',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminPromotionsRoute =
-  AuthenticatedAdminPromotionsRouteImport.update({
-    id: '/admin/promotions',
-    path: '/admin/promotions',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminRedirectsRoute =
-  AuthenticatedAdminRedirectsRouteImport.update({
-    id: '/admin/redirects',
-    path: '/admin/redirects',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminRefundsRoute =
-  AuthenticatedAdminRefundsRouteImport.update({
-    id: '/admin/refunds',
-    path: '/admin/refunds',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminRemindersRoute =
-  AuthenticatedAdminRemindersRouteImport.update({
-    id: '/admin/reminders',
-    path: '/admin/reminders',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminReportsRoute =
-  AuthenticatedAdminReportsRouteImport.update({
-    id: '/admin/reports',
-    path: '/admin/reports',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminRolesRoute = AuthenticatedAdminRolesRouteImport.update({
-  id: '/admin/roles',
-  path: '/admin/roles',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminRoutePagesRoute =
-  AuthenticatedAdminRoutePagesRouteImport.update({
-    id: '/admin/route-pages',
-    path: '/admin/route-pages',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminRoutesRoute =
-  AuthenticatedAdminRoutesRouteImport.update({
-    id: '/admin/routes',
-    path: '/admin/routes',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminSeoRoute = AuthenticatedAdminSeoRouteImport.update({
-  id: '/admin/seo',
-  path: '/admin/seo',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminSeoGeneratorRoute =
-  AuthenticatedAdminSeoGeneratorRouteImport.update({
-    id: '/admin/seo-generator',
-    path: '/admin/seo-generator',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminServicesRoute =
-  AuthenticatedAdminServicesRouteImport.update({
-    id: '/admin/services',
-    path: '/admin/services',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminSettingsRoute =
-  AuthenticatedAdminSettingsRouteImport.update({
-    id: '/admin/settings',
-    path: '/admin/settings',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminTasksRoute = AuthenticatedAdminTasksRouteImport.update({
-  id: '/admin/tasks',
-  path: '/admin/tasks',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminTeamRoute = AuthenticatedAdminTeamRouteImport.update({
-  id: '/admin/team',
-  path: '/admin/team',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminTestimonialsRoute =
-  AuthenticatedAdminTestimonialsRouteImport.update({
-    id: '/admin/testimonials',
-    path: '/admin/testimonials',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
-  id: '/admin/users',
-  path: '/admin/users',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminWhatsappTemplatesRoute =
-  AuthenticatedAdminWhatsappTemplatesRouteImport.update({
-    id: '/admin/whatsapp-templates',
-    path: '/admin/whatsapp-templates',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const PublicChar123LocaleChar125IndexRoute =
   PublicChar123LocaleChar125IndexRouteImport.update({
     id: '/',
@@ -652,30 +316,6 @@ const PublicChar123LocaleChar125VehiclesRoute =
     path: '/vehicles',
     getParentRoute: () => PublicChar123LocaleChar125Route,
   } as any)
-const AuthenticatedAdminCustomersIdRoute =
-  AuthenticatedAdminCustomersIdRouteImport.update({
-    id: '/admin/customers/$id',
-    path: '/admin/customers/$id',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminDriversIdRoute =
-  AuthenticatedAdminDriversIdRouteImport.update({
-    id: '/$id',
-    path: '/$id',
-    getParentRoute: () => AuthenticatedAdminDriversRoute,
-  } as any)
-const AuthenticatedAdminFleetIdRoute =
-  AuthenticatedAdminFleetIdRouteImport.update({
-    id: '/$id',
-    path: '/$id',
-    getParentRoute: () => AuthenticatedAdminFleetRoute,
-  } as any)
-const AuthenticatedAdminInvoicesIdRoute =
-  AuthenticatedAdminInvoicesIdRouteImport.update({
-    id: '/$id',
-    path: '/$id',
-    getParentRoute: () => AuthenticatedAdminInvoicesRoute,
-  } as any)
 const PublicChar123LocaleChar125AirportsIndexRoute =
   PublicChar123LocaleChar125AirportsIndexRouteImport.update({
     id: '/airports/',
@@ -766,28 +406,19 @@ const PublicChar123LocaleChar125VehiclesSlugRoute =
     path: '/$slug',
     getParentRoute: () => PublicChar123LocaleChar125VehiclesRoute,
   } as any)
-const ApiPublicHooksProcessQueuesRoute =
-  ApiPublicHooksProcessQueuesRouteImport.update({
-    id: '/api/public/hooks/process-queues',
-    path: '/api/public/hooks/process-queues',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
-  id: '/api/public/media/$',
-  path: '/api/public/media/$',
-  getParentRoute: () => rootRouteImport,
+const AdminCTableIndexRoute = AdminCTableIndexRouteImport.update({
+  id: '/c/$table/',
+  path: '/c/$table/',
+  getParentRoute: () => AdminRoute,
 } as any)
-const AuthenticatedAdminBookingsIdPrintRoute =
-  AuthenticatedAdminBookingsIdPrintRouteImport.update({
-    id: '/$id/print',
-    path: '/$id/print',
-    getParentRoute: () => AuthenticatedAdminBookingsRoute,
-  } as any)
+const AdminCTableIdRoute = AdminCTableIdRouteImport.update({
+  id: '/c/$table/$id',
+  path: '/c/$table/$id',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof AuthenticatedRouteRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/reset-password': typeof ResetPasswordRoute
+  '/admin': typeof AdminRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap-categories.xml': typeof SitemapCategoriesDotxmlRoute
   '/sitemap-images.xml': typeof SitemapImagesDotxmlRoute
@@ -796,57 +427,10 @@ export interface FileRoutesByFullPath {
   '/sitemap-posts.xml': typeof SitemapPostsDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}': typeof PublicChar123LocaleChar125RouteWithChildren
-  '/admin/airports': typeof AuthenticatedAdminAirportsRoute
-  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
-  '/admin/audit': typeof AuthenticatedAdminAuditRoute
-  '/admin/backup': typeof AuthenticatedAdminBackupRoute
-  '/admin/blog': typeof AuthenticatedAdminBlogRoute
-  '/admin/bookings': typeof AuthenticatedAdminBookingsRouteWithChildren
-  '/admin/calendar': typeof AuthenticatedAdminCalendarRoute
-  '/admin/cities': typeof AuthenticatedAdminCitiesRoute
-  '/admin/contacts': typeof AuthenticatedAdminContactsRoute
-  '/admin/corporate': typeof AuthenticatedAdminCorporateRoute
-  '/admin/coupons': typeof AuthenticatedAdminCouponsRoute
-  '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
-  '/admin/dispatch': typeof AuthenticatedAdminDispatchRoute
-  '/admin/drivers': typeof AuthenticatedAdminDriversRouteWithChildren
-  '/admin/errors': typeof AuthenticatedAdminErrorsRoute
-  '/admin/expenses': typeof AuthenticatedAdminExpensesRoute
-  '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
-  '/admin/finance': typeof AuthenticatedAdminFinanceRoute
-  '/admin/finance-settings': typeof AuthenticatedAdminFinanceSettingsRoute
-  '/admin/fleet': typeof AuthenticatedAdminFleetRouteWithChildren
-  '/admin/fleet-dashboard': typeof AuthenticatedAdminFleetDashboardRoute
-  '/admin/hero': typeof AuthenticatedAdminHeroRoute
-  '/admin/homepage': typeof AuthenticatedAdminHomepageRoute
-  '/admin/invoices': typeof AuthenticatedAdminInvoicesRouteWithChildren
-  '/admin/maintenance': typeof AuthenticatedAdminMaintenanceRoute
-  '/admin/media': typeof AuthenticatedAdminMediaRoute
-  '/admin/menus': typeof AuthenticatedAdminMenusRoute
-  '/admin/notification-queue': typeof AuthenticatedAdminNotificationQueueRoute
-  '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
-  '/admin/operations': typeof AuthenticatedAdminOperationsRoute
-  '/admin/pages': typeof AuthenticatedAdminPagesRoute
-  '/admin/partners': typeof AuthenticatedAdminPartnersRoute
-  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
-  '/admin/payroll': typeof AuthenticatedAdminPayrollRoute
-  '/admin/promotions': typeof AuthenticatedAdminPromotionsRoute
-  '/admin/redirects': typeof AuthenticatedAdminRedirectsRoute
-  '/admin/refunds': typeof AuthenticatedAdminRefundsRoute
-  '/admin/reminders': typeof AuthenticatedAdminRemindersRoute
-  '/admin/reports': typeof AuthenticatedAdminReportsRoute
-  '/admin/roles': typeof AuthenticatedAdminRolesRoute
-  '/admin/route-pages': typeof AuthenticatedAdminRoutePagesRoute
-  '/admin/routes': typeof AuthenticatedAdminRoutesRoute
-  '/admin/seo': typeof AuthenticatedAdminSeoRoute
-  '/admin/seo-generator': typeof AuthenticatedAdminSeoGeneratorRoute
-  '/admin/services': typeof AuthenticatedAdminServicesRoute
-  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
-  '/admin/tasks': typeof AuthenticatedAdminTasksRoute
-  '/admin/team': typeof AuthenticatedAdminTeamRoute
-  '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
-  '/admin/users': typeof AuthenticatedAdminUsersRoute
-  '/admin/whatsapp-templates': typeof AuthenticatedAdminWhatsappTemplatesRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/messages': typeof AdminMessagesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/': typeof AdminIndexRoute
   '/{-$locale}/about': typeof PublicChar123LocaleChar125AboutRoute
   '/{-$locale}/airport-transfers': typeof PublicChar123LocaleChar125AirportTransfersRoute
   '/{-$locale}/book': typeof PublicChar123LocaleChar125BookRoute
@@ -877,10 +461,6 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/thank-you': typeof PublicChar123LocaleChar125ThankYouRoute
   '/{-$locale}/vehicles': typeof PublicChar123LocaleChar125VehiclesRouteWithChildren
   '/{-$locale}/': typeof PublicChar123LocaleChar125IndexRoute
-  '/admin/customers/$id': typeof AuthenticatedAdminCustomersIdRoute
-  '/admin/drivers/$id': typeof AuthenticatedAdminDriversIdRoute
-  '/admin/fleet/$id': typeof AuthenticatedAdminFleetIdRoute
-  '/admin/invoices/$id': typeof AuthenticatedAdminInvoicesIdRoute
   '/{-$locale}/airports/$slug': typeof PublicChar123LocaleChar125AirportsSlugRoute
   '/{-$locale}/blog/$slug': typeof PublicChar123LocaleChar125BlogSlugRoute
   '/{-$locale}/cities/$slug': typeof PublicChar123LocaleChar125CitiesSlugRoute
@@ -890,20 +470,16 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/routes/$slug': typeof PublicChar123LocaleChar125RoutesSlugRoute
   '/{-$locale}/services/$slug': typeof PublicChar123LocaleChar125ServicesSlugRoute
   '/{-$locale}/vehicles/$slug': typeof PublicChar123LocaleChar125VehiclesSlugRoute
-  '/api/public/hooks/process-queues': typeof ApiPublicHooksProcessQueuesRoute
-  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
+  '/admin/c/$table/$id': typeof AdminCTableIdRoute
   '/{-$locale}/airports/': typeof PublicChar123LocaleChar125AirportsIndexRoute
   '/{-$locale}/blog/': typeof PublicChar123LocaleChar125BlogIndexRoute
   '/{-$locale}/cities/': typeof PublicChar123LocaleChar125CitiesIndexRoute
   '/{-$locale}/fleet/': typeof PublicChar123LocaleChar125FleetIndexRoute
   '/{-$locale}/routes/': typeof PublicChar123LocaleChar125RoutesIndexRoute
   '/{-$locale}/services/': typeof PublicChar123LocaleChar125ServicesIndexRoute
-  '/admin/bookings/$id/print': typeof AuthenticatedAdminBookingsIdPrintRoute
+  '/admin/c/$table/': typeof AdminCTableIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof AuthenticatedRouteRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap-categories.xml': typeof SitemapCategoriesDotxmlRoute
   '/sitemap-images.xml': typeof SitemapImagesDotxmlRoute
@@ -911,57 +487,10 @@ export interface FileRoutesByTo {
   '/sitemap-pages.xml': typeof SitemapPagesDotxmlRoute
   '/sitemap-posts.xml': typeof SitemapPostsDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/admin/airports': typeof AuthenticatedAdminAirportsRoute
-  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
-  '/admin/audit': typeof AuthenticatedAdminAuditRoute
-  '/admin/backup': typeof AuthenticatedAdminBackupRoute
-  '/admin/blog': typeof AuthenticatedAdminBlogRoute
-  '/admin/bookings': typeof AuthenticatedAdminBookingsRouteWithChildren
-  '/admin/calendar': typeof AuthenticatedAdminCalendarRoute
-  '/admin/cities': typeof AuthenticatedAdminCitiesRoute
-  '/admin/contacts': typeof AuthenticatedAdminContactsRoute
-  '/admin/corporate': typeof AuthenticatedAdminCorporateRoute
-  '/admin/coupons': typeof AuthenticatedAdminCouponsRoute
-  '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
-  '/admin/dispatch': typeof AuthenticatedAdminDispatchRoute
-  '/admin/drivers': typeof AuthenticatedAdminDriversRouteWithChildren
-  '/admin/errors': typeof AuthenticatedAdminErrorsRoute
-  '/admin/expenses': typeof AuthenticatedAdminExpensesRoute
-  '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
-  '/admin/finance': typeof AuthenticatedAdminFinanceRoute
-  '/admin/finance-settings': typeof AuthenticatedAdminFinanceSettingsRoute
-  '/admin/fleet': typeof AuthenticatedAdminFleetRouteWithChildren
-  '/admin/fleet-dashboard': typeof AuthenticatedAdminFleetDashboardRoute
-  '/admin/hero': typeof AuthenticatedAdminHeroRoute
-  '/admin/homepage': typeof AuthenticatedAdminHomepageRoute
-  '/admin/invoices': typeof AuthenticatedAdminInvoicesRouteWithChildren
-  '/admin/maintenance': typeof AuthenticatedAdminMaintenanceRoute
-  '/admin/media': typeof AuthenticatedAdminMediaRoute
-  '/admin/menus': typeof AuthenticatedAdminMenusRoute
-  '/admin/notification-queue': typeof AuthenticatedAdminNotificationQueueRoute
-  '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
-  '/admin/operations': typeof AuthenticatedAdminOperationsRoute
-  '/admin/pages': typeof AuthenticatedAdminPagesRoute
-  '/admin/partners': typeof AuthenticatedAdminPartnersRoute
-  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
-  '/admin/payroll': typeof AuthenticatedAdminPayrollRoute
-  '/admin/promotions': typeof AuthenticatedAdminPromotionsRoute
-  '/admin/redirects': typeof AuthenticatedAdminRedirectsRoute
-  '/admin/refunds': typeof AuthenticatedAdminRefundsRoute
-  '/admin/reminders': typeof AuthenticatedAdminRemindersRoute
-  '/admin/reports': typeof AuthenticatedAdminReportsRoute
-  '/admin/roles': typeof AuthenticatedAdminRolesRoute
-  '/admin/route-pages': typeof AuthenticatedAdminRoutePagesRoute
-  '/admin/routes': typeof AuthenticatedAdminRoutesRoute
-  '/admin/seo': typeof AuthenticatedAdminSeoRoute
-  '/admin/seo-generator': typeof AuthenticatedAdminSeoGeneratorRoute
-  '/admin/services': typeof AuthenticatedAdminServicesRoute
-  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
-  '/admin/tasks': typeof AuthenticatedAdminTasksRoute
-  '/admin/team': typeof AuthenticatedAdminTeamRoute
-  '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
-  '/admin/users': typeof AuthenticatedAdminUsersRoute
-  '/admin/whatsapp-templates': typeof AuthenticatedAdminWhatsappTemplatesRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/messages': typeof AdminMessagesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin': typeof AdminIndexRoute
   '/{-$locale}/about': typeof PublicChar123LocaleChar125AboutRoute
   '/{-$locale}/airport-transfers': typeof PublicChar123LocaleChar125AirportTransfersRoute
   '/{-$locale}/book': typeof PublicChar123LocaleChar125BookRoute
@@ -992,10 +521,6 @@ export interface FileRoutesByTo {
   '/{-$locale}/thank-you': typeof PublicChar123LocaleChar125ThankYouRoute
   '/{-$locale}/vehicles': typeof PublicChar123LocaleChar125VehiclesRouteWithChildren
   '/{-$locale}': typeof PublicChar123LocaleChar125IndexRoute
-  '/admin/customers/$id': typeof AuthenticatedAdminCustomersIdRoute
-  '/admin/drivers/$id': typeof AuthenticatedAdminDriversIdRoute
-  '/admin/fleet/$id': typeof AuthenticatedAdminFleetIdRoute
-  '/admin/invoices/$id': typeof AuthenticatedAdminInvoicesIdRoute
   '/{-$locale}/airports/$slug': typeof PublicChar123LocaleChar125AirportsSlugRoute
   '/{-$locale}/blog/$slug': typeof PublicChar123LocaleChar125BlogSlugRoute
   '/{-$locale}/cities/$slug': typeof PublicChar123LocaleChar125CitiesSlugRoute
@@ -1005,21 +530,18 @@ export interface FileRoutesByTo {
   '/{-$locale}/routes/$slug': typeof PublicChar123LocaleChar125RoutesSlugRoute
   '/{-$locale}/services/$slug': typeof PublicChar123LocaleChar125ServicesSlugRoute
   '/{-$locale}/vehicles/$slug': typeof PublicChar123LocaleChar125VehiclesSlugRoute
-  '/api/public/hooks/process-queues': typeof ApiPublicHooksProcessQueuesRoute
-  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
+  '/admin/c/$table/$id': typeof AdminCTableIdRoute
   '/{-$locale}/airports': typeof PublicChar123LocaleChar125AirportsIndexRoute
   '/{-$locale}/blog': typeof PublicChar123LocaleChar125BlogIndexRoute
   '/{-$locale}/cities': typeof PublicChar123LocaleChar125CitiesIndexRoute
   '/{-$locale}/fleet': typeof PublicChar123LocaleChar125FleetIndexRoute
   '/{-$locale}/routes': typeof PublicChar123LocaleChar125RoutesIndexRoute
   '/{-$locale}/services': typeof PublicChar123LocaleChar125ServicesIndexRoute
-  '/admin/bookings/$id/print': typeof AuthenticatedAdminBookingsIdPrintRoute
+  '/admin/c/$table': typeof AdminCTableIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/reset-password': typeof ResetPasswordRoute
+  '/admin': typeof AdminRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap-categories.xml': typeof SitemapCategoriesDotxmlRoute
   '/sitemap-images.xml': typeof SitemapImagesDotxmlRoute
@@ -1028,57 +550,10 @@ export interface FileRoutesById {
   '/sitemap-posts.xml': typeof SitemapPostsDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_public/{-$locale}': typeof PublicChar123LocaleChar125RouteWithChildren
-  '/_authenticated/admin/airports': typeof AuthenticatedAdminAirportsRoute
-  '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
-  '/_authenticated/admin/audit': typeof AuthenticatedAdminAuditRoute
-  '/_authenticated/admin/backup': typeof AuthenticatedAdminBackupRoute
-  '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRoute
-  '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRouteWithChildren
-  '/_authenticated/admin/calendar': typeof AuthenticatedAdminCalendarRoute
-  '/_authenticated/admin/cities': typeof AuthenticatedAdminCitiesRoute
-  '/_authenticated/admin/contacts': typeof AuthenticatedAdminContactsRoute
-  '/_authenticated/admin/corporate': typeof AuthenticatedAdminCorporateRoute
-  '/_authenticated/admin/coupons': typeof AuthenticatedAdminCouponsRoute
-  '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
-  '/_authenticated/admin/dispatch': typeof AuthenticatedAdminDispatchRoute
-  '/_authenticated/admin/drivers': typeof AuthenticatedAdminDriversRouteWithChildren
-  '/_authenticated/admin/errors': typeof AuthenticatedAdminErrorsRoute
-  '/_authenticated/admin/expenses': typeof AuthenticatedAdminExpensesRoute
-  '/_authenticated/admin/faqs': typeof AuthenticatedAdminFaqsRoute
-  '/_authenticated/admin/finance': typeof AuthenticatedAdminFinanceRoute
-  '/_authenticated/admin/finance-settings': typeof AuthenticatedAdminFinanceSettingsRoute
-  '/_authenticated/admin/fleet': typeof AuthenticatedAdminFleetRouteWithChildren
-  '/_authenticated/admin/fleet-dashboard': typeof AuthenticatedAdminFleetDashboardRoute
-  '/_authenticated/admin/hero': typeof AuthenticatedAdminHeroRoute
-  '/_authenticated/admin/homepage': typeof AuthenticatedAdminHomepageRoute
-  '/_authenticated/admin/invoices': typeof AuthenticatedAdminInvoicesRouteWithChildren
-  '/_authenticated/admin/maintenance': typeof AuthenticatedAdminMaintenanceRoute
-  '/_authenticated/admin/media': typeof AuthenticatedAdminMediaRoute
-  '/_authenticated/admin/menus': typeof AuthenticatedAdminMenusRoute
-  '/_authenticated/admin/notification-queue': typeof AuthenticatedAdminNotificationQueueRoute
-  '/_authenticated/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
-  '/_authenticated/admin/operations': typeof AuthenticatedAdminOperationsRoute
-  '/_authenticated/admin/pages': typeof AuthenticatedAdminPagesRoute
-  '/_authenticated/admin/partners': typeof AuthenticatedAdminPartnersRoute
-  '/_authenticated/admin/payments': typeof AuthenticatedAdminPaymentsRoute
-  '/_authenticated/admin/payroll': typeof AuthenticatedAdminPayrollRoute
-  '/_authenticated/admin/promotions': typeof AuthenticatedAdminPromotionsRoute
-  '/_authenticated/admin/redirects': typeof AuthenticatedAdminRedirectsRoute
-  '/_authenticated/admin/refunds': typeof AuthenticatedAdminRefundsRoute
-  '/_authenticated/admin/reminders': typeof AuthenticatedAdminRemindersRoute
-  '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
-  '/_authenticated/admin/roles': typeof AuthenticatedAdminRolesRoute
-  '/_authenticated/admin/route-pages': typeof AuthenticatedAdminRoutePagesRoute
-  '/_authenticated/admin/routes': typeof AuthenticatedAdminRoutesRoute
-  '/_authenticated/admin/seo': typeof AuthenticatedAdminSeoRoute
-  '/_authenticated/admin/seo-generator': typeof AuthenticatedAdminSeoGeneratorRoute
-  '/_authenticated/admin/services': typeof AuthenticatedAdminServicesRoute
-  '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
-  '/_authenticated/admin/tasks': typeof AuthenticatedAdminTasksRoute
-  '/_authenticated/admin/team': typeof AuthenticatedAdminTeamRoute
-  '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
-  '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
-  '/_authenticated/admin/whatsapp-templates': typeof AuthenticatedAdminWhatsappTemplatesRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/messages': typeof AdminMessagesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/': typeof AdminIndexRoute
   '/_public/{-$locale}/about': typeof PublicChar123LocaleChar125AboutRoute
   '/_public/{-$locale}/airport-transfers': typeof PublicChar123LocaleChar125AirportTransfersRoute
   '/_public/{-$locale}/book': typeof PublicChar123LocaleChar125BookRoute
@@ -1109,10 +584,6 @@ export interface FileRoutesById {
   '/_public/{-$locale}/thank-you': typeof PublicChar123LocaleChar125ThankYouRoute
   '/_public/{-$locale}/vehicles': typeof PublicChar123LocaleChar125VehiclesRouteWithChildren
   '/_public/{-$locale}/': typeof PublicChar123LocaleChar125IndexRoute
-  '/_authenticated/admin/customers/$id': typeof AuthenticatedAdminCustomersIdRoute
-  '/_authenticated/admin/drivers/$id': typeof AuthenticatedAdminDriversIdRoute
-  '/_authenticated/admin/fleet/$id': typeof AuthenticatedAdminFleetIdRoute
-  '/_authenticated/admin/invoices/$id': typeof AuthenticatedAdminInvoicesIdRoute
   '/_public/{-$locale}/airports/$slug': typeof PublicChar123LocaleChar125AirportsSlugRoute
   '/_public/{-$locale}/blog/$slug': typeof PublicChar123LocaleChar125BlogSlugRoute
   '/_public/{-$locale}/cities/$slug': typeof PublicChar123LocaleChar125CitiesSlugRoute
@@ -1122,22 +593,19 @@ export interface FileRoutesById {
   '/_public/{-$locale}/routes/$slug': typeof PublicChar123LocaleChar125RoutesSlugRoute
   '/_public/{-$locale}/services/$slug': typeof PublicChar123LocaleChar125ServicesSlugRoute
   '/_public/{-$locale}/vehicles/$slug': typeof PublicChar123LocaleChar125VehiclesSlugRoute
-  '/api/public/hooks/process-queues': typeof ApiPublicHooksProcessQueuesRoute
-  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
+  '/admin/c/$table/$id': typeof AdminCTableIdRoute
   '/_public/{-$locale}/airports/': typeof PublicChar123LocaleChar125AirportsIndexRoute
   '/_public/{-$locale}/blog/': typeof PublicChar123LocaleChar125BlogIndexRoute
   '/_public/{-$locale}/cities/': typeof PublicChar123LocaleChar125CitiesIndexRoute
   '/_public/{-$locale}/fleet/': typeof PublicChar123LocaleChar125FleetIndexRoute
   '/_public/{-$locale}/routes/': typeof PublicChar123LocaleChar125RoutesIndexRoute
   '/_public/{-$locale}/services/': typeof PublicChar123LocaleChar125ServicesIndexRoute
-  '/_authenticated/admin/bookings/$id/print': typeof AuthenticatedAdminBookingsIdPrintRoute
+  '/admin/c/$table/': typeof AdminCTableIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/auth'
-    | '/reset-password'
+    | '/admin'
     | '/robots.txt'
     | '/sitemap-categories.xml'
     | '/sitemap-images.xml'
@@ -1146,57 +614,10 @@ export interface FileRouteTypes {
     | '/sitemap-posts.xml'
     | '/sitemap.xml'
     | '/{-$locale}'
-    | '/admin/airports'
-    | '/admin/analytics'
-    | '/admin/audit'
-    | '/admin/backup'
-    | '/admin/blog'
-    | '/admin/bookings'
-    | '/admin/calendar'
-    | '/admin/cities'
-    | '/admin/contacts'
-    | '/admin/corporate'
-    | '/admin/coupons'
-    | '/admin/dashboard'
-    | '/admin/dispatch'
-    | '/admin/drivers'
-    | '/admin/errors'
-    | '/admin/expenses'
-    | '/admin/faqs'
-    | '/admin/finance'
-    | '/admin/finance-settings'
-    | '/admin/fleet'
-    | '/admin/fleet-dashboard'
-    | '/admin/hero'
-    | '/admin/homepage'
-    | '/admin/invoices'
-    | '/admin/maintenance'
-    | '/admin/media'
-    | '/admin/menus'
-    | '/admin/notification-queue'
-    | '/admin/notifications'
-    | '/admin/operations'
-    | '/admin/pages'
-    | '/admin/partners'
-    | '/admin/payments'
-    | '/admin/payroll'
-    | '/admin/promotions'
-    | '/admin/redirects'
-    | '/admin/refunds'
-    | '/admin/reminders'
-    | '/admin/reports'
-    | '/admin/roles'
-    | '/admin/route-pages'
-    | '/admin/routes'
-    | '/admin/seo'
-    | '/admin/seo-generator'
-    | '/admin/services'
+    | '/admin/login'
+    | '/admin/messages'
     | '/admin/settings'
-    | '/admin/tasks'
-    | '/admin/team'
-    | '/admin/testimonials'
-    | '/admin/users'
-    | '/admin/whatsapp-templates'
+    | '/admin/'
     | '/{-$locale}/about'
     | '/{-$locale}/airport-transfers'
     | '/{-$locale}/book'
@@ -1227,10 +648,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/thank-you'
     | '/{-$locale}/vehicles'
     | '/{-$locale}/'
-    | '/admin/customers/$id'
-    | '/admin/drivers/$id'
-    | '/admin/fleet/$id'
-    | '/admin/invoices/$id'
     | '/{-$locale}/airports/$slug'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/cities/$slug'
@@ -1240,20 +657,16 @@ export interface FileRouteTypes {
     | '/{-$locale}/routes/$slug'
     | '/{-$locale}/services/$slug'
     | '/{-$locale}/vehicles/$slug'
-    | '/api/public/hooks/process-queues'
-    | '/api/public/media/$'
+    | '/admin/c/$table/$id'
     | '/{-$locale}/airports/'
     | '/{-$locale}/blog/'
     | '/{-$locale}/cities/'
     | '/{-$locale}/fleet/'
     | '/{-$locale}/routes/'
     | '/{-$locale}/services/'
-    | '/admin/bookings/$id/print'
+    | '/admin/c/$table/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/auth'
-    | '/reset-password'
     | '/robots.txt'
     | '/sitemap-categories.xml'
     | '/sitemap-images.xml'
@@ -1261,57 +674,10 @@ export interface FileRouteTypes {
     | '/sitemap-pages.xml'
     | '/sitemap-posts.xml'
     | '/sitemap.xml'
-    | '/admin/airports'
-    | '/admin/analytics'
-    | '/admin/audit'
-    | '/admin/backup'
-    | '/admin/blog'
-    | '/admin/bookings'
-    | '/admin/calendar'
-    | '/admin/cities'
-    | '/admin/contacts'
-    | '/admin/corporate'
-    | '/admin/coupons'
-    | '/admin/dashboard'
-    | '/admin/dispatch'
-    | '/admin/drivers'
-    | '/admin/errors'
-    | '/admin/expenses'
-    | '/admin/faqs'
-    | '/admin/finance'
-    | '/admin/finance-settings'
-    | '/admin/fleet'
-    | '/admin/fleet-dashboard'
-    | '/admin/hero'
-    | '/admin/homepage'
-    | '/admin/invoices'
-    | '/admin/maintenance'
-    | '/admin/media'
-    | '/admin/menus'
-    | '/admin/notification-queue'
-    | '/admin/notifications'
-    | '/admin/operations'
-    | '/admin/pages'
-    | '/admin/partners'
-    | '/admin/payments'
-    | '/admin/payroll'
-    | '/admin/promotions'
-    | '/admin/redirects'
-    | '/admin/refunds'
-    | '/admin/reminders'
-    | '/admin/reports'
-    | '/admin/roles'
-    | '/admin/route-pages'
-    | '/admin/routes'
-    | '/admin/seo'
-    | '/admin/seo-generator'
-    | '/admin/services'
+    | '/admin/login'
+    | '/admin/messages'
     | '/admin/settings'
-    | '/admin/tasks'
-    | '/admin/team'
-    | '/admin/testimonials'
-    | '/admin/users'
-    | '/admin/whatsapp-templates'
+    | '/admin'
     | '/{-$locale}/about'
     | '/{-$locale}/airport-transfers'
     | '/{-$locale}/book'
@@ -1342,10 +708,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/thank-you'
     | '/{-$locale}/vehicles'
     | '/{-$locale}'
-    | '/admin/customers/$id'
-    | '/admin/drivers/$id'
-    | '/admin/fleet/$id'
-    | '/admin/invoices/$id'
     | '/{-$locale}/airports/$slug'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/cities/$slug'
@@ -1355,20 +717,17 @@ export interface FileRouteTypes {
     | '/{-$locale}/routes/$slug'
     | '/{-$locale}/services/$slug'
     | '/{-$locale}/vehicles/$slug'
-    | '/api/public/hooks/process-queues'
-    | '/api/public/media/$'
+    | '/admin/c/$table/$id'
     | '/{-$locale}/airports'
     | '/{-$locale}/blog'
     | '/{-$locale}/cities'
     | '/{-$locale}/fleet'
     | '/{-$locale}/routes'
     | '/{-$locale}/services'
-    | '/admin/bookings/$id/print'
+    | '/admin/c/$table'
   id:
     | '__root__'
-    | '/_authenticated'
-    | '/auth'
-    | '/reset-password'
+    | '/admin'
     | '/robots.txt'
     | '/sitemap-categories.xml'
     | '/sitemap-images.xml'
@@ -1377,57 +736,10 @@ export interface FileRouteTypes {
     | '/sitemap-posts.xml'
     | '/sitemap.xml'
     | '/_public/{-$locale}'
-    | '/_authenticated/admin/airports'
-    | '/_authenticated/admin/analytics'
-    | '/_authenticated/admin/audit'
-    | '/_authenticated/admin/backup'
-    | '/_authenticated/admin/blog'
-    | '/_authenticated/admin/bookings'
-    | '/_authenticated/admin/calendar'
-    | '/_authenticated/admin/cities'
-    | '/_authenticated/admin/contacts'
-    | '/_authenticated/admin/corporate'
-    | '/_authenticated/admin/coupons'
-    | '/_authenticated/admin/dashboard'
-    | '/_authenticated/admin/dispatch'
-    | '/_authenticated/admin/drivers'
-    | '/_authenticated/admin/errors'
-    | '/_authenticated/admin/expenses'
-    | '/_authenticated/admin/faqs'
-    | '/_authenticated/admin/finance'
-    | '/_authenticated/admin/finance-settings'
-    | '/_authenticated/admin/fleet'
-    | '/_authenticated/admin/fleet-dashboard'
-    | '/_authenticated/admin/hero'
-    | '/_authenticated/admin/homepage'
-    | '/_authenticated/admin/invoices'
-    | '/_authenticated/admin/maintenance'
-    | '/_authenticated/admin/media'
-    | '/_authenticated/admin/menus'
-    | '/_authenticated/admin/notification-queue'
-    | '/_authenticated/admin/notifications'
-    | '/_authenticated/admin/operations'
-    | '/_authenticated/admin/pages'
-    | '/_authenticated/admin/partners'
-    | '/_authenticated/admin/payments'
-    | '/_authenticated/admin/payroll'
-    | '/_authenticated/admin/promotions'
-    | '/_authenticated/admin/redirects'
-    | '/_authenticated/admin/refunds'
-    | '/_authenticated/admin/reminders'
-    | '/_authenticated/admin/reports'
-    | '/_authenticated/admin/roles'
-    | '/_authenticated/admin/route-pages'
-    | '/_authenticated/admin/routes'
-    | '/_authenticated/admin/seo'
-    | '/_authenticated/admin/seo-generator'
-    | '/_authenticated/admin/services'
-    | '/_authenticated/admin/settings'
-    | '/_authenticated/admin/tasks'
-    | '/_authenticated/admin/team'
-    | '/_authenticated/admin/testimonials'
-    | '/_authenticated/admin/users'
-    | '/_authenticated/admin/whatsapp-templates'
+    | '/admin/login'
+    | '/admin/messages'
+    | '/admin/settings'
+    | '/admin/'
     | '/_public/{-$locale}/about'
     | '/_public/{-$locale}/airport-transfers'
     | '/_public/{-$locale}/book'
@@ -1458,10 +770,6 @@ export interface FileRouteTypes {
     | '/_public/{-$locale}/thank-you'
     | '/_public/{-$locale}/vehicles'
     | '/_public/{-$locale}/'
-    | '/_authenticated/admin/customers/$id'
-    | '/_authenticated/admin/drivers/$id'
-    | '/_authenticated/admin/fleet/$id'
-    | '/_authenticated/admin/invoices/$id'
     | '/_public/{-$locale}/airports/$slug'
     | '/_public/{-$locale}/blog/$slug'
     | '/_public/{-$locale}/cities/$slug'
@@ -1471,21 +779,18 @@ export interface FileRouteTypes {
     | '/_public/{-$locale}/routes/$slug'
     | '/_public/{-$locale}/services/$slug'
     | '/_public/{-$locale}/vehicles/$slug'
-    | '/api/public/hooks/process-queues'
-    | '/api/public/media/$'
+    | '/admin/c/$table/$id'
     | '/_public/{-$locale}/airports/'
     | '/_public/{-$locale}/blog/'
     | '/_public/{-$locale}/cities/'
     | '/_public/{-$locale}/fleet/'
     | '/_public/{-$locale}/routes/'
     | '/_public/{-$locale}/services/'
-    | '/_authenticated/admin/bookings/$id/print'
+    | '/admin/c/$table/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  AuthRoute: typeof AuthRoute
-  ResetPasswordRoute: typeof ResetPasswordRoute
+  AdminRoute: typeof AdminRouteWithChildren
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapCategoriesDotxmlRoute: typeof SitemapCategoriesDotxmlRoute
   SitemapImagesDotxmlRoute: typeof SitemapImagesDotxmlRoute
@@ -1494,31 +799,15 @@ export interface RootRouteChildren {
   SitemapPostsDotxmlRoute: typeof SitemapPostsDotxmlRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PublicChar123LocaleChar125Route: typeof PublicChar123LocaleChar125RouteWithChildren
-  ApiPublicHooksProcessQueuesRoute: typeof ApiPublicHooksProcessQueuesRoute
-  ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/robots.txt': {
@@ -1577,362 +866,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicChar123LocaleChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin/airports': {
-      id: '/_authenticated/admin/airports'
-      path: '/admin/airports'
-      fullPath: '/admin/airports'
-      preLoaderRoute: typeof AuthenticatedAdminAirportsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/_authenticated/admin/analytics': {
-      id: '/_authenticated/admin/analytics'
-      path: '/admin/analytics'
-      fullPath: '/admin/analytics'
-      preLoaderRoute: typeof AuthenticatedAdminAnalyticsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/_authenticated/admin/audit': {
-      id: '/_authenticated/admin/audit'
-      path: '/admin/audit'
-      fullPath: '/admin/audit'
-      preLoaderRoute: typeof AuthenticatedAdminAuditRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+    '/admin/messages': {
+      id: '/admin/messages'
+      path: '/messages'
+      fullPath: '/admin/messages'
+      preLoaderRoute: typeof AdminMessagesRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/_authenticated/admin/backup': {
-      id: '/_authenticated/admin/backup'
-      path: '/admin/backup'
-      fullPath: '/admin/backup'
-      preLoaderRoute: typeof AuthenticatedAdminBackupRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/blog': {
-      id: '/_authenticated/admin/blog'
-      path: '/admin/blog'
-      fullPath: '/admin/blog'
-      preLoaderRoute: typeof AuthenticatedAdminBlogRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/bookings': {
-      id: '/_authenticated/admin/bookings'
-      path: '/admin/bookings'
-      fullPath: '/admin/bookings'
-      preLoaderRoute: typeof AuthenticatedAdminBookingsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/calendar': {
-      id: '/_authenticated/admin/calendar'
-      path: '/admin/calendar'
-      fullPath: '/admin/calendar'
-      preLoaderRoute: typeof AuthenticatedAdminCalendarRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/cities': {
-      id: '/_authenticated/admin/cities'
-      path: '/admin/cities'
-      fullPath: '/admin/cities'
-      preLoaderRoute: typeof AuthenticatedAdminCitiesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/contacts': {
-      id: '/_authenticated/admin/contacts'
-      path: '/admin/contacts'
-      fullPath: '/admin/contacts'
-      preLoaderRoute: typeof AuthenticatedAdminContactsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/corporate': {
-      id: '/_authenticated/admin/corporate'
-      path: '/admin/corporate'
-      fullPath: '/admin/corporate'
-      preLoaderRoute: typeof AuthenticatedAdminCorporateRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/coupons': {
-      id: '/_authenticated/admin/coupons'
-      path: '/admin/coupons'
-      fullPath: '/admin/coupons'
-      preLoaderRoute: typeof AuthenticatedAdminCouponsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/dashboard': {
-      id: '/_authenticated/admin/dashboard'
-      path: '/admin/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof AuthenticatedAdminDashboardRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/dispatch': {
-      id: '/_authenticated/admin/dispatch'
-      path: '/admin/dispatch'
-      fullPath: '/admin/dispatch'
-      preLoaderRoute: typeof AuthenticatedAdminDispatchRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/drivers': {
-      id: '/_authenticated/admin/drivers'
-      path: '/admin/drivers'
-      fullPath: '/admin/drivers'
-      preLoaderRoute: typeof AuthenticatedAdminDriversRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/errors': {
-      id: '/_authenticated/admin/errors'
-      path: '/admin/errors'
-      fullPath: '/admin/errors'
-      preLoaderRoute: typeof AuthenticatedAdminErrorsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/expenses': {
-      id: '/_authenticated/admin/expenses'
-      path: '/admin/expenses'
-      fullPath: '/admin/expenses'
-      preLoaderRoute: typeof AuthenticatedAdminExpensesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/faqs': {
-      id: '/_authenticated/admin/faqs'
-      path: '/admin/faqs'
-      fullPath: '/admin/faqs'
-      preLoaderRoute: typeof AuthenticatedAdminFaqsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/finance': {
-      id: '/_authenticated/admin/finance'
-      path: '/admin/finance'
-      fullPath: '/admin/finance'
-      preLoaderRoute: typeof AuthenticatedAdminFinanceRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/finance-settings': {
-      id: '/_authenticated/admin/finance-settings'
-      path: '/admin/finance-settings'
-      fullPath: '/admin/finance-settings'
-      preLoaderRoute: typeof AuthenticatedAdminFinanceSettingsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/fleet': {
-      id: '/_authenticated/admin/fleet'
-      path: '/admin/fleet'
-      fullPath: '/admin/fleet'
-      preLoaderRoute: typeof AuthenticatedAdminFleetRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/fleet-dashboard': {
-      id: '/_authenticated/admin/fleet-dashboard'
-      path: '/admin/fleet-dashboard'
-      fullPath: '/admin/fleet-dashboard'
-      preLoaderRoute: typeof AuthenticatedAdminFleetDashboardRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/hero': {
-      id: '/_authenticated/admin/hero'
-      path: '/admin/hero'
-      fullPath: '/admin/hero'
-      preLoaderRoute: typeof AuthenticatedAdminHeroRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/homepage': {
-      id: '/_authenticated/admin/homepage'
-      path: '/admin/homepage'
-      fullPath: '/admin/homepage'
-      preLoaderRoute: typeof AuthenticatedAdminHomepageRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/invoices': {
-      id: '/_authenticated/admin/invoices'
-      path: '/admin/invoices'
-      fullPath: '/admin/invoices'
-      preLoaderRoute: typeof AuthenticatedAdminInvoicesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/maintenance': {
-      id: '/_authenticated/admin/maintenance'
-      path: '/admin/maintenance'
-      fullPath: '/admin/maintenance'
-      preLoaderRoute: typeof AuthenticatedAdminMaintenanceRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/media': {
-      id: '/_authenticated/admin/media'
-      path: '/admin/media'
-      fullPath: '/admin/media'
-      preLoaderRoute: typeof AuthenticatedAdminMediaRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/menus': {
-      id: '/_authenticated/admin/menus'
-      path: '/admin/menus'
-      fullPath: '/admin/menus'
-      preLoaderRoute: typeof AuthenticatedAdminMenusRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/notification-queue': {
-      id: '/_authenticated/admin/notification-queue'
-      path: '/admin/notification-queue'
-      fullPath: '/admin/notification-queue'
-      preLoaderRoute: typeof AuthenticatedAdminNotificationQueueRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/notifications': {
-      id: '/_authenticated/admin/notifications'
-      path: '/admin/notifications'
-      fullPath: '/admin/notifications'
-      preLoaderRoute: typeof AuthenticatedAdminNotificationsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/operations': {
-      id: '/_authenticated/admin/operations'
-      path: '/admin/operations'
-      fullPath: '/admin/operations'
-      preLoaderRoute: typeof AuthenticatedAdminOperationsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/pages': {
-      id: '/_authenticated/admin/pages'
-      path: '/admin/pages'
-      fullPath: '/admin/pages'
-      preLoaderRoute: typeof AuthenticatedAdminPagesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/partners': {
-      id: '/_authenticated/admin/partners'
-      path: '/admin/partners'
-      fullPath: '/admin/partners'
-      preLoaderRoute: typeof AuthenticatedAdminPartnersRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/payments': {
-      id: '/_authenticated/admin/payments'
-      path: '/admin/payments'
-      fullPath: '/admin/payments'
-      preLoaderRoute: typeof AuthenticatedAdminPaymentsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/payroll': {
-      id: '/_authenticated/admin/payroll'
-      path: '/admin/payroll'
-      fullPath: '/admin/payroll'
-      preLoaderRoute: typeof AuthenticatedAdminPayrollRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/promotions': {
-      id: '/_authenticated/admin/promotions'
-      path: '/admin/promotions'
-      fullPath: '/admin/promotions'
-      preLoaderRoute: typeof AuthenticatedAdminPromotionsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/redirects': {
-      id: '/_authenticated/admin/redirects'
-      path: '/admin/redirects'
-      fullPath: '/admin/redirects'
-      preLoaderRoute: typeof AuthenticatedAdminRedirectsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/refunds': {
-      id: '/_authenticated/admin/refunds'
-      path: '/admin/refunds'
-      fullPath: '/admin/refunds'
-      preLoaderRoute: typeof AuthenticatedAdminRefundsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/reminders': {
-      id: '/_authenticated/admin/reminders'
-      path: '/admin/reminders'
-      fullPath: '/admin/reminders'
-      preLoaderRoute: typeof AuthenticatedAdminRemindersRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/reports': {
-      id: '/_authenticated/admin/reports'
-      path: '/admin/reports'
-      fullPath: '/admin/reports'
-      preLoaderRoute: typeof AuthenticatedAdminReportsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/roles': {
-      id: '/_authenticated/admin/roles'
-      path: '/admin/roles'
-      fullPath: '/admin/roles'
-      preLoaderRoute: typeof AuthenticatedAdminRolesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/route-pages': {
-      id: '/_authenticated/admin/route-pages'
-      path: '/admin/route-pages'
-      fullPath: '/admin/route-pages'
-      preLoaderRoute: typeof AuthenticatedAdminRoutePagesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/routes': {
-      id: '/_authenticated/admin/routes'
-      path: '/admin/routes'
-      fullPath: '/admin/routes'
-      preLoaderRoute: typeof AuthenticatedAdminRoutesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/seo': {
-      id: '/_authenticated/admin/seo'
-      path: '/admin/seo'
-      fullPath: '/admin/seo'
-      preLoaderRoute: typeof AuthenticatedAdminSeoRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/seo-generator': {
-      id: '/_authenticated/admin/seo-generator'
-      path: '/admin/seo-generator'
-      fullPath: '/admin/seo-generator'
-      preLoaderRoute: typeof AuthenticatedAdminSeoGeneratorRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/services': {
-      id: '/_authenticated/admin/services'
-      path: '/admin/services'
-      fullPath: '/admin/services'
-      preLoaderRoute: typeof AuthenticatedAdminServicesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/settings': {
-      id: '/_authenticated/admin/settings'
-      path: '/admin/settings'
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
       fullPath: '/admin/settings'
-      preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/tasks': {
-      id: '/_authenticated/admin/tasks'
-      path: '/admin/tasks'
-      fullPath: '/admin/tasks'
-      preLoaderRoute: typeof AuthenticatedAdminTasksRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/team': {
-      id: '/_authenticated/admin/team'
-      path: '/admin/team'
-      fullPath: '/admin/team'
-      preLoaderRoute: typeof AuthenticatedAdminTeamRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/testimonials': {
-      id: '/_authenticated/admin/testimonials'
-      path: '/admin/testimonials'
-      fullPath: '/admin/testimonials'
-      preLoaderRoute: typeof AuthenticatedAdminTestimonialsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/users': {
-      id: '/_authenticated/admin/users'
-      path: '/admin/users'
-      fullPath: '/admin/users'
-      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/whatsapp-templates': {
-      id: '/_authenticated/admin/whatsapp-templates'
-      path: '/admin/whatsapp-templates'
-      fullPath: '/admin/whatsapp-templates'
-      preLoaderRoute: typeof AuthenticatedAdminWhatsappTemplatesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/_public/{-$locale}/': {
       id: '/_public/{-$locale}/'
@@ -2144,34 +1104,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicChar123LocaleChar125VehiclesRouteImport
       parentRoute: typeof PublicChar123LocaleChar125Route
     }
-    '/_authenticated/admin/customers/$id': {
-      id: '/_authenticated/admin/customers/$id'
-      path: '/admin/customers/$id'
-      fullPath: '/admin/customers/$id'
-      preLoaderRoute: typeof AuthenticatedAdminCustomersIdRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/admin/drivers/$id': {
-      id: '/_authenticated/admin/drivers/$id'
-      path: '/$id'
-      fullPath: '/admin/drivers/$id'
-      preLoaderRoute: typeof AuthenticatedAdminDriversIdRouteImport
-      parentRoute: typeof AuthenticatedAdminDriversRoute
-    }
-    '/_authenticated/admin/fleet/$id': {
-      id: '/_authenticated/admin/fleet/$id'
-      path: '/$id'
-      fullPath: '/admin/fleet/$id'
-      preLoaderRoute: typeof AuthenticatedAdminFleetIdRouteImport
-      parentRoute: typeof AuthenticatedAdminFleetRoute
-    }
-    '/_authenticated/admin/invoices/$id': {
-      id: '/_authenticated/admin/invoices/$id'
-      path: '/$id'
-      fullPath: '/admin/invoices/$id'
-      preLoaderRoute: typeof AuthenticatedAdminInvoicesIdRouteImport
-      parentRoute: typeof AuthenticatedAdminInvoicesRoute
-    }
     '/_public/{-$locale}/airports/': {
       id: '/_public/{-$locale}/airports/'
       path: '/airports'
@@ -2277,202 +1209,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicChar123LocaleChar125VehiclesSlugRouteImport
       parentRoute: typeof PublicChar123LocaleChar125VehiclesRoute
     }
-    '/api/public/hooks/process-queues': {
-      id: '/api/public/hooks/process-queues'
-      path: '/api/public/hooks/process-queues'
-      fullPath: '/api/public/hooks/process-queues'
-      preLoaderRoute: typeof ApiPublicHooksProcessQueuesRouteImport
-      parentRoute: typeof rootRouteImport
+    '/admin/c/$table/': {
+      id: '/admin/c/$table/'
+      path: '/c/$table'
+      fullPath: '/admin/c/$table/'
+      preLoaderRoute: typeof AdminCTableIndexRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/api/public/media/$': {
-      id: '/api/public/media/$'
-      path: '/api/public/media/$'
-      fullPath: '/api/public/media/$'
-      preLoaderRoute: typeof ApiPublicMediaSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/admin/bookings/$id/print': {
-      id: '/_authenticated/admin/bookings/$id/print'
-      path: '/$id/print'
-      fullPath: '/admin/bookings/$id/print'
-      preLoaderRoute: typeof AuthenticatedAdminBookingsIdPrintRouteImport
-      parentRoute: typeof AuthenticatedAdminBookingsRoute
+    '/admin/c/$table/$id': {
+      id: '/admin/c/$table/$id'
+      path: '/c/$table/$id'
+      fullPath: '/admin/c/$table/$id'
+      preLoaderRoute: typeof AdminCTableIdRouteImport
+      parentRoute: typeof AdminRoute
     }
   }
 }
 
-interface AuthenticatedAdminBookingsRouteChildren {
-  AuthenticatedAdminBookingsIdPrintRoute: typeof AuthenticatedAdminBookingsIdPrintRoute
+interface AdminRouteChildren {
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminMessagesRoute: typeof AdminMessagesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminCTableIdRoute: typeof AdminCTableIdRoute
+  AdminCTableIndexRoute: typeof AdminCTableIndexRoute
 }
 
-const AuthenticatedAdminBookingsRouteChildren: AuthenticatedAdminBookingsRouteChildren =
-  {
-    AuthenticatedAdminBookingsIdPrintRoute:
-      AuthenticatedAdminBookingsIdPrintRoute,
-  }
-
-const AuthenticatedAdminBookingsRouteWithChildren =
-  AuthenticatedAdminBookingsRoute._addFileChildren(
-    AuthenticatedAdminBookingsRouteChildren,
-  )
-
-interface AuthenticatedAdminDriversRouteChildren {
-  AuthenticatedAdminDriversIdRoute: typeof AuthenticatedAdminDriversIdRoute
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminLoginRoute: AdminLoginRoute,
+  AdminMessagesRoute: AdminMessagesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminCTableIdRoute: AdminCTableIdRoute,
+  AdminCTableIndexRoute: AdminCTableIndexRoute,
 }
 
-const AuthenticatedAdminDriversRouteChildren: AuthenticatedAdminDriversRouteChildren =
-  {
-    AuthenticatedAdminDriversIdRoute: AuthenticatedAdminDriversIdRoute,
-  }
-
-const AuthenticatedAdminDriversRouteWithChildren =
-  AuthenticatedAdminDriversRoute._addFileChildren(
-    AuthenticatedAdminDriversRouteChildren,
-  )
-
-interface AuthenticatedAdminFleetRouteChildren {
-  AuthenticatedAdminFleetIdRoute: typeof AuthenticatedAdminFleetIdRoute
-}
-
-const AuthenticatedAdminFleetRouteChildren: AuthenticatedAdminFleetRouteChildren =
-  {
-    AuthenticatedAdminFleetIdRoute: AuthenticatedAdminFleetIdRoute,
-  }
-
-const AuthenticatedAdminFleetRouteWithChildren =
-  AuthenticatedAdminFleetRoute._addFileChildren(
-    AuthenticatedAdminFleetRouteChildren,
-  )
-
-interface AuthenticatedAdminInvoicesRouteChildren {
-  AuthenticatedAdminInvoicesIdRoute: typeof AuthenticatedAdminInvoicesIdRoute
-}
-
-const AuthenticatedAdminInvoicesRouteChildren: AuthenticatedAdminInvoicesRouteChildren =
-  {
-    AuthenticatedAdminInvoicesIdRoute: AuthenticatedAdminInvoicesIdRoute,
-  }
-
-const AuthenticatedAdminInvoicesRouteWithChildren =
-  AuthenticatedAdminInvoicesRoute._addFileChildren(
-    AuthenticatedAdminInvoicesRouteChildren,
-  )
-
-interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminAirportsRoute: typeof AuthenticatedAdminAirportsRoute
-  AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
-  AuthenticatedAdminAuditRoute: typeof AuthenticatedAdminAuditRoute
-  AuthenticatedAdminBackupRoute: typeof AuthenticatedAdminBackupRoute
-  AuthenticatedAdminBlogRoute: typeof AuthenticatedAdminBlogRoute
-  AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRouteWithChildren
-  AuthenticatedAdminCalendarRoute: typeof AuthenticatedAdminCalendarRoute
-  AuthenticatedAdminCitiesRoute: typeof AuthenticatedAdminCitiesRoute
-  AuthenticatedAdminContactsRoute: typeof AuthenticatedAdminContactsRoute
-  AuthenticatedAdminCorporateRoute: typeof AuthenticatedAdminCorporateRoute
-  AuthenticatedAdminCouponsRoute: typeof AuthenticatedAdminCouponsRoute
-  AuthenticatedAdminDashboardRoute: typeof AuthenticatedAdminDashboardRoute
-  AuthenticatedAdminDispatchRoute: typeof AuthenticatedAdminDispatchRoute
-  AuthenticatedAdminDriversRoute: typeof AuthenticatedAdminDriversRouteWithChildren
-  AuthenticatedAdminErrorsRoute: typeof AuthenticatedAdminErrorsRoute
-  AuthenticatedAdminExpensesRoute: typeof AuthenticatedAdminExpensesRoute
-  AuthenticatedAdminFaqsRoute: typeof AuthenticatedAdminFaqsRoute
-  AuthenticatedAdminFinanceRoute: typeof AuthenticatedAdminFinanceRoute
-  AuthenticatedAdminFinanceSettingsRoute: typeof AuthenticatedAdminFinanceSettingsRoute
-  AuthenticatedAdminFleetRoute: typeof AuthenticatedAdminFleetRouteWithChildren
-  AuthenticatedAdminFleetDashboardRoute: typeof AuthenticatedAdminFleetDashboardRoute
-  AuthenticatedAdminHeroRoute: typeof AuthenticatedAdminHeroRoute
-  AuthenticatedAdminHomepageRoute: typeof AuthenticatedAdminHomepageRoute
-  AuthenticatedAdminInvoicesRoute: typeof AuthenticatedAdminInvoicesRouteWithChildren
-  AuthenticatedAdminMaintenanceRoute: typeof AuthenticatedAdminMaintenanceRoute
-  AuthenticatedAdminMediaRoute: typeof AuthenticatedAdminMediaRoute
-  AuthenticatedAdminMenusRoute: typeof AuthenticatedAdminMenusRoute
-  AuthenticatedAdminNotificationQueueRoute: typeof AuthenticatedAdminNotificationQueueRoute
-  AuthenticatedAdminNotificationsRoute: typeof AuthenticatedAdminNotificationsRoute
-  AuthenticatedAdminOperationsRoute: typeof AuthenticatedAdminOperationsRoute
-  AuthenticatedAdminPagesRoute: typeof AuthenticatedAdminPagesRoute
-  AuthenticatedAdminPartnersRoute: typeof AuthenticatedAdminPartnersRoute
-  AuthenticatedAdminPaymentsRoute: typeof AuthenticatedAdminPaymentsRoute
-  AuthenticatedAdminPayrollRoute: typeof AuthenticatedAdminPayrollRoute
-  AuthenticatedAdminPromotionsRoute: typeof AuthenticatedAdminPromotionsRoute
-  AuthenticatedAdminRedirectsRoute: typeof AuthenticatedAdminRedirectsRoute
-  AuthenticatedAdminRefundsRoute: typeof AuthenticatedAdminRefundsRoute
-  AuthenticatedAdminRemindersRoute: typeof AuthenticatedAdminRemindersRoute
-  AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
-  AuthenticatedAdminRolesRoute: typeof AuthenticatedAdminRolesRoute
-  AuthenticatedAdminRoutePagesRoute: typeof AuthenticatedAdminRoutePagesRoute
-  AuthenticatedAdminRoutesRoute: typeof AuthenticatedAdminRoutesRoute
-  AuthenticatedAdminSeoRoute: typeof AuthenticatedAdminSeoRoute
-  AuthenticatedAdminSeoGeneratorRoute: typeof AuthenticatedAdminSeoGeneratorRoute
-  AuthenticatedAdminServicesRoute: typeof AuthenticatedAdminServicesRoute
-  AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
-  AuthenticatedAdminTasksRoute: typeof AuthenticatedAdminTasksRoute
-  AuthenticatedAdminTeamRoute: typeof AuthenticatedAdminTeamRoute
-  AuthenticatedAdminTestimonialsRoute: typeof AuthenticatedAdminTestimonialsRoute
-  AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
-  AuthenticatedAdminWhatsappTemplatesRoute: typeof AuthenticatedAdminWhatsappTemplatesRoute
-  AuthenticatedAdminCustomersIdRoute: typeof AuthenticatedAdminCustomersIdRoute
-}
-
-const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminAirportsRoute: AuthenticatedAdminAirportsRoute,
-  AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
-  AuthenticatedAdminAuditRoute: AuthenticatedAdminAuditRoute,
-  AuthenticatedAdminBackupRoute: AuthenticatedAdminBackupRoute,
-  AuthenticatedAdminBlogRoute: AuthenticatedAdminBlogRoute,
-  AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRouteWithChildren,
-  AuthenticatedAdminCalendarRoute: AuthenticatedAdminCalendarRoute,
-  AuthenticatedAdminCitiesRoute: AuthenticatedAdminCitiesRoute,
-  AuthenticatedAdminContactsRoute: AuthenticatedAdminContactsRoute,
-  AuthenticatedAdminCorporateRoute: AuthenticatedAdminCorporateRoute,
-  AuthenticatedAdminCouponsRoute: AuthenticatedAdminCouponsRoute,
-  AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
-  AuthenticatedAdminDispatchRoute: AuthenticatedAdminDispatchRoute,
-  AuthenticatedAdminDriversRoute: AuthenticatedAdminDriversRouteWithChildren,
-  AuthenticatedAdminErrorsRoute: AuthenticatedAdminErrorsRoute,
-  AuthenticatedAdminExpensesRoute: AuthenticatedAdminExpensesRoute,
-  AuthenticatedAdminFaqsRoute: AuthenticatedAdminFaqsRoute,
-  AuthenticatedAdminFinanceRoute: AuthenticatedAdminFinanceRoute,
-  AuthenticatedAdminFinanceSettingsRoute:
-    AuthenticatedAdminFinanceSettingsRoute,
-  AuthenticatedAdminFleetRoute: AuthenticatedAdminFleetRouteWithChildren,
-  AuthenticatedAdminFleetDashboardRoute: AuthenticatedAdminFleetDashboardRoute,
-  AuthenticatedAdminHeroRoute: AuthenticatedAdminHeroRoute,
-  AuthenticatedAdminHomepageRoute: AuthenticatedAdminHomepageRoute,
-  AuthenticatedAdminInvoicesRoute: AuthenticatedAdminInvoicesRouteWithChildren,
-  AuthenticatedAdminMaintenanceRoute: AuthenticatedAdminMaintenanceRoute,
-  AuthenticatedAdminMediaRoute: AuthenticatedAdminMediaRoute,
-  AuthenticatedAdminMenusRoute: AuthenticatedAdminMenusRoute,
-  AuthenticatedAdminNotificationQueueRoute:
-    AuthenticatedAdminNotificationQueueRoute,
-  AuthenticatedAdminNotificationsRoute: AuthenticatedAdminNotificationsRoute,
-  AuthenticatedAdminOperationsRoute: AuthenticatedAdminOperationsRoute,
-  AuthenticatedAdminPagesRoute: AuthenticatedAdminPagesRoute,
-  AuthenticatedAdminPartnersRoute: AuthenticatedAdminPartnersRoute,
-  AuthenticatedAdminPaymentsRoute: AuthenticatedAdminPaymentsRoute,
-  AuthenticatedAdminPayrollRoute: AuthenticatedAdminPayrollRoute,
-  AuthenticatedAdminPromotionsRoute: AuthenticatedAdminPromotionsRoute,
-  AuthenticatedAdminRedirectsRoute: AuthenticatedAdminRedirectsRoute,
-  AuthenticatedAdminRefundsRoute: AuthenticatedAdminRefundsRoute,
-  AuthenticatedAdminRemindersRoute: AuthenticatedAdminRemindersRoute,
-  AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
-  AuthenticatedAdminRolesRoute: AuthenticatedAdminRolesRoute,
-  AuthenticatedAdminRoutePagesRoute: AuthenticatedAdminRoutePagesRoute,
-  AuthenticatedAdminRoutesRoute: AuthenticatedAdminRoutesRoute,
-  AuthenticatedAdminSeoRoute: AuthenticatedAdminSeoRoute,
-  AuthenticatedAdminSeoGeneratorRoute: AuthenticatedAdminSeoGeneratorRoute,
-  AuthenticatedAdminServicesRoute: AuthenticatedAdminServicesRoute,
-  AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
-  AuthenticatedAdminTasksRoute: AuthenticatedAdminTasksRoute,
-  AuthenticatedAdminTeamRoute: AuthenticatedAdminTeamRoute,
-  AuthenticatedAdminTestimonialsRoute: AuthenticatedAdminTestimonialsRoute,
-  AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
-  AuthenticatedAdminWhatsappTemplatesRoute:
-    AuthenticatedAdminWhatsappTemplatesRoute,
-  AuthenticatedAdminCustomersIdRoute: AuthenticatedAdminCustomersIdRoute,
-}
-
-const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface PublicChar123LocaleChar125VehiclesRouteChildren {
   PublicChar123LocaleChar125VehiclesSlugRoute: typeof PublicChar123LocaleChar125VehiclesSlugRoute
@@ -2628,9 +1400,7 @@ const PublicChar123LocaleChar125RouteWithChildren =
   )
 
 const rootRouteChildren: RootRouteChildren = {
-  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  AuthRoute: AuthRoute,
-  ResetPasswordRoute: ResetPasswordRoute,
+  AdminRoute: AdminRouteWithChildren,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapCategoriesDotxmlRoute: SitemapCategoriesDotxmlRoute,
   SitemapImagesDotxmlRoute: SitemapImagesDotxmlRoute,
@@ -2639,8 +1409,6 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapPostsDotxmlRoute: SitemapPostsDotxmlRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   PublicChar123LocaleChar125Route: PublicChar123LocaleChar125RouteWithChildren,
-  ApiPublicHooksProcessQueuesRoute: ApiPublicHooksProcessQueuesRoute,
-  ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

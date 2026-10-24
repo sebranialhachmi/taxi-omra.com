@@ -96,7 +96,6 @@ export function PublicFooter() {
             <Link to={l("/terms")} className="hover:text-gold transition">{ar ? "الشروط" : "Terms"}</Link>
             <Link to={l("/refund")} className="hover:text-gold transition">{ar ? "الاسترداد" : "Refund"}</Link>
             <Link to={l("/cancellation")} className="hover:text-gold transition">{ar ? "الإلغاء" : "Cancellation"}</Link>
-            <Link to="/auth" className="hover:text-gold transition">{ar ? "دخول الموظفين" : "Staff sign in"}</Link>
           </div>
         </div>
       </div>

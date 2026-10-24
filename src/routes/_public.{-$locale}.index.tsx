@@ -10,7 +10,7 @@ import {
 import { useI18n } from "@/lib/i18n";
 import { SITE, waLink, telLink } from "@/lib/site-info";
 import { organizationJsonLd, localBusinessJsonLd, breadcrumbJsonLd, faqPageJsonLd, serviceJsonLd, webApplicationJsonLd } from "@/lib/seo";
-import heroImg from "@/assets/hero-luxury-car.jpg";
+import heroImg from "@/assets/hero-luxury-car.webp";
 import airportImg from "@/assets/airport-transfer.jpg";
 import businessImg from "@/assets/business-travel.jpg";
 import { categoryImage, categoryAlt, FALLBACK_FLEET_IMAGES } from "@/lib/fleet-images";
@@ -24,7 +24,7 @@ const homeOpts = () => queryOptions({
     airports: await listCmsPages({ data: { type: "airport" } }),
     cities: await listCmsPages({ data: { type: "city" } }),
     testimonials: await listTestimonials(),
-    faqs: await listFaqs(),
+    faqs: await listFaqs({ data: { limit: 12 } }),
     fleet: await listVehicleCategories(),
   }),
 });
@@ -209,8 +209,10 @@ function Home() {
               <img
                 src={heroImg}
                 alt={ar ? "سائق فاخر أمام المطار" : "Luxury chauffeur at airport terminal"}
-                width={1280}
-                height={1600}
+                width={800}
+                height={1000}
+                fetchPriority="high"
+                decoding="async"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-t from-primary/70 via-primary/10 to-transparent" />

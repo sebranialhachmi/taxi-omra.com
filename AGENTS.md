@@ -1,16 +1,14 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-<!-- LOVABLE:END -->
+# Notes for contributors and AI agents
 
-- Blog articles without uploaded cover media use stable topic-based local fallback photography, so listing cards and article pages never render blank image areas.
-- The router uses the SSR query integration so server-loaded page data is reused in the browser; a failed client refetch must never replace rendered content (Google flagged that as Soft 404).
+- Stack: TanStack Start (SSR) + Nitro, MySQL/MariaDB via `mysql2`. No Supabase.
+- The schema lives in `db/tables.mjs` (single source of truth). Add a column there, then re-run `npm run db:setup`
+  against a fresh database, or `ALTER TABLE` an existing one by hand: setup only creates missing tables.
+- Server-only code lives in `src/server/*.server.ts`; import it from server-function handlers with `await import(...)`.
+- Admin (`/admin`) edits content through `src/lib/admin.functions.ts`; every function except login/me calls `requireAdmin()`.
+  Which fields each form shows is described in `src/lib/admin-fields.ts`.
+- Prices come from the `prices` table; `PRICING_DATA` in `src/lib/pricing.functions.ts` is only a fallback.
+- A page or post is indexable only when its `seo_released` flag is on; sitemaps and robots meta use the same rule.
+- Build for Hostinger with `npm run build:node` and run with `npm start` (see docs/hostinger-deploy.md).
+- The router uses the SSR query integration so server-loaded page data is reused in the browser; a failed client
+  refetch must never replace rendered content (Google flagged that as Soft 404).
 - robots.txt must keep `/_serverFn/` crawlable; Google needs those requests to render pages.
-- CMS/blog indexability combines the baseline allowlist with database-reviewed releases; metadata and every XML sitemap use the same policy to prevent premature discovery.
-- SEO releases run transactionally in PostgreSQL with a single-flight lock, persisted cadence, explicit review and content-revision invalidation; no AI calls or page-view-triggered work.

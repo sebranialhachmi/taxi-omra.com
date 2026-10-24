@@ -9,13 +9,13 @@ import appCss from "../styles.css?url";
 import { reportLovableError, installGlobalErrorHandlers } from "../lib/lovable-error-reporting";
 import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
-import { AuthProvider } from "@/lib/auth";
 import { Toaster } from "@/components/ui/sonner";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { errorToMessage } from "@/lib/errors";
 import { SITE } from "@/lib/site-info";
 import { HeadInjector } from "@/components/HeadInjector";
-import { getPublicHeadSettings } from "@/lib/head-settings.functions";
+import { getPublicSettings } from "@/lib/public.functions";
+import { getPricingData, applyPricing } from "@/lib/pricing.functions";
 import { ContactInfoProvider } from "@/lib/contact-info";
 
 /**
@@ -76,11 +76,11 @@ function ErrorComponent({ error, reset }: { error: any; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   loader: async () => {
-    try {
-      return { headSettings: await getPublicHeadSettings() };
-    } catch {
-      return { headSettings: {} as Record<string, string> };
-    }
+    const [headSettings, prices] = await Promise.all([
+      getPublicSettings().catch(() => ({}) as Record<string, string>),
+      getPricingData().catch(() => null),
+    ]);
+    return { headSettings: headSettings as Record<string, string>, prices };
   },
   head: ({ loaderData, matches }) => {
     // Determine the title based on the route hierarchy: 
@@ -105,8 +105,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: effectiveTitle },
-        { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/yTgJBA4SfjVCi3apFH5XARkLEQi1/social-images/social-1783936969962-Gemini_Generated_Image_9nz6uv9nz6uv9nz6-removebg-preview.webp" },
-        { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/yTgJBA4SfjVCi3apFH5XARkLEQi1/social-images/social-1783936969962-Gemini_Generated_Image_9nz6uv9nz6uv9nz6-removebg-preview.webp" },
+        { property: "og:image", content: `${SITE.url}${SITE.ogImage}` },
+        { name: "twitter:image", content: `${SITE.url}${SITE.ogImage}` },
       ],
       links: [
         { rel: "stylesheet", href: appCss },
@@ -139,12 +139,14 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { prices } = Route.useLoaderData();
+  applyPricing(prices);
   useEffect(() => { installGlobalErrorHandlers(); }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <I18nProvider>
-          <AuthProvider>
+          <>
             <HeadInjector />
             <ContactInfoProvider>
               <ErrorBoundary>
@@ -152,7 +154,7 @@ function RootComponent() {
               </ErrorBoundary>
             </ContactInfoProvider>
             <Toaster richColors position="top-center" />
-          </AuthProvider>
+          </>
         </I18nProvider>
       </ThemeProvider>
     </QueryClientProvider>
