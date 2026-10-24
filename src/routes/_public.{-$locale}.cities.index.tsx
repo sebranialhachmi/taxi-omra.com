@@ -116,7 +116,7 @@ function CitiesIndex() {
             <h3 className="font-display text-xl text-foreground">المدن المقدسة: مكة المكرمة والمدينة المنورة</h3>
             <p>أكثر الرحلات طلبًا هي من مطار الملك عبدالعزيز في جدة إلى فنادق الحرم بمكة، ومن مكة إلى المدينة المنورة عبر طريق الهجرة السريع. تستغرق رحلة جدة إلى مكة نحو ساعة، ورحلة مكة إلى المدينة نحو أربع ساعات ونصف، ويتوقف السائق عند الحاجة للصلاة أو الاستراحة، مع سيارات واسعة تتسع للعائلات والأمتعة.</p>
             <h3 className="font-display text-xl text-foreground">جدة والطائف والمدن الساحلية</h3>
-            <p>في جدة نخدم المطار والكورنيش والفنادق والأحياء التجارية، ونوفّر رحلات إلى الطائف عبر طريق الهدا الجبلي، وإلى ينبع ورابغ على الساحل الغربي. هذه الرحلات مناسبة للعائلات والسياحة الصيفية ورحلات العمل.</p>
+            <p>في جدة نخدم المطار والكورنيش والفنادق والأحياء التجارية، ونوفّر رحلات إلى الطائف عبر طريق الهدا الجبلي. هذه الرحلات مناسبة للعائلات والسياحة الصيفية ورحلات العمل.</p>
           </>
         ) : (
           <>
@@ -125,7 +125,7 @@ function CitiesIndex() {
             <h3 className="font-display text-xl text-foreground">The holy cities: Makkah and Madinah</h3>
             <p>The most requested trips are from King Abdulaziz International Airport in Jeddah to hotels near the Haram in Makkah, and from Makkah to Madinah on the Hijrah highway. Jeddah to Makkah takes about an hour; Makkah to Madinah takes around four and a half hours. Drivers stop for prayer or rest on request, and spacious vehicles fit families and luggage.</p>
             <h3 className="font-display text-xl text-foreground">Jeddah, Taif and the Red Sea coast</h3>
-            <p>In Jeddah we cover the airport, the Corniche, hotels and business districts, with trips up the Al Hada mountain road to Taif and along the coast to Yanbu and Rabigh — ideal for families, summer trips and business travel.</p>
+            <p>In Jeddah we cover the airport, the Corniche, hotels and business districts, with trips up the Al Hada mountain road to Taif — ideal for families, summer trips and business travel.</p>
           </>
         )}
       </div>
