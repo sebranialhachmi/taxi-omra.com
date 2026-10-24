@@ -1,6 +1,6 @@
 import airportTransferImage from "@/assets/airport-transfer.jpg";
 import businessTravelImage from "@/assets/business-travel.jpg";
-import luxuryCarImage from "@/assets/hero-luxury-car.jpg";
+import luxuryCarImage from "@/assets/hero-luxury-car.webp";
 import suvImage from "@/assets/fleet-suv.jpg";
 import vanImage from "@/assets/fleet-van.jpg";
 
