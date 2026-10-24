@@ -1,0 +1,37 @@
+# Omra Taxi — تاكسي العمرة
+
+> Professional 24/7 taxi and chauffeur service for transfers from King Abdulaziz International Airport (Jeddah, KAIA/JED) to Makkah Al-Mukarramah and Al-Madinah Al-Munawwarah, with fixed prices, licensed drivers, and a modern fleet of sedans, GMC SUVs, Hiace and family vans. Serving Umrah pilgrims, families, and business travelers across the Kingdom of Saudi Arabia.
+>
+> خدمة تاكسي وسائق خاص احترافية على مدار الساعة للتوصيل من مطار الملك عبدالعزيز الدولي بجدة إلى مكة المكرمة والمدينة المنورة، بأسعار ثابتة وسائقين مرخصين وأسطول حديث من السيدان و GMC والهايس والفانات العائلية. نخدم المعتمرين والعائلات ورجال الأعمال في المملكة العربية السعودية.
+
+## Primary services
+- Jeddah Airport (JED / KAIA) → Makkah taxi, 24/7
+- Jeddah Airport → Madinah taxi
+- Makkah → Madinah intercity transfer
+- Umrah packages with driver
+- Hourly chauffeur & city rides in Jeddah, Makkah, Taif, Madinah
+
+## Core pages
+- [الرئيسية (Arabic home)](https://taxiomra.lovable.app/ar): Overview, routes, live WhatsApp booking.
+- [English home](https://taxiomra.lovable.app/en): Overview, routes, live WhatsApp booking.
+- [Services / الخدمات](https://taxiomra.lovable.app/ar/services): Full list of transfer and Umrah services.
+- [Airport transfers / نقل المطار](https://taxiomra.lovable.app/ar/airport-transfers): Meet-and-greet with flight tracking.
+- [Fleet / الأسطول](https://taxiomra.lovable.app/ar/fleet): Sedan, GMC, Hiace, family van, luxury SUV.
+- [Pricing / الأسعار](https://taxiomra.lovable.app/ar/pricing): Fixed fares and per-km rates.
+- [Cities / المدن](https://taxiomra.lovable.app/ar/cities): Jeddah, Makkah, Madinah, Taif.
+- [Airports / المطارات](https://taxiomra.lovable.app/ar/airports): Jeddah (JED), Madinah (MED), Taif (TIF).
+- [Routes / المسارات](https://taxiomra.lovable.app/ar/routes): Fixed-price intercity routes.
+- [Blog / المدونة](https://taxiomra.lovable.app/ar/blog): Umrah travel guides and airport tips.
+- [FAQ / الأسئلة الشائعة](https://taxiomra.lovable.app/ar/faq)
+- [Contact / تواصل معنا](https://taxiomra.lovable.app/ar/contact)
+- [About / من نحن](https://taxiomra.lovable.app/ar/about)
+
+## Booking
+- WhatsApp: https://wa.me/966551796487
+- Phone: tel:+966551796487
+- Available 24/7, English & Arabic support
+
+## Optional
+- [Sitemap XML](https://taxiomra.lovable.app/sitemap.xml)
+- [Robots](https://taxiomra.lovable.app/robots.txt)
+- [Site map (human)](https://taxiomra.lovable.app/ar/sitemap)

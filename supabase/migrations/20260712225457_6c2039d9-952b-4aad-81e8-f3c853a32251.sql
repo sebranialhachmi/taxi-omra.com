@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "rp staff read" ON public.role_permissions;
