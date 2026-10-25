@@ -25,11 +25,11 @@ export const Route = createFileRoute("/_public/{-$locale}/makkah-to-madinah-taxi
     const ar = locale === "ar";
     const url = `${SITE.url}/${locale}/makkah-to-madinah-taxi`;
     const title = ar 
-      ? "تاكسي من مكة إلى المدينة | حجز نقل خاص بين الحرمين - تاكسي العمرة" 
+      ? "تاكسي من مكة إلى المدينة | نقل خاص بين الحرمين - تاكسي العمرة" 
       : "Makkah to Madinah Taxi | Private Intercity Umrah Transfers";
     const description = ar 
       ? "احجز تاكسي مكة إلى المدينة المنورة الآن. خدمة توصيل مريحة وآمنة بين الحرمين الشريفين بسيارات حديثة وسائقين محترفين. حجز سهل وسعر ثابت." 
-      : "Reliable Makkah to Madinah taxi service for pilgrims. Private intercity transfers with professional drivers and fixed rates. Book your door-to-door transfer now.";
+      : "Reliable Makkah to Madinah taxi for pilgrims. Private intercity transfers with professional drivers and fixed fares. Book door-to-door now.";
     return {
       meta: [
         { title }, 

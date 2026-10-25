@@ -10,8 +10,8 @@ export const Route = createFileRoute("/_public/{-$locale}/airport-transfers")({
   head: ({ params }) => {
     const ar = (params.locale ?? "ar") === "ar";
     const title = ar
-      ? `توصيل مطار جدة — تاكسي إلى مكة والمدينة مع استقبال في الصالة | ${SITE.brand.ar}`
-      : `Jeddah Airport Transfers — Taxi to Makkah & Madinah with Meet & Greet | ${SITE.brand.en}`;
+      ? `توصيل مطار جدة: تاكسي إلى مكة والمدينة | ${SITE.brand.ar}`
+      : `Jeddah Airport Transfers: Makkah & Madinah | ${SITE.brand.en}`;
     const description = ar
       ? "استقبال شخصي في صالة الوصول بمطار الملك عبدالعزيز، متابعة الرحلة، أسعار ثابتة، وانتظار مجاني حتى ٦٠ دقيقة. متاح ٢٤ ساعة."
       : "Meet-and-greet at Jeddah King Abdulaziz Airport arrivals hall, live flight tracking, fixed fares, and up to 60 minutes of complimentary wait. Available 24/7.";

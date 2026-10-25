@@ -27,11 +27,11 @@ export const Route = createFileRoute("/_public/{-$locale}/taxi-madinah")({
     const ar = locale === "ar";
     const url = `${SITE.url}/${locale}/taxi-madinah`;
     const title = ar 
-      ? "تاكسي المدينة المنورة | توصيل للمسجد النبوي والمطار - تاكسي العمرة" 
+      ? "تاكسي المدينة المنورة | المسجد النبوي والمطار - تاكسي العمرة" 
       : "Madinah Taxi | Prophet's Mosque & Airport Transfers";
     const description = ar 
       ? "احجز تاكسي المدينة المنورة الآن. خدمة استقبال من المطار وتوصيل للمسجد النبوي والفنادق بأسعار ثابتة. سيارات حديثة وسائقون محترفون." 
-      : "Book your private Madinah taxi for transfers to the Prophet's Mosque, airport pickups at MED, and private local travel. Reliable service for pilgrims and families.";
+      : "Book a private Madinah taxi for transfers to the Prophet's Mosque, airport pickups at MED and local travel. Reliable service for pilgrims and families.";
     
     return {
       meta: [

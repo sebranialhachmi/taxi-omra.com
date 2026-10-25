@@ -19,10 +19,10 @@ const FAQ = [
     a_en: `Fares start from ${getPriceForRoute('apt-jed-to-makkah', 'economyPrice') || '200'} SAR for a sedan. We confirm the final fare before your trip based on details.` 
   },
   { 
-    q_ar: "هل الأسعار ثابتة أم تقديرية؟", 
-    a_ar: "الأسعار المعروضة تقديرية وتبدأ من المبالغ الموضحة. قد تختلف حسب نوع السيارة، عدد الركاب، ووقت الرحلة. للحصول على السعر النهائي المؤكد، يرجى التواصل معنا عبر واتساب.", 
-    q_en: "Are fares fixed or estimated?", 
-    a_en: "The displayed fares are estimated and start from the shown amounts. They may vary based on vehicle type, number of passengers, and trip time. For a final confirmed price, please contact us via WhatsApp." 
+    q_ar: "هل الأسعار ثابتة أم بالعداد؟", 
+    a_ar: "السعر ثابت للسيارة وليس بالعداد، ويختلف حسب المسار وفئة السيارة. نؤكد لك السعر عبر واتساب قبل الحجز، ويُدفع عند الوصول.", 
+    q_en: "Are fares fixed or metered?", 
+    a_en: "The fare is fixed per car, not metered, and depends on the route and car class. We confirm it on WhatsApp before you book and you pay on arrival." 
   },
   {
     q_ar: "ما هي فئات السيارات المتوفرة؟",
@@ -42,8 +42,8 @@ export const Route = createFileRoute("/_public/{-$locale}/guide/taxi-fares")({
     const ar = locale === "ar";
     const title = ar ? "أسعار التاكسي والتوصيل في السعودية | تاكسي العمرة" : "Taxi & Transfer Fares in Saudi Arabia | Umrah Taxi";
     const description = ar 
-      ? "دليل شامل لأسعار التاكسي والتوصيل بين المدن والمطارات في السعودية. جدة، مكة، المدينة، والطائف." 
-      : "Comprehensive guide to taxi and transfer fares between cities and airports in Saudi Arabia. Jeddah, Makkah, Madinah, and Taif.";
+      ? "جدول أسعار تاكسي العمرة بين مطار جدة ومكة والمدينة والطائف: سعر ثابت للسيارة لكل فئة، يؤكَّد على واتساب قبل الحجز ويُدفع عند الوصول." 
+      : "Umrah Taxi fares between Jeddah airport, Makkah, Madinah and Taif: a fixed fare per car for each class, confirmed on WhatsApp before booking and paid on arrival.";
     return {
       meta: [
         { title }, 
@@ -93,8 +93,8 @@ function PricingPage() {
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           {ar 
-            ? "دليل شامل وشفاف لأسعار خدمات التوصيل بين المدن والمطارات الرئيسية. نحن نضمن لك أفضل قيمة مقابل المال مع خدمة احترافية." 
-            : "A comprehensive and transparent guide for transfer fares between major cities and airports. We guarantee the best value for money with professional service."}
+            ? "دليل شامل وشفاف لأسعار خدمات التوصيل بين المدن والمطارات الرئيسية. السعر ثابت للسيارة، ونؤكده لك على واتساب قبل الحجز." 
+            : "A comprehensive and transparent guide for transfer fares between major cities and airports. The fare is fixed per car and confirmed on WhatsApp before you book."}
         </p>
       </header>
 
@@ -186,25 +186,19 @@ function PricingPage() {
             title_ar: "اقتصادية", 
             title_en: "Economy", 
             desc_ar: "كامري / أكورد أو ما يعادلها (1-3 ركاب)", 
-            desc_en: "Camry / Accord or equivalent (1-3 passengers)", 
-            price_ar: "تبدأ من 90 ريال", 
-            price_en: "From 90 SAR" 
+            desc_en: "Camry / Accord or equivalent (1-3 passengers)",
           },
           { 
             title_ar: "عائلية / مجموعات", 
             title_en: "Family / Groups", 
             desc_ar: "هايس / ستاركس أو ما يعادلها (7-14 راكب)", 
-            desc_en: "Hiace / Starex or equivalent (7-14 passengers)", 
-            price_ar: "تبدأ من 350 ريال", 
-            price_en: "From 350 SAR" 
+            desc_en: "Hiace / Starex or equivalent (7-14 passengers)",
           },
           { 
             title_ar: "VIP / فاخرة", 
             title_en: "VIP / Luxury", 
             desc_ar: "لكزس / BMW / مرسيدس أو ما يعادلها", 
-            desc_en: "Lexus / BMW / Mercedes or equivalent", 
-            price_ar: "تبدأ من 300 ريال", 
-            price_en: "From 300 SAR" 
+            desc_en: "Lexus / BMW / Mercedes or equivalent",
           },
         ].map((v, i) => (
           <Card key={i} className="border-border shadow-sm hover:shadow-md transition-shadow">
@@ -212,7 +206,6 @@ function PricingPage() {
               <Car className="h-12 w-12 text-gold mx-auto" />
               <h3 className="text-2xl font-display">{ar ? v.title_ar : v.title_en}</h3>
               <p className="text-muted-foreground">{ar ? v.desc_ar : v.desc_en}</p>
-              <div className="text-gold font-bold text-lg">{ar ? v.price_ar : v.price_en}</div>
             </CardContent>
           </Card>
         ))}
@@ -224,12 +217,12 @@ function PricingPage() {
           <div className="space-y-6">
             <h3 className="text-xl font-bold flex items-center gap-2">
               <Info className="h-5 w-5 text-gold" />
-              {ar ? "ملاحظات تقديرية" : "Estimated Notes"}
+              {ar ? "كيف يُحسب السعر" : "How the fare works"}
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              {ar 
-                ? "الأسعار المعروضة تقديرية وتبدأ من الأسعار الموضحة، وقد تختلف حسب نوع السيارة، عدد الركاب، الأمتعة، وقت الرحلة، نقطة الالتقاء والوجهة والخدمات الإضافية. للحصول على السعر النهائي، تواصل معنا عبر واتساب." 
-                : "The displayed fares are estimated and start from the shown amounts. They may vary based on vehicle type, number of passengers, luggage, trip time, pickup point, destination, and extra services. For a final price, contact us via WhatsApp."}
+              {ar
+                ? "السعر في الجدول ثابت للسيارة الواحدة وليس لكل راكب، ويشمل الرحلة كاملة بدون عداد. يتحدد حسب المسار وفئة السيارة، ونؤكده لك عبر واتساب قبل الحجز فلا تتغير قيمته عند الوصول. تُدفع الأجرة عند الوصول، وإن كان لديك أمتعة كثيرة أو محطات إضافية فاذكرها عند الحجز ليُحسب السعر بدقة."
+                : "The fare in the table is fixed per car, not per passenger, and covers the whole trip with no meter. It depends on the route and the car class, and we confirm it on WhatsApp before you book so it does not change on arrival. You pay on arrival; if you have a lot of luggage or extra stops, mention them when booking so the fare is exact."}
             </p>
             <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground shadow-lg h-14 px-8 w-full md:w-auto">
               <a href={waLink(ar ? "أرغب بالاستفسار عن سعر رحلة" : "Inquire about trip fare")} target="_blank" rel="noopener">

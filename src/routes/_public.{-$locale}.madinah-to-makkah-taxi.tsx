@@ -25,7 +25,7 @@ export const Route = createFileRoute("/_public/{-$locale}/madinah-to-makkah-taxi
     const ar = locale === "ar";
     const url = `${SITE.url}/${locale}/madinah-to-makkah-taxi`;
     const title = ar 
-      ? "تاكسي من المدينة إلى مكة | حجز استقبال مطار المدينة - تاكسي العمرة" 
+      ? "تاكسي من المدينة إلى مكة | من المطار والفنادق - تاكسي العمرة" 
       : "Madinah to Makkah Taxi | Private Umrah Transfer Services";
     const description = ar 
       ? "احجز تاكسي خاص من المدينة المنورة إلى مكة المكرمة. استقبال من مطار المدينة وفنادق المدينة المنورة، سيارات حديثة وسائقين محترفين. خدمة 24 ساعة." 

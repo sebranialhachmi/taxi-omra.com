@@ -3,6 +3,7 @@
 import * as riyadh from "./riyadh.mjs";
 import * as unserved from "./unserved.mjs";
 import { priorityFor } from "./release-rules.mjs";
+import { cleanPrices, validPrices, cleanMetaPrices, META_PRICE_FIELDS } from "./prices-clean.mjs";
 
 const parseJson = (v) => { try { return JSON.parse(v); } catch { return v; } };
 
@@ -66,6 +67,78 @@ const MIGRATIONS = [
     run: removeUnservedCities,
   },
   {
+    // An earlier version of the cleaners had a regex that could swallow everything between two
+    // headings and emptied most of the text of ~15 pages. Rows whose text is now much shorter
+    // than the (fixed) seed get it back from the seed.
+    name: "2026-10-25-restore-damaged-content",
+    async run(conn, log, ctx) {
+      const plain = (h) => String(h ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().length;
+      for (const [table, cols] of [["pages", ["body_ar", "body_en"]], ["posts", ["content_ar", "content_en"]]]) {
+        let seed;
+        try { seed = await ctx.readSeed(table); } catch { log(`${table}: no seed available, skipped`); continue; }
+        const bySlug = new Map(seed.map((r) => [r.slug, r]));
+        const [rows] = await conn.query(`SELECT id, slug, ${cols.join(", ")} FROM \`${table}\``);
+        let restored = 0;
+        for (const r of rows) {
+          const s = bySlug.get(r.slug);
+          if (!s) continue;
+          const set = {};
+          for (const c of cols) if (plain(s[c]) > 0 && plain(r[c]) < plain(s[c]) * 0.85) set[c] = s[c];
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`${table}\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          restored++;
+        }
+        log(`${table}: ${restored} rows restored from the seed`);
+      }
+    },
+  },
+  {
+    // Long-form text quoted fares that contradict the live prices table (e.g. Makkah-Madinah sedan 750
+    // while the table says 400). Price columns / blocks with unknown prices are removed; the live
+    // table and the fares guide are the single source of fares.
+    name: "2026-10-25-clean-conflicting-prices",
+    async run(conn, log) {
+      const [prices] = await conn.query("SELECT economy_price, suv_price, vip_price FROM `prices`");
+      const valid = validPrices(prices);
+      for (const [table, cols] of [["pages", ["body_ar", "body_en"]], ["posts", ["content_ar", "content_en"]]]) {
+        const [rows] = await conn.query(`SELECT id, ${cols.join(", ")} FROM \`${table}\``);
+        let changed = 0;
+        for (const r of rows) {
+          const set = {};
+          for (const c of cols) { const out = cleanPrices(r[c], valid); if (out !== r[c]) set[c] = out; }
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`${table}\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          changed++;
+        }
+        log(`${table}: ${changed} rows had conflicting fares removed`);
+      }
+    },
+  },
+  {
+    // Titles / descriptions / subtitles no longer quote fares (see cleanMetaPrices).
+    name: "2026-10-25-clean-meta-prices",
+    async run(conn, log) {
+      for (const table of ["pages", "posts"]) {
+        const [cols] = await conn.query("SELECT COLUMN_NAME c FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ?", [table]);
+        const have = new Set(cols.map((r) => r.c));
+        const fields = META_PRICE_FIELDS.filter((f) => have.has(f));
+        const [rows] = await conn.query(`SELECT id, ${fields.map((f) => `\`${f}\``).join(", ")} FROM \`${table}\``);
+        let changed = 0;
+        for (const r of rows) {
+          const set = {};
+          for (const f of fields) { const out = cleanMetaPrices(f, r[f]); if (out !== r[f]) set[f] = out; }
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`${table}\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          changed++;
+        }
+        log(`${table}: fares removed from the titles/descriptions of ${changed} rows`);
+      }
+    },
+  },
+  {
     // Start the gradual release: everything is hidden from Google again, items get a release
     // order, and the first run shows the six most important ones; after that the scheduler adds
     // a few every few days (see src/server/release.server.ts).
@@ -85,7 +158,7 @@ const MIGRATIONS = [
   },
 ];
 
-export async function runDataMigrations(conn, log = () => {}) {
+export async function runDataMigrations(conn, log = () => {}, ctx = {}) {
   await conn.query(
     "CREATE TABLE IF NOT EXISTS `data_migrations` (`name` VARCHAR(190) PRIMARY KEY, `applied_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
   );
@@ -94,7 +167,7 @@ export async function runDataMigrations(conn, log = () => {}) {
   for (const m of MIGRATIONS) {
     if (seen.has(m.name)) continue;
     log(`migration ${m.name}`);
-    await m.run(conn, log);
+    await m.run(conn, log, ctx);
     await conn.query("INSERT INTO `data_migrations` (`name`) VALUES (?)", [m.name]);
   }
 }

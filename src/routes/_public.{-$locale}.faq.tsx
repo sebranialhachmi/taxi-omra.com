@@ -14,7 +14,7 @@ export const Route = createFileRoute("/_public/{-$locale}/faq")({
     const ar = (params.locale ?? "ar") === "ar";
     const title = ar
       ? `الأسئلة الشائعة — الحجز والأسعار وخدمة العمرة | ${SITE.brand.ar}`
-      : `FAQ — Booking, Prices & Umrah Chauffeur Service | ${SITE.brand.en}`;
+      : `FAQ: Booking, Fares & Umrah Taxi Service | ${SITE.brand.en}`;
     const description = ar
       ? "إجابات على أكثر الأسئلة تكراراً حول الحجز، الأسعار الثابتة، مدة الانتظار، طرق الدفع، وخدمة التوصيل من مطار جدة إلى مكة."
       : "Answers to the most common questions about booking, fixed fares, waiting time, payment methods, and Jeddah Airport to Makkah transfers.";
