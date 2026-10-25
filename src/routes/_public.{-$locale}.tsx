@@ -2,6 +2,7 @@ import { localBusinessJsonLd } from "@/lib/seo";
 import { createFileRoute, notFound, Outlet, redirect } from "@tanstack/react-router";
 import { PublicHeader } from "@/components/PublicHeader";
 import { PublicFooter } from "@/components/PublicFooter";
+import { ServiceLinks } from "@/components/public/ServiceLinks";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { CookieConsent } from "@/components/CookieConsent";
 import { AnnouncementBar } from "@/components/AnnouncementBar";
@@ -161,6 +162,7 @@ function PublicLayout() {
       <main className="flex-1">
         <Outlet />
       </main>
+      <ServiceLinks />
       <PublicFooter />
       <WhatsAppFab />
       <CookieConsent />

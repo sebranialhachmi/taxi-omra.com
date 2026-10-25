@@ -31,7 +31,7 @@ export const Route = createFileRoute("/_public/{-$locale}/taxi-makkah")({
       : "Makkah Taxi | Private Transfers for Visitors & Pilgrims";
     const description = ar 
       ? "احجز تاكسي مكة للتنقل داخل المدينة أو من مطار جدة. خدمة موثوقة لزوار الحرم والعائلات بأسعار ثابتة. سيارات حديثة وسائقون محترفون." 
-      : "Book a private Makkah taxi for hotel transfers, Haram pickups, and pilgrimage transportation. Reliable 24/7 chauffeur service in Makkah for international travelers.";
+      : "Book a private Makkah taxi for hotel transfers, Haram pickups and pilgrimage transport. Reliable 24/7 chauffeur service in Makkah for international travelers.";
     
     return {
       meta: [

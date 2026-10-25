@@ -100,7 +100,9 @@ export async function setupDatabase(conn, opts = {}) {
     await conn.query("INSERT IGNORE INTO `settings` (`k`,`v`) VALUES (?,?)", [k, JSON.stringify(v)]);
   }
 
-  await runDataMigrations(conn, log);
+  const readSeed = async (file) =>
+    opts.loadSeed ? opts.loadSeed(file) : JSON.parse(await readFile(new URL(`${file}.json`, opts.seedDir), "utf8"));
+  await runDataMigrations(conn, log, { readSeed });
 
   const { adminEmail, adminPassword } = opts;
   if (adminEmail && adminPassword) {

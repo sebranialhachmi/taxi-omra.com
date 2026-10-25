@@ -85,7 +85,7 @@ function tidy(html) {
   out = out.replace(/<(ul|ol)\b[^>]*>\s*<\/\1>/gi, "");
   out = out.replace(/<t(body|head)\b[^>]*>\s*<\/t\1>/gi, "").replace(/<table\b[^>]*>\s*<\/table>/gi, "");
   // a heading with nothing under it (next thing is another heading or the end)
-  for (let i = 0; i < 3; i++) out = out.replace(/<h([2-6])\b[^>]*>[\s\S]*?<\/h\1>\s*(?=<h[1-6]\b|$)/gi, "");
+  for (let i = 0; i < 3; i++) out = out.replace(/<h([2-6])\b[^>]*>(?:(?!<\/h\1>)[\s\S])*<\/h\1>\s*(?=<h[1-6]\b|$)/gi, "");
   return out.replace(/\n{3,}/g, "\n\n").trim();
 }
 

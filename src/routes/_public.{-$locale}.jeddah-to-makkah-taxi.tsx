@@ -25,11 +25,11 @@ export const Route = createFileRoute("/_public/{-$locale}/jeddah-to-makkah-taxi"
     const ar = locale === "ar";
     const url = `${SITE.url}/${locale}/jeddah-to-makkah-taxi`;
     const title = ar 
-      ? "تاكسي من مطار جدة إلى مكة | حجز توصيل مباشر 24 ساعة - تاكسي العمرة" 
-      : "Jeddah to Makkah Taxi | Private Umrah Transfer - Umrah Taxi Saudi";
+      ? "تاكسي من مطار جدة إلى مكة | توصيل مباشر - تاكسي العمرة" 
+      : "Jeddah to Makkah Taxi | Private Umrah Transfer";
     const description = ar 
       ? "احجز أفضل تاكسي من مطار جدة إلى مكة المكرمة. خدمة استقبال احترافية، سيارات حديثة، وأسعار ثابتة للمعتمرين والزوار. احجز رحلتك الآن في أقل من دقيقة." 
-      : "Reliable Jeddah to Makkah taxi service for Umrah pilgrims. Private Jeddah Airport to Makkah transfers with professional drivers and fixed rates. Book your hotel transfer now.";
+      : "Reliable Jeddah to Makkah taxi for Umrah pilgrims. Private Jeddah Airport to Makkah transfers with professional drivers and fixed fares. Book now.";
     return {
       meta: [
         { title }, 
