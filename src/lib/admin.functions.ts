@@ -86,7 +86,7 @@ export const adminGet = createServerFn({ method: "GET" })
   });
 
 export const adminSave = createServerFn({ method: "POST" })
-  .inputValidator((i: unknown) => z.object({ table, id: z.number().int().optional(), values: z.record(z.any()) }).parse(i))
+  .inputValidator((i: unknown) => z.object({ table, id: z.number().int().optional(), values: z.record(z.string(), z.any()) }).parse(i))
   .handler(async ({ data }) => {
     const { requireAdmin } = await import("@/server/auth.server");
     const { insert, update } = await import("@/server/db.server");
@@ -129,7 +129,7 @@ export const adminGetSettings = createServerFn({ method: "GET" }).handler(async 
 });
 
 export const adminSaveSettings = createServerFn({ method: "POST" })
-  .inputValidator((i: unknown) => z.record(z.string().max(20000)).parse(i))
+  .inputValidator((i: unknown) => z.record(z.string(), z.string().max(20000)).parse(i))
   .handler(async ({ data }) => {
     const { requireAdmin } = await import("@/server/auth.server");
     const { setSetting } = await import("@/server/db.server");
