@@ -3,6 +3,7 @@
 import * as riyadh from "./riyadh.mjs";
 import * as unserved from "./unserved.mjs";
 import { priorityFor } from "./release-rules.mjs";
+import { fixLinks } from "./links-fix.mjs";
 import { cleanPrices, validPrices, cleanMetaPrices, META_PRICE_FIELDS } from "./prices-clean.mjs";
 
 const parseJson = (v) => { try { return JSON.parse(v); } catch { return v; } };
@@ -135,6 +136,25 @@ const MIGRATIONS = [
           changed++;
         }
         log(`${table}: fares removed from the titles/descriptions of ${changed} rows`);
+      }
+    },
+  },
+  {
+    // Texts linked to /fare-guide and /jeddah-airport-to-haram, which are 404 here.
+    name: "2026-11-06-fix-broken-internal-links",
+    async run(conn, log) {
+      for (const [table, cols] of [["pages", ["body_ar", "body_en"]], ["posts", ["content_ar", "content_en"]]]) {
+        const [rows] = await conn.query(`SELECT id, ${cols.join(", ")} FROM \`${table}\``);
+        let changed = 0;
+        for (const r of rows) {
+          const set = {};
+          for (const c of cols) { const out = fixLinks(r[c]); if (out !== r[c]) set[c] = out; }
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`${table}\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          changed++;
+        }
+        log(`${table}: ${changed} rows had broken internal links fixed`);
       }
     },
   },

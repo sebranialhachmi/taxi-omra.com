@@ -10,6 +10,10 @@
  * Paths are locale-less; the redirect keeps the visitor's locale prefix.
  */
 export const CANONICAL_REDIRECTS: Record<string, string> = {
+  // ---- Old internal links that never had a page ----
+  "/fare-guide": "/guide/taxi-fares",
+  "/jeddah-airport-to-haram": "/blog/jeddah-airport-to-haram",
+
   // ---- Generic /p/ copies of typed CMS pages ----
   "/p/khalid-al-mutairi": "/about", // misfiled testimonial, thin page
   "/p/luxury-transfer": "/services/luxury-transfer",
