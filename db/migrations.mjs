@@ -183,6 +183,35 @@ const MIGRATIONS = [
     },
   },
   {
+    // Facts in the appended sections were checked against public sources and corrected
+    // (airport distances, the Qarn al-Manazil route, Al Hada road closures): replace the old tail.
+    name: "2026-11-07-post-extras-v2",
+    async run(conn, log, ctx) {
+      let extras;
+      try { extras = await ctx.readSeed("post_extras"); } catch { log("post extras v2: no seed available, skipped"); return; }
+      let changed = 0;
+      for (const [slug, x] of Object.entries(Array.isArray(extras) ? {} : extras)) {
+        const [rows] = await conn.query("SELECT id, content_ar, content_en FROM `posts` WHERE slug = ?", [slug]);
+        const mark = `<!--x1:${slug}-->`;
+        for (const r of rows) {
+          const set = {};
+          for (const [col, add] of [["content_ar", x.ar], ["content_en", x.en]]) {
+            if (!add) continue;
+            const cur = String(r[col] ?? "");
+            const i = cur.indexOf(mark);
+            const next = i === -1 ? `${cur}${add}` : `${cur.slice(0, i)}${add}`;
+            if (next !== cur) set[col] = next;
+          }
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`posts\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          changed++;
+        }
+      }
+      log(`post extras v2: ${changed} articles refreshed`);
+    },
+  },
+  {
     // Start the gradual release: everything is hidden from Google again, items get a release
     // order, and the first run shows the six most important ones; after that the scheduler adds
     // a few every few days (see src/server/release.server.ts).

@@ -35,7 +35,7 @@ add("jeddah-airport-taxi-fare",
 
 add("jeddah-airport-to-haram",
   sec("كم تستغرق الرحلة من مطار جدة إلى الحرم المكي؟", [
-    "المسافة من مطار الملك عبدالعزيز إلى منطقة الحرم تقارب تسعين إلى مئة كيلومتر، وتستغرق عادة ما بين ساعة وساعة ونصف في الظروف المعتادة. تطول المدة في ليالي رمضان وأيام الجمعة وفي مواسم العمرة الذروة، خصوصًا عند الاقتراب من محيط الحرم.",
+    "المسافة من مطار الملك عبدالعزيز إلى منطقة الحرم تتراوح بين خمسة وثمانين ومئة كيلومتر تقريبًا بحسب المسار ونقطة الانطلاق، وتستغرق عادة ما بين ساعة وساعة ونصف في الظروف المعتادة. تطول المدة في ليالي رمضان وأيام الجمعة وفي مواسم العمرة الذروة، خصوصًا عند الاقتراب من محيط الحرم.",
     "إذا كنت تخطط للوصول إلى الفندق قبل موعد صلاة أو قبل موعد طواف محدد، فأضف نصف ساعة إضافية فوق التقدير."]) +
   sec("نصائح قبل الركوب في رحلة عمرة", [], [
     "تأكد أن عنوان الفندق مكتوب بالعربية والإنجليزية ومعه اسم الحي أو أقرب معلم.",
@@ -45,7 +45,7 @@ add("jeddah-airport-to-haram",
   sec("متى تغادر الفندق للعودة إلى المطار؟", [
     "لا تحسب الوقت من لحظة الخروج من الحرم. اترك على الأقل أربع ساعات قبل رحلة دولية بعد طواف الوداع، لأن الازدحام قرب الحرم وإجراءات المطار يستهلكان وقتًا. هذه القاعدة وحدها تمنع أغلب حالات تفويت الطائرة."]),
   sec("How long is the ride from Jeddah Airport to the Haram?", [
-    "The distance from King Abdulaziz Airport to the Haram area is roughly ninety to a hundred kilometres, usually between one hour and an hour and a half in normal conditions. It takes longer on Ramadan nights, Fridays and peak Umrah periods, especially near the Haram itself.",
+    "The distance from King Abdulaziz Airport to the Haram area is roughly 85 to 100 kilometres depending on the route and starting point, usually between one hour and an hour and a half in normal conditions. It takes longer on Ramadan nights, Fridays and peak Umrah periods, especially near the Haram itself.",
     "If you plan to reach your hotel before a prayer or a fixed tawaf time, add another half hour on top of the estimate."]) +
   sec("Tips before you get in for an Umrah trip", [], [
     "Have the hotel address written in Arabic and English, with the district or nearest landmark.",
@@ -193,7 +193,7 @@ add("intercity-transfer-guide",
   sec("قاعدة التوقف والراحة", [
     "في الرحلات الطويلة خطّط لتوقف واحد على الأقل للصلاة والراحة كل ساعتين إلى ثلاث، خصوصًا مع الأطفال وكبار السن. اتفق مع السائق على ذلك قبل الانطلاق كي لا يُحسب وقت التوقف خلافًا."]) +
   sec("الطائف: طريق جبلي", [
-    "طريق الهدا إلى الطائف جبلي وقد يكون الجو أبرد وأكثر ضبابًا في بعض الفترات. جهّز ملابس إضافية خفيفة، وتجنّب السفر ليلًا إن كانت الرؤية ضعيفة."]),
+    "طريق الهدا إلى الطائف جبلي وقد يكون الجو أبرد وأكثر ضبابًا في بعض الفترات، وقد يُغلق مؤقتًا عند الضباب أو الأمطار فيُحوَّل المسار إلى طريق السيل (يضيف نحو 45 دقيقة). جهّز ملابس إضافية خفيفة، وتجنّب السفر ليلًا إن كانت الرؤية ضعيفة."]),
   sec("How to plan a long trip between the holy cities", [
     "Trips between Makkah, Madinah, Jeddah and Taif are different from single-city rides: the distance is longer, stops are necessary, and planning ahead saves a lot. Here are approximate distances and times in normal conditions:"], [
     "Jeddah to Makkah: about 80 km, around one hour.",
@@ -203,7 +203,7 @@ add("intercity-transfer-guide",
   sec("The rule for stops and rest", [
     "On long trips plan at least one stop for prayer and rest every two to three hours, especially with children and elderly passengers. Agree it with the driver before departure so stop time is not disputed."]) +
   sec("Taif: a mountain road", [
-    "The Al Hada road to Taif is mountainous and can be cooler and foggier at times. Bring extra light clothing and avoid travelling at night if visibility is poor."]));
+    "The Al Hada road to Taif is mountainous and can be cooler and foggier at times, and it may close temporarily in fog or rain, sending traffic to the Sail road (about 45 minutes longer). Bring extra light clothing and avoid travelling at night if visibility is poor."]));
 
 add("madinah-to-makkah-transfer",
   sec("زيارة المدينة ثم الانتقال إلى مكة: ما يجب أن تعرفه", [
@@ -225,27 +225,25 @@ add("madinah-to-makkah-transfer",
 
 add("jeddah-to-taif-transfer",
   sec("رحلة جدة إلى الطائف: ما الذي يميّزها؟", [
-    "تصعد الطريق من الساحل إلى الجبال، فيتغير الجو تدريجيًا ويصبح أبرد، خصوصًا مساءً وفي الشتاء. المسافة نحو مئة وستين إلى مئة وسبعين كيلومترًا عبر مكة أو عبر طريق السيل، وتستغرق عادة قرابة ساعتين إلى ساعتين ونصف.",
+    "تصعد الطريق من الساحل إلى الجبال، فيتغير الجو تدريجيًا ويصبح أبرد، خصوصًا مساءً وفي الشتاء. المسافة نحو 170 كيلومترًا، وتستغرق عادة قرابة ساعتين إلى ساعتين ونصف.",
     "وجهات الزوار المعتادة هناك: الهدا والشفا، وسوق عكاظ، وقصر شبرا، والمزارع، وموسم الورد الطائفي الذي يكون عادة في الربيع."]) +
   sec("رحلة اليوم الواحد أم المبيت؟", [
     "يختار كثيرون زيارة الطائف في يوم واحد من جدة أو مكة. في هذه الحالة اتفق مع السائق على مدة الانتظار ومحطات التوقف مسبقًا، وجهّز ملابس إضافية خفيفة. أما إن كنت ستبيت فاحجز العودة بموعد واضح."]),
   sec("The Jeddah to Taif trip: what is different", [
-    "The road climbs from the coast to the mountains, so the weather gradually gets cooler, especially in the evening and in winter. The distance is about 160 to 170 km via Makkah or via the Sail road, usually taking about two to two and a half hours.",
+    "The road climbs from the coast to the mountains, so the weather gradually gets cooler, especially in the evening and in winter. The distance is about 170 km, usually taking about two to two and a half hours.",
     "Typical visitor destinations there are Al Hada and Al Shafa, Souq Okaz, Shubra Palace, the farms, and the Taif rose season which is usually in spring."]) +
   sec("A day trip or an overnight stay", [
     "Many visit Taif in one day from Jeddah or Makkah. In that case agree the waiting time and stops with the driver beforehand and bring extra light clothing. If you will stay overnight, book the return for a clear time."]));
 
 add("taif-to-makkah-transfer",
   sec("الطريق من الطائف إلى مكة", [
-    "النزول من الطائف إلى مكة يمر بمنعطفات جبلية على طريق الهدا، وقد يقابلك ضباب في بعض الأوقات. يستغرق الطريق عادة ما بين ساعة وساعة وربع. هذا الطريق يمر قرب ميقات قرن المنازل (السيل الكبير)، ومن أراد الإحرام للعمرة منه فيمكنه الاتفاق مع السائق على التوقف.",
-    "خطّط للوصول بحيث لا تكون في الطريق وقت ازدحام قرب مكة، خصوصًا أيام الجمعة."]) +
+    "النزول من الطائف إلى مكة يمر بمنعطفات جبلية على طريق الهدا، وقد يقابلك ضباب في بعض الأوقات. يستغرق الطريق عادة ما بين ساعة وساعة وربع. يُغلق طريق الهدا أحيانًا مؤقتًا بسبب الضباب أو الأمطار، وفي هذه الحالة يُسلك طريق السيل ويضيف نحو 45 دقيقة بحسب بعض المصادر. وللإحرام من ميقات قرن المنازل موضعان: وادي محرم على طريق الهدا (نحو 76 كم من الحرم)، ومسجد السيل الكبير على طريق السيل (نحو 80 كم). فاتفق مع السائق على الموضع الذي تريده قبل الانطلاق، واسأل عن الحكم الشرعي في حالتك."]) +
   sec("قبل أن تنطلق", [], [
     "ارتدِ ملابس مناسبة لأن الجو في الطائف أبرد من مكة.",
     "حدد نقطة النزول القريبة من فندقك أو من الحرم.",
     "إن كنت ستؤدي العمرة وتعود فاتفق على مدة الانتظار."]),
   sec("The road from Taif to Makkah", [
-    "The descent from Taif to Makkah has mountain bends on the Al Hada road, and there may be fog at times. It usually takes between one hour and an hour and a quarter. The road passes near the Qarn al-Manazil miqat (As-Sayl Al-Kabir), and if you want to enter ihram for Umrah there you can agree a stop with the driver.",
-    "Plan your arrival so that you are not on the road at a congested time near Makkah, especially on Fridays."]) +
+    "The descent from Taif to Makkah has mountain bends on the Al Hada road, and there may be fog at times. It usually takes between one hour and an hour and a quarter. The Al Hada road is sometimes closed temporarily by fog or rain, in which case the Sail road is used and adds about 45 minutes according to some sources. The Qarn al-Manazil miqat has two places: Wadi Muhrim on the Al Hada road (about 76 km from the Haram) and the As-Sayl Al-Kabir mosque on the Sail road (about 80 km). Agree with the driver which place you want before setting off, and ask about the ruling for your case."]) +
   sec("Before you set off", [], [
     "Dress appropriately because Taif is cooler than Makkah.",
     "Decide the drop-off point nearest your hotel or the Haram.",
@@ -265,14 +263,14 @@ add("makkah-to-madinah-transfer",
 
 add("madinah-airport-to-haram-transfer",
   sec("من مطار المدينة إلى محيط المسجد النبوي", [
-    "المسافة بين مطار الأمير محمد بن عبدالعزيز والمنطقة المركزية نحو خمسة عشر إلى عشرين كيلومترًا، وتستغرق عادة ما بين خمس وعشرين وخمس وثلاثين دقيقة. غير أن مواسم الزيارة قد تزيد الوقت، كما أن بعض الشوارع القريبة من المسجد النبوي تُغلق وقت الصلوات.",
+    "المسافة بين مطار الأمير محمد بن عبدالعزيز والمنطقة المركزية نحو عشرين كيلومترًا (تتراوح التقديرات بين 15 و25 بحسب نقطة الوصول)، وتستغرق عادة ما بين عشرين وثلاثين دقيقة. غير أن مواسم الزيارة قد تزيد الوقت، كما أن بعض الشوارع القريبة من المسجد النبوي تُغلق وقت الصلوات.",
     "اطلب من السائق النزول عند أقرب نقطة تصل إليها السيارة من فندقك، وتأكد من مكان باب الفندق قبل أن تصل."]) +
   sec("نصائح للوصول الأول", [], [
     "احتفظ بعنوان الفندق ورقم الهاتف مكتوبين.",
     "إن وصلت قبل موعد الدخول إلى الغرفة فاسأل الفندق عن حفظ الحقائب.",
     "اضبط وقت الاستلام بعد خروجك من المطار لا قبله."]),
   sec("From Madinah Airport to the Prophet's Mosque area", [
-    "The distance from Prince Mohammad bin Abdulaziz Airport to the central area is about fifteen to twenty kilometres, usually taking between twenty-five and thirty-five minutes. Visiting seasons can add time, and some streets near the Prophet's Mosque close around prayer times.",
+    "The distance from Prince Mohammad bin Abdulaziz Airport to the central area is about twenty kilometres (estimates range from 15 to 25 depending on the drop-off point), usually taking between twenty and thirty minutes. Visiting seasons can add time, and some streets near the Prophet's Mosque close around prayer times.",
     "Ask the driver to stop at the nearest point the car can reach from your hotel and know where your hotel entrance is before you arrive."]) +
   sec("Tips for a first arrival", [], [
     "Keep the hotel address and phone number written down.",
