@@ -2,7 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { CityLongContent } from "@/components/public/CityLongContent";
 import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
 import { getVehicleCategoryByCode, listVehicleCategories } from "@/lib/public.functions";
-import { breadcrumbJsonLd, vehicleJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, vehicleJsonLd, fitTitle, fitDescription } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, ChevronRight, Users } from "lucide-react";
 import { useI18n, withLocale } from "@/lib/i18n";
@@ -39,8 +39,11 @@ export const Route = createFileRoute("/_public/{-$locale}/fleet/$slug")({
     const en = pickTr(row, "en");
     const cur = pickTr(row, locale);
     const url = `/${locale}/fleet/${row.code}`;
-    const title = `${cur.name} — ${SITE.brand[locale]}`;
-    const desc = cur.description || `${en.name} with ${row.seats} seats.`;
+    const title = fitTitle(
+      locale === "ar" ? `${cur.name} مع سائق في مكة وجدة | ${SITE.brand[locale]}` : `${cur.name} with Driver in Makkah & Jeddah | ${SITE.brand[locale]}`,
+      locale,
+    );
+    const desc = fitDescription(cur.description || `${en.name} with ${row.seats} seats.`, locale);
     const hero = categoryImage(row);
     const ogImage = hero?.startsWith("http") ? hero : `${SITE.url}${hero}`;
     return {
