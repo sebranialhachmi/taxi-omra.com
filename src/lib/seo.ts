@@ -73,7 +73,6 @@ export function organizationJsonLd() {
         "@type": "ContactPoint",
         telephone: `+${SITE.whatsapp}`,
         contactType: "customer service",
-        contactOption: "TollFree",
         areaServed: SITE.country,
         availableLanguage: ["en", "ar"],
       },
@@ -208,6 +207,38 @@ export function vehicleJsonLd(v: { name: string; description?: string; image?: s
   };
 }
 
+const DESC_SUFFIX = {
+  ar: " سعر ثابت للسيارة، الدفع عند الوصول، والحجز عبر واتساب على مدار الساعة.",
+  en: " Fixed fare per car, pay on arrival, book on WhatsApp 24/7.",
+};
+
+/** Keep meta descriptions inside the 110-160 character window search engines show. */
+export function fitDescription(desc: string, locale: "ar" | "en"): string {
+  let d = (desc ?? "").replace(/\s+/g, " ").trim();
+  if (!d) return d;
+  if (d.length < 110 && d.length + DESC_SUFFIX[locale].length <= 160) d = `${d.replace(/[.،]$/, "")}.${DESC_SUFFIX[locale]}`;
+  if (d.length > 160) {
+    const cut = d.slice(0, 157);
+    d = `${cut.slice(0, cut.lastIndexOf(" ") > 100 ? cut.lastIndexOf(" ") : 157).replace(/[\s,،;:.-]+$/, "")}…`;
+  }
+  return d;
+}
+
+/** Titles shorter than 30 characters get a short qualifier; longer than 62 lose the brand part. */
+export function fitTitle(title: string, locale: "ar" | "en"): string {
+  const t = (title ?? "").trim();
+  if (t.length > 62 && t.includes(" | ")) {
+    const head = t.slice(0, t.lastIndexOf(" | "));
+    if (head.length >= 25) return head;
+  }
+  if (t.length < 30 && t.includes(" | ")) {
+    const i = t.lastIndexOf(" | ");
+    const q = locale === "ar" ? " بأسعار ثابتة" : " | Fixed Fares";
+    return locale === "ar" ? `${t.slice(0, i)}${q}${t.slice(i)}` : `${t.slice(0, i)}${q}${t.slice(i)}`;
+  }
+  return t;
+}
+
 // Build a full <head> block from a CMS page's SEO fields.
 export function buildCmsHead(p: {
   slug: string;
@@ -224,8 +255,8 @@ export function buildCmsHead(p: {
   // The stored meta/og fields are English. Arabic pages build their title and
   // description from the Arabic fields so they match the Arabic page body.
   const ar = locale === "ar" && !!p.title_ar;
-  const title = ar ? `${p.title_ar} | تاكسي العمرة` : p.meta_title || p.title_en;
-  const desc = ar ? p.subtitle_ar || p.title_ar : p.meta_description || p.subtitle_en || "";
+  const title = fitTitle(ar ? `${p.title_ar} | تاكسي العمرة` : p.meta_title || p.title_en, ar ? "ar" : "en");
+  const desc = fitDescription(ar ? p.subtitle_ar || p.title_ar : p.meta_description || p.subtitle_en || "", ar ? "ar" : "en");
   if (ar) { p = { ...p, og_title: null, og_description: null }; }
   // Canonical + og:url are emitted by the public layout (URL-aware). Only add
   // page-specific meta here to avoid duplicate canonical/og:url tags.

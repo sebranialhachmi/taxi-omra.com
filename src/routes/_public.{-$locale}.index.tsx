@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { SITE, waLink, telLink } from "@/lib/site-info";
-import { organizationJsonLd, localBusinessJsonLd, breadcrumbJsonLd, faqPageJsonLd, serviceJsonLd, webApplicationJsonLd } from "@/lib/seo";
+import { organizationJsonLd, localBusinessJsonLd, breadcrumbJsonLd, faqPageJsonLd, serviceJsonLd } from "@/lib/seo";
 import heroImg from "@/assets/hero-luxury-car.webp";
 import airportImg from "@/assets/airport-transfer.jpg";
 import businessImg from "@/assets/business-travel.jpg";
@@ -69,11 +69,6 @@ export const Route = createFileRoute("/_public/{-$locale}/")({
     const graph: any[] = [
       organizationJsonLd(),
       localBusinessJsonLd(),
-      webApplicationJsonLd({
-        description: isEn
-          ? "Umrah taxi and airport transfer service from Jeddah Airport to Makkah and across Saudi Arabia — easy bookings, fixed fares and modern cars available 24 hours."
-          : "خدمة تاكسي العمرة والتوصيل من مطار جدة إلى مكة المكرمة وجميع مدن المملكة، مع حجوزات سهلة، أسعار ثابتة، وسيارات حديثة تعمل على مدار 24 ساعة.",
-      }),
       {
         "@context": "https://schema.org",
         "@type": "WebSite",

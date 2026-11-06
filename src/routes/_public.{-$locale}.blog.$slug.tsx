@@ -8,7 +8,7 @@ import { isIndexable } from "@/lib/content-quality";
 import { isIndexedBlog } from "@/lib/index-policy";
 import { blogCoverImage } from "@/lib/blog-images";
 import { absoluteUrl, usableImage } from "@/lib/images";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, fitDescription } from "@/lib/seo";
 import { RelatedLinks } from "@/components/public/RelatedLinks";
 
 const opts = (slug: string) => queryOptions({
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/_public/{-$locale}/blog/$slug")({
     const ar = (params?.locale ?? "ar") === "ar";
     // Arabic and English metadata are fully independent — no cross-language fallback.
     const title = ar ? (p.meta_title_ar || p.title_ar) : (p.meta_title || p.title_en);
-    const desc = ar ? (p.meta_description_ar || p.excerpt_ar || "") : (p.meta_description || p.excerpt_en || "");
+    const desc = fitDescription(ar ? (p.meta_description_ar || p.excerpt_ar || "") : (p.meta_description || p.excerpt_en || ""), ar ? "ar" : "en");
     const image = absoluteUrl(usableImage(p.og_image_url) || blogCoverImage(p));
     const locale = ar ? "ar" : "en";
     const url = `${SITE.url}/${locale}/blog/${p.slug}`;
