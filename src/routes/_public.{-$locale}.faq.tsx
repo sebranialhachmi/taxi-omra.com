@@ -3,7 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
 import { listFaqs } from "@/lib/public.functions";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useI18n } from "@/lib/i18n";
+import { Link } from "@tanstack/react-router";
+import { useI18n, withLocale } from "@/lib/i18n";
 import { SITE } from "@/lib/site-info";
 
 const opts = () => queryOptions({ queryKey: ["public", "faqs"], queryFn: () => listFaqs() });
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/_public/{-$locale}/faq")({
   head: ({ params, loaderData }) => {
     const ar = (params.locale ?? "ar") === "ar";
     const title = ar
-      ? `الأسئلة الشائعة — الحجز والأسعار وخدمة العمرة | ${SITE.brand.ar}`
+      ? `الأسئلة الشائعة: الحجز والأسعار | ${SITE.brand.ar}`
       : `FAQ: Booking, Fares & Umrah Taxi Service | ${SITE.brand.en}`;
     const description = ar
       ? "إجابات على أكثر الأسئلة تكراراً حول الحجز، الأسعار الثابتة، مدة الانتظار، طرق الدفع، وخدمة التوصيل من مطار جدة إلى مكة."
@@ -58,6 +59,12 @@ function FAQ() {
         <h1 className="font-display text-5xl md:text-6xl leading-tight">{ar ? "أسئلة متكررة" : "Common questions"}</h1>
         <p className="text-lg text-muted-foreground">{ar ? "كل ما تحتاج معرفته قبل الحجز." : "Everything you need to know before booking."}</p>
       </div>
+      <h2 className="font-display text-2xl mb-4">{ar ? "قبل أن تقرأ الأسئلة" : "Before you read the questions"}</h2>
+      <p className="text-muted-foreground leading-relaxed mb-8">
+        {ar
+          ? "نجيب هنا عن أكثر ما يسأل عنه الزوار: كيف يتم الحجز، وهل السعر ثابت، ومتى يُدفع، وكيف يتم الاستقبال في المطار. إن لم تجد إجابة سؤالك فراسلنا على واتساب ونرد عليك."
+          : "Here we answer what visitors ask most: how booking works, whether the fare is fixed, when to pay, and how airport pickup works. If you do not find your answer, message us on WhatsApp and we will reply."}
+      </p>
       <Accordion type="single" collapsible className="rounded-2xl border border-border bg-card divide-y divide-border">
         {data.map((f) => (
           <AccordionItem key={f.id} value={f.id} className="border-b-0 px-6">
@@ -66,6 +73,17 @@ function FAQ() {
           </AccordionItem>
         ))}
       </Accordion>
+      <h2 className="font-display text-2xl mt-12 mb-4">{ar ? "صفحات قد تهمك" : "Pages you may need"}</h2>
+      <ul className="grid gap-2 sm:grid-cols-2">
+        {[
+          ["/jeddah-airport-taxi", ar ? "تاكسي مطار جدة" : "Jeddah airport taxi"],
+          ["/taxi-jeddah", ar ? "تاكسي جدة" : "Taxi in Jeddah"],
+          ["/guide/taxi-fares", ar ? "دليل أسعار التاكسي" : "Taxi fares guide"],
+          ["/contact", ar ? "تواصل معنا وحجز واتساب" : "Contact and WhatsApp booking"],
+        ].map(([to, label]) => (
+          <li key={to}><Link to={withLocale(locale, to) as any} className="text-primary underline-offset-4 hover:underline">{label}</Link></li>
+        ))}
+      </ul>
     </section>
   );
 }

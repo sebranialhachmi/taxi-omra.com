@@ -51,7 +51,16 @@ const DEFAULTS = {
 
 const SITE_URL = pick("VITE_SITE_URL", DEFAULTS.url).replace(/\/+$/, "");
 
+/**
+ * Street address, map coordinates and VAT number are published (page, footer, structured data)
+ * only when VITE_SHOW_LEGAL=1. Until the business has a verified premises and registration the
+ * site presents itself as a service-area business, which is also what Google Business Profile
+ * expects for taxis without a customer-facing office.
+ */
+const SHOW_LEGAL = pick("VITE_SHOW_LEGAL", "0") === "1";
+
 export const SITE = {
+  showLegal: SHOW_LEGAL,
   brand: {
     en: pick("VITE_SITE_BRAND_EN", DEFAULTS.brandEn),
     ar: pick("VITE_SITE_BRAND_AR", DEFAULTS.brandAr),

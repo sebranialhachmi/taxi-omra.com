@@ -244,6 +244,40 @@ function PricingPage() {
         </div>
       </section>
 
+      <section className="mt-24 max-w-3xl mx-auto space-y-10">
+        <div>
+          <h2 className="text-2xl font-display mb-4">{ar ? "ما الذي يحدد السعر في الجدول؟" : "What determines the fare in the table"}</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            {ar
+              ? "السعر مرتبط بالمسار وفئة السيارة. المسافة الأطول تعني سعرًا أعلى، والسيارة العائلية أو الفاخرة تكلف أكثر من الاقتصادية. الرحلات الطويلة بين المدن، مثل مكة–المدينة، تُسعَّر على أساس المشوار كاملًا ذهابًا فقط ما لم تطلب غير ذلك، وإن أردت ذهابًا وعودة في اليوم نفسه مع انتظار فاذكر ذلك عند الحجز."
+              : "The fare depends on the route and car class. A longer distance means a higher fare, and a family or luxury car costs more than an economy car. Long intercity trips such as Makkah–Madinah are priced for the whole one-way trip unless you ask otherwise, and if you want a same-day return with waiting, say so when booking."}
+          </p>
+        </div>
+        <div>
+          <h2 className="text-2xl font-display mb-4">{ar ? "كيف تحجز في أربع خطوات" : "How to book in four steps"}</h2>
+          <ol className="list-decimal ps-6 space-y-2 text-muted-foreground leading-relaxed">
+            <li>{ar ? "ابحث عن مسارك في الجدول أعلاه واختر الفئة المناسبة لعدد ركابك وحقائبك." : "Find your route in the table above and choose the class that fits your passengers and bags."}</li>
+            <li>{ar ? "اضغط «حجز» أو راسلنا على واتساب بمكان الاستلام والوجهة والموعد." : "Press “Book” or message us on WhatsApp with the pickup point, destination and time."}</li>
+            <li>{ar ? "نؤكد لك السعر النهائي ونحدد معك موعد الاستلام ورقم الرحلة إن كان من المطار." : "We confirm the final fare and agree the pickup time with you, plus the flight number if it is an airport pickup."}</li>
+            <li>{ar ? "يصلك السائق في الموعد، وتدفع الأجرة عند الوصول." : "The driver meets you on time and you pay on arrival."}</li>
+          </ol>
+        </div>
+        <div>
+          <h2 className="text-2xl font-display mb-4">{ar ? "متى يتغير السعر؟" : "When can the fare change?"}</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            {ar
+              ? "يبقى السعر المؤكد على واتساب كما هو. يتغير فقط إذا غيّرت المسار أو أضفت محطة أو زاد عدد الركاب عن سعة الفئة المحجوزة، وفي هذه الحالة نخبرك بالسعر الجديد قبل التنفيذ لا بعده."
+              : "A fare confirmed on WhatsApp stays as agreed. It only changes if you change the route, add a stop, or exceed the capacity of the class you booked, and in that case we tell you the new fare before the trip, not after."}
+          </p>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          {ar ? "اقرأ أيضًا: " : "Also read: "}
+          <Link to={withLocale(locale, "/jeddah-airport-taxi")} className="text-primary underline-offset-4 hover:underline">{ar ? "تاكسي مطار جدة" : "Jeddah airport taxi"}</Link>{" · "}
+          <Link to={withLocale(locale, "/blog/jeddah-airport-taxi-fare")} className="text-primary underline-offset-4 hover:underline">{ar ? "أجرة التاكسي من مطار جدة" : "Jeddah airport taxi fare"}</Link>{" · "}
+          <Link to={withLocale(locale, "/blog/taxi-jeddah-makkah-prices")} className="text-primary underline-offset-4 hover:underline">{ar ? "أسعار تاكسي جدة–مكة" : "Jeddah to Makkah prices"}</Link>
+        </p>
+      </section>
+
       <footer className="mt-24 text-center text-muted-foreground text-sm">
         <p>© {new Date().getFullYear()} {ar ? SITE.brand.ar : SITE.brand.en}. {ar ? "جميع الحقوق محفوظة." : "All rights reserved."}</p>
         <div className="mt-4 flex justify-center gap-6">

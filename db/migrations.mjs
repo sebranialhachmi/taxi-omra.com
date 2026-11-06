@@ -159,6 +159,30 @@ const MIGRATIONS = [
     },
   },
   {
+    // Practical sections appended to the main articles (distances, timing, what to ask when booking).
+    // Idempotent: a marker comment per article stops a second append.
+    name: "2026-11-07-post-extras",
+    async run(conn, log, ctx) {
+      let extras;
+      try { extras = await ctx.readSeed("post_extras"); } catch { log("post extras: no seed available, skipped"); return; }
+      const map = Array.isArray(extras) ? {} : extras;
+      let changed = 0;
+      for (const [slug, x] of Object.entries(map)) {
+        const [rows] = await conn.query("SELECT id, content_ar, content_en FROM `posts` WHERE slug = ?", [slug]);
+        for (const r of rows) {
+          const set = {};
+          if (x.ar && !String(r.content_ar ?? "").includes(`<!--x1:${slug}-->`)) set.content_ar = `${r.content_ar ?? ""}${x.ar}`;
+          if (x.en && !String(r.content_en ?? "").includes(`<!--x1:${slug}-->`)) set.content_en = `${r.content_en ?? ""}${x.en}`;
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`posts\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          changed++;
+        }
+      }
+      log(`post extras: ${changed} articles extended`);
+    },
+  },
+  {
     // Start the gradual release: everything is hidden from Google again, items get a release
     // order, and the first run shows the six most important ones; after that the scheduler adds
     // a few every few days (see src/server/release.server.ts).

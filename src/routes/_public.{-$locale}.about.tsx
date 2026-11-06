@@ -79,16 +79,20 @@ function About() {
         ))}
       </div>
       <div className="mt-16 grid gap-6 md:grid-cols-2">
+        {SITE.showLegal ? (
         <Card><CardContent className="pt-6">
           <h2 className="text-xl font-bold mb-3">{ar ? "العنوان" : "Our Address"}</h2>
           <p className="text-muted-foreground">{SITE.address[locale]}</p>
         </CardContent></Card>
+        ) : null}
+        {SITE.showLegal || commercialRegistration || transportLicense ? (
         <Card><CardContent className="pt-6">
-          <h2 className="text-xl font-bold mb-3">{ar ? "الرقم الضريبي" : "VAT Registration"}</h2>
-          <p className="text-muted-foreground" dir="ltr">{SITE.vatNumber}</p>
+          <h2 className="text-xl font-bold mb-3">{ar ? "البيانات النظامية" : "Registration details"}</h2>
+          {SITE.showLegal ? <p className="text-muted-foreground" dir="ltr">{ar ? "الرقم الضريبي: " : "VAT: "}{SITE.vatNumber}</p> : null}
           {commercialRegistration ? <p className="mt-3 text-muted-foreground">{ar ? "السجل التجاري: " : "Commercial registration: "}<span dir="ltr">{commercialRegistration}</span></p> : null}
           {transportLicense ? <p className="mt-1 text-muted-foreground">{ar ? "ترخيص النقل: " : "Transport license: "}<span dir="ltr">{transportLicense}</span></p> : null}
         </CardContent></Card>
+        ) : null}
       </div>
       <CityLongContent page="about" />
     </div>

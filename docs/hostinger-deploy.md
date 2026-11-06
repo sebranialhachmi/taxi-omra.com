@@ -56,3 +56,7 @@ cp .env.example .env     # fill DATABASE_URL (MySQL/MariaDB) and ADMIN_EMAIL / A
 npm install
 npm run dev
 ```
+
+## Address, map coordinates and VAT number
+
+By default the site does **not** publish the street address, coordinates or VAT number (page, footer and structured data); it presents itself as a service-area business. When the business has verified premises and registration, set `VITE_SHOW_LEGAL=1` in the environment variables, rebuild and redeploy.

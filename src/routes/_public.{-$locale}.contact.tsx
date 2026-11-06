@@ -35,8 +35,12 @@ export const Route = createFileRoute("/_public/{-$locale}/contact")({
           "@context": "https://schema.org", "@type": "LocalBusiness",
           name: isAr ? SITE.brand.ar : SITE.brand.en,
           telephone: SITE.phone, email: SITE.email,
-          address: { "@type": "PostalAddress", addressLocality: SITE.city, addressCountry: SITE.country },
-          geo: { "@type": "GeoCoordinates", latitude: SITE.latitude, longitude: SITE.longitude },
+          ...(SITE.showLegal
+            ? {
+                address: { "@type": "PostalAddress", addressLocality: SITE.city, addressCountry: SITE.country },
+                geo: { "@type": "GeoCoordinates", latitude: SITE.latitude, longitude: SITE.longitude },
+              }
+            : { areaServed: ["Jeddah", "Makkah", "Madinah", "Taif"] }),
           openingHours: "Mo-Su 00:00-23:59",
           contactPoint: [{ "@type": "ContactPoint", telephone: SITE.phone, contactType: "reservations", availableLanguage: ["ar","en"] }],
         }),
@@ -124,8 +128,8 @@ function Contact() {
               </div>
               <div className="rounded-2xl border border-border bg-card p-5">
                 <MapPin className="h-5 w-5 text-gold mb-3" />
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">{ar ? "الموقع" : "Location"}</div>
-                <div className="font-display text-lg mt-1">{SITE.address[locale]}</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">{ar ? "مناطق الخدمة" : "Service area"}</div>
+                <div className="font-display text-lg mt-1">{SITE.showLegal ? SITE.address[locale] : ar ? "جدة، مكة المكرمة، المدينة المنورة، الطائف" : "Jeddah, Makkah, Madinah, Taif"}</div>
               </div>
             </div>
           </div>
