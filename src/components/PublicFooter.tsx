@@ -80,7 +80,7 @@ export function PublicFooter() {
             <li className="flex items-start gap-3"><Phone className="h-4 w-4 mt-0.5 text-gold shrink-0" /><a href={telHref} className="hover:text-gold transition">{phone}</a></li>
             <li className="flex items-start gap-3"><MessageCircle className="h-4 w-4 mt-0.5 text-gold shrink-0" /><a href={waHref()} target="_blank" rel="noopener" className="hover:text-gold transition">WhatsApp — +{whatsapp}</a></li>
             <li className="flex items-start gap-3"><Mail className="h-4 w-4 mt-0.5 text-gold shrink-0" /><a href={`mailto:${SITE.email}`} className="hover:text-gold transition">{SITE.email}</a></li>
-            <li className="flex items-start gap-3"><MapPin className="h-4 w-4 mt-0.5 text-gold shrink-0" />{SITE.address[locale]}</li>
+            {SITE.showLegal ? <li className="flex items-start gap-3"><MapPin className="h-4 w-4 mt-0.5 text-gold shrink-0" />{SITE.address[locale]}</li> : null}
             <li className="flex items-start gap-3"><Clock className="h-4 w-4 mt-0.5 text-gold shrink-0" />{SITE.hours[locale]}</li>
           </ul>
         </div>
@@ -88,7 +88,7 @@ export function PublicFooter() {
 
       <div className="border-t border-primary-foreground/10">
         <div className="container-tight py-6 flex flex-wrap items-center justify-between gap-3 text-xs text-primary-foreground/50">
-          <span>© {new Date().getFullYear()} {SITE.brand[locale]}. {ar ? "جميع الحقوق محفوظة." : "All rights reserved."} {ar ? "الرقم الضريبي:" : "VAT No."} {SITE.vatNumber}{commercialRegistration ? ` · ${ar ? "السجل التجاري:" : "CR:"} ${commercialRegistration}` : ""}{transportLicense ? ` · ${ar ? "ترخيص النقل:" : "Transport license:"} ${transportLicense}` : ""}</span>
+          <span>© {new Date().getFullYear()} {SITE.brand[locale]}. {ar ? "جميع الحقوق محفوظة." : "All rights reserved."} {SITE.showLegal ? `${ar ? "الرقم الضريبي:" : "VAT No."} ${SITE.vatNumber}` : ""}{commercialRegistration ? ` · ${ar ? "السجل التجاري:" : "CR:"} ${commercialRegistration}` : ""}{transportLicense ? ` · ${ar ? "ترخيص النقل:" : "Transport license:"} ${transportLicense}` : ""}</span>
           <div className="flex items-center gap-4 flex-wrap">
             <Link to={l("/privacy")} className="hover:text-gold transition">{ar ? "الخصوصية" : "Privacy"}</Link>
             <Link to={l("/terms")} className="hover:text-gold transition">{ar ? "الشروط" : "Terms"}</Link>

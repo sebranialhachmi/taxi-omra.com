@@ -45,6 +45,7 @@ const SEEDS: Record<string, () => Promise<{ default: unknown }>> = {
   homepage_sections: () => import("../../content/seed/homepage_sections.json"),
   fleet: () => import("../../content/seed/fleet.json"),
   prices: () => import("../../content/seed/prices.json"),
+  post_extras: () => import("../../content/seed/post_extras.json"),
 };
 
 let ready: Promise<void> | undefined;
