@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_public/{-$locale}/refund")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
-        { name: "robots", content: "index,follow" },
+        { name: "robots", content: "noindex,follow" },
       ],
       links: [],
     };

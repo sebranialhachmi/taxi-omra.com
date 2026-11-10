@@ -113,7 +113,7 @@ function MakkahTaxiPage() {
           { icon: Building2, t_ar: "نقل الفنادق", t_en: "Hotel & Haram Transfers", d_en: "Reliable transfers between your hotel and the Holy Mosque." },
           { icon: Star, t_ar: "توصيل ضيوف الرحمن", t_en: "Pilgrim Transportation", d_en: "Dedicated service for Umrah and Hajj visitors." },
           { icon: Clock, t_ar: "محطة القطار", t_en: "Railway Station Connection", d_en: "Efficient pickups and drop-offs at Haramain Station." },
-          { icon: Plane, t_ar: "مطار جدة ← مكة", t_en: "Jeddah Airport Transfer", d_en: "Direct private pickup from KAIA arrivals.", path: "/jeddah-airport-to-makkah-taxi" },
+          { icon: Plane, t_ar: "مطار جدة ← مكة", t_en: "Jeddah Airport Transfer", d_en: "Direct private pickup from KAIA arrivals.", path: "/jeddah-to-makkah-taxi" },
           { icon: MapPin, t_ar: "مكة ← المدينة", t_en: "Intercity to Madinah", d_en: "Long-distance private transfers between holy cities.", path: "/makkah-to-madinah-taxi" },
           { icon: Car, t_ar: "جولات مخصصة", t_en: "Private City Travel", d_en: "Customized local transportation around Makkah." },
         ].map((s, i) => (

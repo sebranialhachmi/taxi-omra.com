@@ -23,6 +23,7 @@ export const Route = createFileRoute("/_public/{-$locale}/booking")({
     return {
       meta: [
         { title },
+        { name: "robots", content: "noindex,follow" },
         { name: "description", content: desc },
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
