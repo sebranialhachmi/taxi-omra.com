@@ -79,11 +79,6 @@ export const Route = createFileRoute("/_public/{-$locale}/")({
         description: descEn,
         inLanguage: ["ar", "en"],
         publisher: { "@id": `${SITE.url}/#organization` },
-        potentialAction: {
-          "@type": "SearchAction",
-          target: { "@type": "EntryPoint", urlTemplate: `${SITE.url}/${locale}/search?q={search_term_string}` },
-          "query-input": "required name=search_term_string",
-        },
       },
       breadcrumbJsonLd([{ name: isEn ? "Home" : "الرئيسية", url }]),
       serviceJsonLd({

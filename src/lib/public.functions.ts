@@ -2,6 +2,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { select, one, insert, getSettings } from "@/server/db.server";
+import { CANONICAL_REDIRECTS } from "@/lib/canonical-redirects";
 
 // Row shape the old Supabase-based routes expect for fleet categories.
 function toCategory(r: any): any {
@@ -49,7 +50,11 @@ export const listRelatedCmsPages = createServerFn({ method: "GET" })
       orderBy: [["sort_order", "asc"]],
       columns: ["slug", "title_ar", "title_en", "subtitle_ar", "subtitle_en", "hero_image_url", "page_type"],
     });
-    return rows.filter((r) => r.slug !== data.excludeSlug).slice(0, data.limit ?? 6);
+    // Pages whose URL 301s to another page must not be offered as related links.
+    const prefix = ({ airport: "/airports", route_page: "/routes", service: "/services", city: "/cities" } as Record<string, string>)[data.type] ?? "/p";
+    return rows
+      .filter((r) => r.slug !== data.excludeSlug && !CANONICAL_REDIRECTS[`${prefix}/${r.slug}`])
+      .slice(0, data.limit ?? 6);
   });
 
 export const getVehicleCategoryByCode = createServerFn({ method: "GET" })

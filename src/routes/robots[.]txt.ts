@@ -34,6 +34,7 @@ export const Route = createFileRoute("/robots.txt")({
           "Disallow: /reset-password",
           "Disallow: /_authenticated/",
           "Disallow: /api/",
+          "Disallow: /_public/",
           "",
           ...AI_CRAWLERS.flatMap((bot) => [`User-agent: ${bot}`, "Allow: /", ""]),
           `Sitemap: ${SITE.url}/sitemap-index.xml`,

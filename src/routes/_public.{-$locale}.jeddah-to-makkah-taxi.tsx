@@ -140,7 +140,7 @@ function JeddahToMakkahTaxiPage() {
       <div className="flex flex-wrap gap-4 text-sm font-medium border-t pt-8 mb-16">
         <span>{ar ? "مسارات أخرى ذات صلة:" : "Related Umrah Routes:"}</span>
         <Link to={withLocale(locale, "/makkah-to-madinah-taxi")} className="text-gold hover:underline">{ar ? "مكة إلى المدينة" : "Makkah to Madinah"}</Link>
-        <Link to={withLocale(locale, "/makkah-to-jeddah-taxi")} className="text-gold hover:underline">{ar ? "مكة إلى جدة" : "Makkah to Jeddah"}</Link>
+        <Link to={withLocale(locale, "/routes/makkah-to-jeddah")} className="text-gold hover:underline">{ar ? "مكة إلى جدة" : "Makkah to Jeddah"}</Link>
         <Link to={withLocale(locale, "/jeddah-airport-taxi")} className="text-gold hover:underline">{ar ? "تاكسي مطار جدة" : "Jeddah Airport Taxi"}</Link>
       </div>
 

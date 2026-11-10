@@ -212,6 +212,25 @@ const MIGRATIONS = [
     },
   },
   {
+    // Internal links that pointed at URLs which 301 to another page now link to the final URL.
+    name: "2026-11-10-fix-redirecting-links",
+    async run(conn, log) {
+      for (const [table, cols] of [["pages", ["body_ar", "body_en"]], ["posts", ["content_ar", "content_en"]]]) {
+        const [rows] = await conn.query(`SELECT id, ${cols.join(", ")} FROM \`${table}\``);
+        let changed = 0;
+        for (const r of rows) {
+          const set = {};
+          for (const c of cols) { const out = fixLinks(r[c]); if (out !== r[c]) set[c] = out; }
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`${table}\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          changed++;
+        }
+        log(`${table}: ${changed} rows had redirecting links updated`);
+      }
+    },
+  },
+  {
     // Start the gradual release: everything is hidden from Google again, items get a release
     // order, and the first run shows the six most important ones; after that the scheduler adds
     // a few every few days (see src/server/release.server.ts).

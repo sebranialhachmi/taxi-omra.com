@@ -52,9 +52,9 @@ export function PublicFooter() {
         <div className="md:col-span-2">
           <h3 className="text-xs uppercase tracking-[0.22em] text-gold mb-4">{ar ? "الخدمات" : "Services"}</h3>
           <ul className="space-y-2.5 text-sm text-primary-foreground/70">
-            <li><Link to={l("/p/airport-transfer")} className="hover:text-gold transition">{ar ? "نقل المطار" : "Airport"}</Link></li>
-            <li><Link to={l("/p/hotel-transfer")} className="hover:text-gold transition">{ar ? "الفنادق" : "Hotels"}</Link></li>
-            <li><Link to={l("/p/corporate")} className="hover:text-gold transition">{ar ? "الشركات" : "Corporate"}</Link></li>
+            <li><Link to={l("/airport-transfers")} className="hover:text-gold transition">{ar ? "نقل المطار" : "Airport"}</Link></li>
+            <li><Link to={l("/services/hotel-transfer")} className="hover:text-gold transition">{ar ? "الفنادق" : "Hotels"}</Link></li>
+            <li><Link to={l("/services/corporate-transport")} className="hover:text-gold transition">{ar ? "الشركات" : "Corporate"}</Link></li>
             <li><Link to={l("/fleet")} className="hover:text-gold transition">{ar ? "الأسطول" : "Fleet"}</Link></li>
           </ul>
         </div>
