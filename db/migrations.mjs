@@ -303,6 +303,36 @@ const MIGRATIONS = [
     },
   },
   {
+    // The owner does not offer child seats: remove every promise of one (cleaner is idempotent) and the two FAQ rows about them.
+    name: "2026-11-26-no-child-seats",
+    async run(conn, log) {
+      for (const table of ["pages", "posts", "faqs", "hero_slides", "homepage_sections"]) {
+        const [cols] = await conn.query(
+          "SELECT COLUMN_NAME c FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND DATA_TYPE IN ('varchar','text','mediumtext','longtext')",
+          [table],
+        );
+        const fields = cols.map((r) => r.c).filter((c) => !/(^id$|slug|url|image|robots|schema|status|code|keywords|tags)/i.test(c));
+        if (!fields.length) continue;
+        const [rows] = await conn.query(`SELECT id, ${fields.map((f) => `\`${f}\``).join(", ")} FROM \`${table}\``);
+        let changed = 0;
+        for (const r of rows) {
+          if (table === "faqs" && /child[\s-]?seat|baby seat|مقعد(?:\s|‑)?(?:ال)?أطفال|كرسي أطفال/i.test(`${r.question_ar} ${r.question_en}`)) {
+            await conn.query("DELETE FROM `faqs` WHERE id = ?", [r.id]);
+            changed++;
+            continue;
+          }
+          const set = {};
+          for (const f of fields) { const out = neutralClaims(r[f]); if (out !== r[f]) set[f] = out; }
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`${table}\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          changed++;
+        }
+        log(`${table}: ${changed} rows had child-seat mentions removed`);
+      }
+    },
+  },
+  {
     // Start the gradual release: everything is hidden from Google again, items get a release
     // order, and the first run shows the six most important ones; after that the scheduler adds
     // a few every few days (see src/server/release.server.ts).

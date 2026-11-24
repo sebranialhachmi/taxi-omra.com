@@ -89,8 +89,8 @@ export function buildPageSections(page: DetailPageData, locale: Locale): PageSec
     );
     intro.push(
       ar
-        ? `نخدم الحجاج والمعتمرين والعائلات ورجال الأعمال، ونوفّر مقاعد أطفال عند الطلب وسيارات بسعات مختلفة تبدأ من سيارة السيدان وحتى الميني باص للمجموعات الكبيرة.`
-        : `We serve Umrah and Hajj pilgrims, families and business travellers, with child seats on request and vehicle sizes ranging from a private sedan to a minibus for larger groups.`,
+        ? `نخدم الحجاج والمعتمرين والعائلات ورجال الأعمال، ونوفّر سيارات بسعات مختلفة تبدأ من سيارة السيدان وحتى الميني باص للمجموعات الكبيرة.`
+        : `We serve Umrah and Hajj pilgrims, families and business travellers, with vehicle sizes ranging from a private sedan to a minibus for larger groups.`,
     );
   } else if (type === "airport") {
     intro.push(
@@ -163,7 +163,6 @@ export function buildPageSections(page: DetailPageData, locale: Locale): PageSec
         "سعر ثابت متفق عليه قبل الرحلة",
         "مساعدة في حمل الأمتعة ومياه شرب عند التوفر",
         "متابعة الرحلة وتأكيد فوري عبر واتساب",
-        "مقعد أطفال عند الطلب دون رسوم إضافية",
       ]
     : [
         "Professional driver speaking Arabic and English",
@@ -171,7 +170,6 @@ export function buildPageSections(page: DetailPageData, locale: Locale): PageSec
         "Fixed fare agreed before the journey starts",
         "Luggage assistance and water when available",
         "Instant confirmation and follow-up on WhatsApp",
-        "Child seat on request at no extra cost",
       ];
 
   // ---------- Steps ----------
