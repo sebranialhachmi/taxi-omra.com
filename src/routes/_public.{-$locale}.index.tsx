@@ -164,7 +164,7 @@ function Home() {
             <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
               {ar
                 ? `خدمة التوصيل من مطار جدة إلى مكة على مدار الساعة بأسعار تبدأ من ${getPriceForRoute('apt-jed-to-makkah')} ريال فقط — سيارات حديثة، سائقون محترفون. احجز في دقيقة.`
-                : `Private Umrah taxi and airport transfers from only ${getPriceForRoute('apt-jed-to-makkah')} SAR — modern vehicles, professional drivers. Book your Jeddah Airport to Makkah ride in under a minute.`}
+                : `Private Umrah taxi from Jeddah Airport to Makkah, 24/7, with fares from ${getPriceForRoute('apt-jed-to-makkah')} SAR — modern vehicles, professional drivers. Book in under a minute.`}
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-elegant h-12 px-6">
