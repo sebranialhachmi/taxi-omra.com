@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Phone, MessageCircle, Mail, MapPin, Clock, ArrowRight } from "lucide-react";
-import { useI18n } from "@/lib/i18n";
+import { useI18n, withLocale } from "@/lib/i18n";
+import { Link } from "@tanstack/react-router";
 import { SITE, waLink, telLink } from "@/lib/site-info";
 import { submitContact } from "@/lib/public.functions";
 import { useState } from "react";
@@ -176,6 +177,21 @@ function Contact() {
             {ar
               ? "نخدم جدة ومكة المكرمة والمدينة المنورة والطائف، ومطارات جدة والمدينة والطائف، ونستقبل الحجوزات على مدار الساعة. يمكنك الاطلاع على الأسعار قبل التواصل من صفحة أسعار التاكسي."
               : "We serve Jeddah, Makkah, Madinah and Taif and the Jeddah, Madinah and Taif airports, taking bookings around the clock. See the fares page for prices before you get in touch."}
+          </p>
+          <h2 className="font-display text-3xl pt-6">{ar ? "ما الذي ترسله ليكون الحجز سريعًا؟" : "What to send for a quick booking"}</h2>
+          <ul className="list-disc space-y-2 ps-6 text-muted-foreground">
+            <li>{ar ? "اسم الفندق وعنوانه بالعربية أو الإنجليزية، أو أقرب معلم له." : "The hotel name and address in Arabic or English, or its nearest landmark."}</li>
+            <li>{ar ? "عدد الركاب وعدد الحقائب، وهل معك أطفال أو كبار سن." : "The number of passengers and bags, and whether you travel with children or elderly relatives."}</li>
+            <li>{ar ? "رقم الرحلة ووقت الوصول إن كان الاستقبال من المطار، وتحديد الصالة إن عرفتها." : "Your flight number and arrival time for airport pickups, and the terminal if you know it."}</li>
+            <li>{ar ? "رقم هاتف يعمل عند وصولك، ويفضّل أن يكون عليه واتساب." : "A phone number that works when you arrive, ideally with WhatsApp."}</li>
+          </ul>
+          <p className="text-muted-foreground">
+            {ar
+              ? "للأسعار الحالية بين المدن والمطارات راجع "
+              : "For current fares between cities and airports see the "}
+            <Link to={withLocale(locale, "/guide/taxi-fares")} className="text-primary underline-offset-4 hover:underline">{ar ? "دليل أسعار التاكسي" : "taxi fares guide"}</Link>
+            {ar ? "، ولتفاصيل الاستقبال في المطار اقرأ " : ", and for airport pickup details read "}
+            <Link to={withLocale(locale, "/jeddah-airport-taxi")} className="text-primary underline-offset-4 hover:underline">{ar ? "تاكسي مطار جدة" : "Jeddah airport taxi"}</Link>.
           </p>
         </div>
       </section>

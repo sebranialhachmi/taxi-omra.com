@@ -10,10 +10,10 @@ import { categoryImage, categoryAlt } from "@/lib/fleet-images";
 
 const opts = () => queryOptions({ queryKey: ["public", "fleet"], queryFn: () => listVehicleCategories() });
 const FEATURES = [
-  { ar: "مقاعد جلدية", en: "Leather interior" },
-  { ar: "واي‑فاي مجاني", en: "Complimentary Wi-Fi" },
-  { ar: "مياه ومناديل", en: "Water & refreshments" },
-  { ar: "أمتعة كبيرة", en: "Ample luggage space" },
+  { ar: "سعر ثابت للسيارة", en: "Fixed fare per car" },
+  { ar: "تأكيد السعر على واتساب", en: "Fare confirmed on WhatsApp" },
+  { ar: "الدفع عند الوصول", en: "Pay on arrival" },
+  { ar: "حجز على مدار الساعة", en: "Booking 24/7" },
 ];
 
 export const Route = createFileRoute("/_public/{-$locale}/fleet/")({
@@ -21,11 +21,11 @@ export const Route = createFileRoute("/_public/{-$locale}/fleet/")({
   head: ({ params }) => {
     const ar = (params.locale ?? "ar") === "ar";
     const title = ar
-      ? `الأسطول — سيدان و GMC وهايس وفانات عائلية | ${SITE.brand.ar}`
-      : `Our Fleet — Sedan, GMC SUV, Hiace & Family Vans | ${SITE.brand.en}`;
+      ? `الأسطول: سيدان وSUV وهايس وفانات عائلية | ${SITE.brand.ar}`
+      : `Our Fleet: Sedan, SUV, Hiace & Family Vans | ${SITE.brand.en}`;
     const description = ar
-      ? "أسطول حديث لتوصيل العمرة والمطار: سيدان أعمال، GMC يوكن، تويوتا هايس، وفانات عائلية. مقاعد جلدية، واي‑فاي مجاني، سائقون مرخصون."
-      : "Modern fleet for Umrah and airport transfers: business sedan, GMC Yukon, Toyota Hiace, and family vans. Leather seats, complimentary Wi-Fi, licensed chauffeurs.";
+      ? "سيارات لتوصيل العمرة والمطار: سيدان أعمال، GMC يوكن، تويوتا هايس، وفانات عائلية. سعر ثابت للسيارة يؤكَّد على واتساب، والدفع عند الوصول."
+      : "Cars for Umrah and airport transfers: business sedan, GMC Yukon, Toyota Hiace and family vans. A fixed fare per car confirmed on WhatsApp, paid on arrival.";
     return {
       meta: [
         { title },

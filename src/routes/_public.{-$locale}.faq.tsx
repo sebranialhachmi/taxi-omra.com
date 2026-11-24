@@ -65,6 +65,25 @@ function FAQ() {
           ? "نجيب هنا عن أكثر ما يسأل عنه الزوار: كيف يتم الحجز، وهل السعر ثابت، ومتى يُدفع، وكيف يتم الاستقبال في المطار. إن لم تجد إجابة سؤالك فراسلنا على واتساب ونرد عليك."
           : "Here we answer what visitors ask most: how booking works, whether the fare is fixed, when to pay, and how airport pickup works. If you do not find your answer, message us on WhatsApp and we will reply."}
       </p>
+      <div className="space-y-6 mb-10">
+        <h2 className="font-display text-2xl">{ar ? "إجابات سريعة" : "Quick answers"}</h2>
+        <div>
+          <h3 className="font-semibold mb-1">{ar ? "كيف أحجز؟" : "How do I book?"}</h3>
+          <p className="text-muted-foreground leading-relaxed">{ar ? "راسلنا على واتساب بمكان الاستلام والوجهة والموعد وعدد الركاب. نؤكد لك السيارة والسعر قبل الرحلة." : "Message us on WhatsApp with the pickup point, destination, time and number of passengers. We confirm the car and the fare before the trip."}</p>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-1">{ar ? "هل السعر ثابت؟" : "Is the fare fixed?"}</h3>
+          <p className="text-muted-foreground leading-relaxed">{ar ? "نعم، السعر ثابت للسيارة وليس بالعداد، ويؤكَّد على واتساب قبل الحجز." : "Yes. The fare is fixed per car, not metered, and is confirmed on WhatsApp before you book."}</p>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-1">{ar ? "متى أدفع؟" : "When do I pay?"}</h3>
+          <p className="text-muted-foreground leading-relaxed">{ar ? "تدفع الأجرة عند الوصول." : "You pay on arrival."}</p>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-1">{ar ? "ماذا لو تأخرت رحلتي؟" : "What if my flight is delayed?"}</h3>
+          <p className="text-muted-foreground leading-relaxed">{ar ? "أخبرنا برقم الرحلة ونتابع موعد الهبوط، وأخبرنا مباشرة إن حدث تأخير ليتغير موعد الاستقبال." : "Give us your flight number so the landing is tracked, and tell us straight away if there is a delay so the pickup time can change."}</p>
+        </div>
+      </div>
       <Accordion type="single" collapsible className="rounded-2xl border border-border bg-card divide-y divide-border">
         {data.map((f) => (
           <AccordionItem key={f.id} value={f.id} className="border-b-0 px-6">

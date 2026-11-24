@@ -233,10 +233,10 @@ function Home() {
       <section className="border-y border-border/60 bg-muted/40">
         <div className="container-tight py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
           {[
-            { icon: Shield, label: ar ? "سائقون معتمدون" : "Licensed & vetted drivers" },
+            { icon: Shield, label: ar ? "سائقون محترفون" : "Professional drivers" },
             { icon: CheckCircle2, label: ar ? "أسعار ثابتة" : "Fixed transparent fares" },
             { icon: Clock, label: ar ? "متاح ٢٤/٧" : "Available 24/7" },
-            { icon: Award, label: ar ? "خبرة أكثر من ١٠ سنوات" : "10+ years of service" },
+            { icon: Award, label: ar ? "تأكيد السعر قبل الرحلة" : "Fare confirmed before the trip" },
           ].map((f, i) => (
             <div key={i} className="flex items-center gap-3">
               <f.icon className="h-5 w-5 text-gold shrink-0" />
