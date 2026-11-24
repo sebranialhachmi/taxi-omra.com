@@ -13,8 +13,8 @@ export const Route = createFileRoute("/_public/{-$locale}/airport-transfers")({
       ? `توصيل مطار جدة: تاكسي إلى مكة والمدينة | ${SITE.brand.ar}`
       : `Jeddah Airport Transfers: Makkah & Madinah | ${SITE.brand.en}`;
     const description = ar
-      ? "استقبال شخصي في صالة الوصول بمطار الملك عبدالعزيز، متابعة الرحلة، أسعار ثابتة، وانتظار مجاني حتى ٦٠ دقيقة. متاح ٢٤ ساعة."
-      : "Meet-and-greet at Jeddah King Abdulaziz Airport arrivals hall, live flight tracking, fixed fares, and up to 60 minutes of complimentary wait. Available 24/7.";
+      ? "استقبال شخصي في صالة الوصول بمطار الملك عبدالعزيز، متابعة الرحلة، أسعار ثابتة، وانتظار مجاني حسب الاتفاق عند الحجز. متاح ٢٤ ساعة."
+      : "Meet-and-greet at Jeddah King Abdulaziz Airport arrivals hall, live flight tracking, fixed fares, and free waiting time agreed when you book. Available 24/7.";
     return {
       meta: [
         { title },
@@ -65,8 +65,8 @@ function AirportTransfers() {
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl">
             {ar
-              ? "نراقب رحلتك، نستقبلك في القاعة، ونوصلك بسيارة تنفيذية أنيقة. زمن الانتظار المجاني حتى ٦٠ دقيقة."
-              : "We monitor your flight, greet you in arrivals, and drive you in an executive vehicle. Up to 60 minutes complimentary wait time."}
+              ? "نراقب رحلتك، نستقبلك في القاعة، ونوصلك بسيارة تنفيذية أنيقة. زمن الانتظار المجاني حسب الاتفاق عند الحجز."
+              : "We monitor your flight, greet you in arrivals, and drive you in an executive vehicle. Free waiting time as agreed when you book."}
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             <Button asChild size="lg" className="rounded-full h-12 px-6 bg-primary">

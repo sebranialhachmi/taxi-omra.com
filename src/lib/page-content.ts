@@ -100,8 +100,8 @@ export function buildPageSections(page: DetailPageData, locale: Locale): PageSec
     );
     intro.push(
       ar
-        ? `يشمل السعر وقت انتظار مجاني بعد هبوط الطائرة، والمساعدة في حمل الأمتعة، ومياه مجانية داخل السيارة. يمكنك أيضاً حجز رحلة المغادرة مسبقاً لضمان الوصول للمطار في الوقت المناسب.`
-        : `The fare includes free waiting time after landing, luggage assistance and complimentary water on board. Departure transfers can be booked in advance so you reach the terminal with time to spare.`,
+        ? `يشمل السعر وقت انتظار مجاني بعد هبوط الطائرة، والمساعدة في حمل الأمتعة، ومياه شرب عند التوفر. يمكنك أيضاً حجز رحلة المغادرة مسبقاً لضمان الوصول للمطار في الوقت المناسب.`
+        : `The fare includes free waiting time after landing, luggage assistance and water on board when available. Departure transfers can be booked in advance so you reach the terminal with time to spare.`,
     );
   } else if (type === "city") {
     intro.push(
@@ -161,7 +161,7 @@ export function buildPageSections(page: DetailPageData, locale: Locale): PageSec
         "سائق محترف يتحدث العربية والإنجليزية",
         "سيارة خاصة كاملة لك ولمرافقيك",
         "سعر ثابت متفق عليه قبل الرحلة",
-        "مساعدة في حمل الأمتعة ومياه مجانية",
+        "مساعدة في حمل الأمتعة ومياه شرب عند التوفر",
         "متابعة الرحلة وتأكيد فوري عبر واتساب",
         "مقعد أطفال عند الطلب دون رسوم إضافية",
       ]
@@ -169,7 +169,7 @@ export function buildPageSections(page: DetailPageData, locale: Locale): PageSec
         "Professional driver speaking Arabic and English",
         "The entire private vehicle for your party",
         "Fixed fare agreed before the journey starts",
-        "Luggage assistance and complimentary water",
+        "Luggage assistance and water when available",
         "Instant confirmation and follow-up on WhatsApp",
         "Child seat on request at no extra cost",
       ];

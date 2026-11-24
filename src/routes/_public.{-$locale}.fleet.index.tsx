@@ -10,10 +10,10 @@ import { categoryImage, categoryAlt } from "@/lib/fleet-images";
 
 const opts = () => queryOptions({ queryKey: ["public", "fleet"], queryFn: () => listVehicleCategories() });
 const FEATURES = [
+  { ar: "مقاعد جلدية", en: "Leather seats" },
   { ar: "سعر ثابت للسيارة", en: "Fixed fare per car" },
   { ar: "تأكيد السعر على واتساب", en: "Fare confirmed on WhatsApp" },
   { ar: "الدفع عند الوصول", en: "Pay on arrival" },
-  { ar: "حجز على مدار الساعة", en: "Booking 24/7" },
 ];
 
 export const Route = createFileRoute("/_public/{-$locale}/fleet/")({
@@ -63,7 +63,7 @@ function Fleet() {
             {ar ? "أسطول مختار بعناية. لكل رحلة، السيارة الأنسب." : "A hand-picked fleet. The right car for every journey."}
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            {ar ? "من السيدان الفاخر إلى الفانات العائلية، جميع سياراتنا حديثة، مؤمّنة بالكامل، ومصانة بأعلى معايير السلامة." : "From executive sedans to spacious vans — every vehicle is late-model, fully insured, and maintained to the highest safety standard."}
+            {ar ? "من السيدان الفاخر إلى الفانات العائلية، سيارات نظيفة ومريحة بسعر ثابت للسيارة يؤكَّد على واتساب قبل الرحلة." : "From executive sedans to spacious vans — a clean, comfortable car at a fixed fare per car, confirmed on WhatsApp before the trip."}
           </p>
         </div>
       </section>

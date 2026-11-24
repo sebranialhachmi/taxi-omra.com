@@ -301,7 +301,7 @@ function Home() {
             <ul className="grid sm:grid-cols-2 gap-3 text-sm">
               {[
                 ar ? "تتبع الرحلات مباشر" : "Live flight tracking",
-                ar ? "٦٠ دقيقة انتظار مجانية" : "60 min free wait time",
+                ar ? "انتظار مجاني حسب الاتفاق" : "Free waiting as agreed",
                 ar ? "لافتة اسم شخصية" : "Personalised name sign",
                 ar ? "أسعار ثابتة مسبقة" : "Fixed fare, paid on arrival",
               ].map((f) => (
