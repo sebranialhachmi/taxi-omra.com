@@ -71,6 +71,8 @@ const SERVICE_RULES = [
   [/خدمة انتظار مجانية لمدة 60 دقيقة/g, "خدمة انتظار مجاني حسب الاتفاق عند الحجز"],
   [/60 Minutes Waiting Time:/g, "Waiting Time:"],
   [/ and 15 minutes for hotel pickups/g, " and for hotel pickups"],
+  [/، مقعد طفل\.\.\./g, "..."],
+  [/, child seat\.\.\./g, "..."],
   [/و15 دقيقة عند الفنادق/g, "وعند الفنادق"],
   [/a complimentary 60-minute waiting period/g, "free waiting time agreed at booking"],
   [/your 60-minute free waiting (time|window)/g, "your agreed free waiting $1"],
@@ -90,10 +92,55 @@ const SERVICE_RULES = [
   [/انتظار مجاني 60 دقيقة/g, "انتظار مجاني حسب الاتفاق"],
 ];
 
+
+// Child seats: the owner does not offer them, so every sentence, FAQ block, list item or table row that
+// promises or discusses one is removed. A question sentence takes its answer with it.
+const SEAT =
+  "child[\\s-]?seats?|infant seats?|baby seats?|car seats?|booster seats?|مقعد(?:\\s|‑)?(?:ال)?(?:أطفال|طفل|للأطفال)|مقاعد(?:\\s|‑)?(?:ال)?(?:أطفال|للأطفال|الأمان)|كرسي(?:\\s)?(?:ال)?أطفال|كراسي(?:\\s)?(?:ال)?أطفال|مقعد الأمان";
+const SEAT_RE = new RegExp(SEAT, "i");
+const stripTags = (h) => h.replace(/<[^>]+>/g, " ");
+const NOT_END = (tag) => `(?:(?!<\\/${tag}>)[\\s\\S])*?`;
+
+function dropSentences(inner) {
+  const parts = inner.split(/(?<=[.!؟?])\s+/);
+  const out = [];
+  for (let i = 0; i < parts.length; i++) {
+    if (!SEAT_RE.test(stripTags(parts[i]))) { out.push(parts[i]); continue; }
+    // "special needs such as a child seat or a wheelchair": keep the sentence, drop only the seat
+    if (/wheelchair|special|elderly|كرسي متحرك|احتياج|خاص|كبير سن|كبار السن/i.test(stripTags(parts[i])) && !/[؟?]\s*(<\/[a-z]+>)*$/i.test(parts[i].trim())) {
+      const cleaned = parts[i]
+        .replace(/(?:a )?child seat requests?,?\s*/gi, "")
+        .replace(/(?:a |an |and |or |,\s*)*(?:child|infant|baby|booster) seats?(?:\s*(?:,|or|and))?\s*/gi, "")
+        .replace(/such as wheelchair/gi, "such as a wheelchair")
+        .replace(/:\s*(?:أو|،)\s+/g, ": ")
+        .replace(/(?:(?:أو|،|و)\s*)?(?:مقعد|مقاعد|كرسي|كراسي)(?:\s|‑)?(?:ال)?(?:أطفال|طفل|للأطفال)(?:\s*(?:،|أو|و))?\s*/g, "");
+      if (!SEAT_RE.test(stripTags(cleaned))) { out.push(cleaned); continue; }
+    }
+    if (/[؟?]\s*(<\/[a-z]+>)*$/i.test(parts[i].trim()) && i + 1 < parts.length) i++; // question + its answer
+  }
+  return out.join(" ");
+}
+
+export function stripChildSeats(html) {
+  if (typeof html !== "string" || !SEAT_RE.test(html)) return html;
+  let out = html;
+  const heading = `<h[2-4][^>]*>${NOT_END("h[2-4]")}(?:${SEAT})${NOT_END("h[2-4]")}<\\/h[2-4]>\\s*(?:<p>(?:(?!<\\/p>)[\\s\\S])*<\\/p>)?\\s*`;
+  out = out.replace(new RegExp(heading, "gi"), "");
+  out = out.replace(new RegExp(`<li>${NOT_END("li")}(?:${SEAT})${NOT_END("li")}<\\/li>\\s*`, "gi"), "");
+  out = out.replace(new RegExp(`<tr>${NOT_END("tr")}(?:${SEAT})${NOT_END("tr")}<\\/tr>\\s*`, "gi"), "");
+  out = out.replace(/<p>((?:(?!<\/p>)[\s\S])*)<\/p>/g, (m, inner) => {
+    if (!SEAT_RE.test(stripTags(inner))) return m;
+    const kept = dropSentences(inner).trim();
+    return kept ? `<p>${kept}</p>` : "";
+  });
+  if (SEAT_RE.test(stripTags(out)) && !/<[a-z]/i.test(out)) out = dropSentences(out); // plain strings (meta fields)
+  return out.replace(/\n{3,}/g, "\n\n");
+}
+
 export function neutralClaims(html) {
   if (typeof html !== "string") return html;
   let out = html;
   for (const [re, to] of RULES) out = out.replace(re, to);
   for (const [re, to] of SERVICE_RULES) out = out.replace(re, to);
-  return out;
+  return stripChildSeats(out);
 }
