@@ -14,8 +14,8 @@ export const Route = createFileRoute("/_public/{-$locale}/about")({
       ? `من نحن — ${SITE.brand.ar} | تاكسي العمرة من مطار جدة إلى مكة`
       : `About Us — ${SITE.brand.en} | Jeddah Airport to Makkah Taxi`;
     const description = ar
-      ? "تعرّف على تاكسي العمرة: شركة نقل متخصصة في التوصيل من مطار جدة إلى مكة والمدينة، بسائقين مرخصين وأسطول حديث وخدمة على مدار الساعة."
-      : "Learn about Omra Taxi — a licensed Saudi chauffeur company specialising in Jeddah Airport transfers to Makkah and Madinah, with a modern fleet and 24/7 service.";
+      ? "تعرّف على تاكسي العمرة: خدمة نقل متخصصة في التوصيل من مطار جدة إلى مكة والمدينة، بسائقين محترفين وسيارات حديثة وحجز على مدار الساعة."
+      : "Learn about Umrah Taxi — a chauffeur service specialising in Jeddah Airport transfers to Makkah and Madinah, with modern cars and 24/7 booking.";
     return {
       meta: [
         { title },
@@ -54,8 +54,8 @@ function About() {
         <h1 className="text-4xl md:text-5xl font-bold mb-4">{ar ? "من نحن" : "About Us"}</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           {ar
-            ? `${SITE.brand.ar} شركة تاكسي احترافية تقدم خدمات نقل موثوقة على مدار الساعة، مع أسطول حديث وسائقين مرخصين.`
-            : `${SITE.brand.en} is a professional taxi company providing reliable transfers 24/7, with a modern fleet and licensed drivers.`}
+            ? `${SITE.brand.ar} خدمة تاكسي احترافية تقدم خدمات نقل موثوقة على مدار الساعة، مع سيارات حديثة وسائقين محترفين.`
+            : `${SITE.brand.en} is a professional taxi service providing reliable transfers 24/7, with modern cars and professional drivers.`}
         </p>
       </div>
       <div className="grid gap-6 md:grid-cols-2 mb-16">

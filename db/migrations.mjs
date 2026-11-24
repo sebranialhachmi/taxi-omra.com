@@ -4,6 +4,7 @@ import * as riyadh from "./riyadh.mjs";
 import * as unserved from "./unserved.mjs";
 import { priorityFor } from "./release-rules.mjs";
 import { fixLinks } from "./links-fix.mjs";
+import { neutralClaims } from "./claims-fix.mjs";
 import { cleanPrices, validPrices, cleanMetaPrices, META_PRICE_FIELDS } from "./prices-clean.mjs";
 
 const parseJson = (v) => { try { return JSON.parse(v); } catch { return v; } };
@@ -227,6 +228,32 @@ const MIGRATIONS = [
           changed++;
         }
         log(`${table}: ${changed} rows had redirecting links updated`);
+      }
+    },
+  },
+  {
+    // No "licensed company / licensed drivers / fully insured" claims until there is a registration behind them.
+    name: "2026-11-24-neutral-claims",
+    async run(conn, log) {
+      const groups = [
+        ["pages", ["body_ar", "body_en", "subtitle_ar", "subtitle_en", "meta_title", "meta_description", "og_description"]],
+        ["posts", ["content_ar", "content_en", "excerpt_ar", "excerpt_en", "meta_title", "meta_description", "meta_title_ar", "meta_description_ar"]],
+      ];
+      for (const [table, wanted] of groups) {
+        const [cols] = await conn.query("SELECT COLUMN_NAME c FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ?", [table]);
+        const have = new Set(cols.map((r) => r.c));
+        const fields = wanted.filter((f) => have.has(f));
+        const [rows] = await conn.query(`SELECT id, ${fields.map((f) => `\`${f}\``).join(", ")} FROM \`${table}\``);
+        let changed = 0;
+        for (const r of rows) {
+          const set = {};
+          for (const f of fields) { const out = neutralClaims(r[f]); if (out !== r[f]) set[f] = out; }
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`${table}\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          changed++;
+        }
+        log(`${table}: ${changed} rows had unverified licence claims neutralised`);
       }
     },
   },
