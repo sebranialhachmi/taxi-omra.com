@@ -258,6 +258,51 @@ const MIGRATIONS = [
     },
   },
   {
+    // Owner's answers: no Wi-Fi in cars, bottled water only sometimes, free waiting time depends on the booking.
+    // Runs the same cleaner over every text column of the content tables (it is idempotent).
+    name: "2026-11-25-service-claims",
+    async run(conn, log) {
+      for (const table of ["pages", "posts", "faqs", "hero_slides", "homepage_sections"]) {
+        const [cols] = await conn.query(
+          "SELECT COLUMN_NAME c FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND DATA_TYPE IN ('varchar','text','mediumtext','longtext')",
+          [table],
+        );
+        const fields = cols.map((r) => r.c).filter((c) => !/(^id$|slug|url|image|robots|schema|status|code|keywords|tags)/i.test(c));
+        if (!fields.length) continue;
+        const [rows] = await conn.query(`SELECT id, ${fields.map((f) => `\`${f}\``).join(", ")} FROM \`${table}\``);
+        let changed = 0;
+        for (const r of rows) {
+          const set = {};
+          for (const f of fields) { const out = neutralClaims(r[f]); if (out !== r[f]) set[f] = out; }
+          const keys = Object.keys(set);
+          if (!keys.length) continue;
+          await conn.query(`UPDATE \`${table}\` SET ${keys.map((k) => `\`${k}\` = ?`).join(",")} WHERE id = ?`, [...keys.map((k) => set[k]), r.id]);
+          changed++;
+        }
+        log(`${table}: ${changed} rows updated for confirmed service claims`);
+      }
+    },
+  },
+  {
+    // Pages whose Google title is under 25 characters cannot be released automatically; take the seed title.
+    name: "2026-11-25-short-meta-titles",
+    async run(conn, log, ctx) {
+      let seed;
+      try { seed = await ctx.readSeed("pages"); } catch { log("short titles: no seed available, skipped"); return; }
+      const bySlug = new Map(seed.map((r) => [r.slug, r]));
+      const [rows] = await conn.query("SELECT id, slug, meta_title FROM `pages` WHERE CHAR_LENGTH(COALESCE(meta_title, '')) < 25");
+      let changed = 0;
+      for (const r of rows) {
+        const t = bySlug.get(r.slug)?.meta_title;
+        if (typeof t === "string" && t.length >= 25 && t.length <= 70) {
+          await conn.query("UPDATE `pages` SET `meta_title` = ? WHERE id = ?", [t, r.id]);
+          changed++;
+        }
+      }
+      log(`pages: ${changed} short Google titles replaced`);
+    },
+  },
+  {
     // Start the gradual release: everything is hidden from Google again, items get a release
     // order, and the first run shows the six most important ones; after that the scheduler adds
     // a few every few days (see src/server/release.server.ts).

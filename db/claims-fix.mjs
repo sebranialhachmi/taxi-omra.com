@@ -39,9 +39,61 @@ const RULES = [
   [/مرخصين/g, "محترفين"],
 ];
 
+// Service claims the owner could not confirm as stated: Wi-Fi in cars (none), bottled water (sometimes),
+// a fixed 60 minutes of free waiting (depends on the agreement made at booking).
+const SERVICE_RULES = [
+  // Wi-Fi: drop FAQ blocks, table rows and list fragments
+  [/<h3>Is Wi-Fi available in the vehicles\?<\/h3>\s*<p>[\s\S]*?<\/p>\s*/g, ""],
+  [/<h3>هل تتوفر خدمة الواي فاي في السيارات؟<\/h3>\s*<p>[\s\S]*?<\/p>\s*/g, ""],
+  [/<tr>\s*<td>Wi-Fi Service<\/td>\s*<td>[\s\S]*?<\/td>\s*<\/tr>\s*/g, ""],
+  [/<tr>\s*<td>خدمة الواي فاي<\/td>\s*<td>[\s\S]*?<\/td>\s*<\/tr>\s*/g, ""],
+  [/نظام تكييف ممتاز وخدمة الواي فاي \(حسب توفرها في السيارة\)\./g, "نظام تكييف ممتاز."],
+  // water
+  [/Complimentary bottled water for (?:your comfort|the long journey)\./g, "Water on board when available."],
+  [/مياه شرب باردة ومناديل معقمة داخل المركبة\./g, "مياه شرب عند التوفر."],
+  [/توفير مياه شرب باردة وخدمة إنترنت \(حسب التوفر\)/g, "توفير مياه شرب (حسب التوفر)"],
+  // free waiting time: agreed at booking
+  [/Sixty minutes of free waiting starts after landing/g, "The free waiting time agreed at booking starts after landing"],
+  [/(?:sixty|60) minutes of free waiting starts? (?:at|after) (landing|touchdown)/gi, "the free waiting time agreed at booking starts after $1"],
+  [/Free waiting is 60 minutes from actual landing/g, "Free waiting is as agreed at booking, counted from actual landing"],
+  [/(?:sixty|60) minutes of free waiting( time)?/gi, "free waiting time as agreed at booking"],
+  [/(?:sixty|60) min(?:ute)?s? free wait(?:ing)?( time)?/gi, "free waiting as agreed"],
+  [/الانتظار المجاني 60 دقيقة من الهبوط الفعلي/g, "الانتظار المجاني حسب الاتفاق عند الحجز ويُحسب من الهبوط الفعلي"],
+  [/انتظار مجاني لمدة 60 دقيقة/g, "انتظار مجاني حسب الاتفاق عند الحجز"],
+  [/(?:60|٦٠|ستين|ستون) دقيقة (?:انتظار )?مجانية?/g, "انتظار مجاني حسب الاتفاق عند الحجز"],
+  [/60 دقيقة انتظار مجانية تبدأ/g, "الانتظار المجاني حسب الاتفاق يبدأ"],
+  [/(?:Complimentary|Free) Waiting Time:\s*(?:Up to )?(?:60|sixty) minutes(?: of complimentary waiting)?/g, "Free Waiting Time: as agreed at booking,"],
+  [/(Complimentary|Free) Waiting Time:(<\/strong>)?\s*(?:Enjoy |Up to )?(?:60|sixty) minutes(?: of complimentary waiting(?: time)?)?/g, "Free Waiting Time:$2 as agreed at booking,"],
+  [/The 60-minute free waiting period begins/g, "The free waiting period agreed at booking begins"],
+  [/[Yy]our 60-minute free waiting period starts/g, "Your agreed free waiting period starts"],
+  [/a 60-minute complimentary waiting window/g, "a free waiting window agreed at booking"],
+  [/فترة انتظار مجانية مدتها 60 دقيقة/g, "فترة انتظار مجانية حسب الاتفاق"],
+  [/خدمة انتظار مجانية لمدة 60 دقيقة/g, "خدمة انتظار مجاني حسب الاتفاق عند الحجز"],
+  [/60 Minutes Waiting Time:/g, "Waiting Time:"],
+  [/ and 15 minutes for hotel pickups/g, " and for hotel pickups"],
+  [/و15 دقيقة عند الفنادق/g, "وعند الفنادق"],
+  [/a complimentary 60-minute waiting period/g, "free waiting time agreed at booking"],
+  [/your 60-minute free waiting (time|window)/g, "your agreed free waiting $1"],
+  [/an? (?:generous )?60-minute free waiting (grace period|policy)/g, "a free waiting $1 agreed at booking"],
+  [/What if I need more than the 60 free minutes after landing\?/g, "What if I need more than the free waiting time after landing?"],
+  [/The first 60 minutes are free and start from the actual landing time/g, "The free waiting time agreed at booking starts from the actual landing time"],
+  [/your 60 free minutes start from touchdown/g, "your free waiting time starts from touchdown"],
+  [/the 60 free minutes/g, "the free waiting time"],
+  [/60 free minutes/g, "free waiting time"],
+  [/الدقائق الستون الأولى مجانية وتبدأ من الهبوط الفعلي/g, "مدة الانتظار المجاني المتفق عليها تبدأ من الهبوط الفعلي"],
+  [/ثم تبدأ الدقائق الستون المجانية من لحظة الهبوط/g, "ثم تبدأ مدة الانتظار المجاني من لحظة الهبوط"],
+  [/نوفر ساعة كاملة \(60 دقيقة\) انتظار مجاني/g, "نوفر انتظارًا مجانيًا حسب الاتفاق عند الحجز"],
+  [/مجاناً لمدة تصل إلى 60 دقيقة/g, "مجاناً لمدة يُتفق عليها عند الحجز"],
+  [/ننتظر وصولك لمدة 60 دقيقة كاملة بعد هبوط الطائرة/g, "ننتظر وصولك بعد هبوط الطائرة خلال مدة الانتظار المجاني المتفق عليها"],
+  [/فترة انتظار مجانية تصل إلى 60 دقيقة/g, "فترة انتظار مجانية حسب الاتفاق"],
+  [/السائق سينتظرك لمدة 60 دقيقة مجاناً/g, "السائق سينتظرك مجاناً حسب المدة المتفق عليها"],
+  [/انتظار مجاني 60 دقيقة/g, "انتظار مجاني حسب الاتفاق"],
+];
+
 export function neutralClaims(html) {
   if (typeof html !== "string") return html;
   let out = html;
   for (const [re, to] of RULES) out = out.replace(re, to);
+  for (const [re, to] of SERVICE_RULES) out = out.replace(re, to);
   return out;
 }
